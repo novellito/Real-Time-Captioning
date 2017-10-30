@@ -7,6 +7,8 @@
 
 # dependencies
 /node_modules
+/backend/config/database.js
+/backend/node_modules/
 
 # IDEs and editors
 /.idea
