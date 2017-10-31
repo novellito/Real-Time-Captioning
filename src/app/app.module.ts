@@ -5,10 +5,14 @@ import { HttpModule } from '@angular/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
+// import { StatusComponent } from './components/status/status.component';
+import { SocketioComponent } from './components/socketio/socketio.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    // StatusComponent,
+    SocketioComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   imports: [
