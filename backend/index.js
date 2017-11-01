@@ -5,22 +5,25 @@ const cors       = require('cors');
 const passport   = require('passport');
 const mongoose   = require('mongoose');
 const config     = require('./config/database');
+const app = express();
+
+let http = require('http').Server(app);
+let io = require('socket.io')(http);
 
 
 // Connect To Database
-mongoose.connect(config.database);
+// mongoose.connect(config.database);
 
-// On Connection
-mongoose.connection.on('connected', () => {
-  console.log('Connected to database '+config.database);
-});
+// // On Connection
+// mongoose.connection.on('connected', () => {
+//   console.log('Connected to database '+config.database);
+// });
 
-// On Error
-mongoose.connection.on('error', (err) => {
-  console.log('Database error: '+err);
-});
+// // On Error
+// mongoose.connection.on('error', (err) => {
+//   console.log('Database error: '+err);
+// });
 
-const app = express();
 
 // const users    = require('./routes/users');
 
@@ -54,7 +57,24 @@ app.get('/', (req, res) => {
 // });
 
 
+
+io.on('connection', (socket) => {
+  console.log('user connected');
+  
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+  
+  socket.on('add-message', (message) => {
+    console.log(message);
+    io.emit('message', {type:'new-message', text: message});    
+  });
+});
+
 // Start Server
-app.listen(port, () => {
+http.listen(port, () => {
   console.log('Server started on port '+port);
 });
+// app.listen(port, () => {
+//   console.log('Server started on port '+port);
+// });
