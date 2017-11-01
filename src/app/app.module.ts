@@ -5,10 +5,12 @@ import { HttpModule } from '@angular/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
+import { StudentListComponent } from './student-list/student-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StudentListComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   imports: [
