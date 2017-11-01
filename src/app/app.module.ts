@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 // import { StatusComponent } from './components/status/status.component';
 import { SocketioComponent } from './components/socketio/socketio.component';
 
