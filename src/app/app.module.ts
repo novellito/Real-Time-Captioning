@@ -6,11 +6,15 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { StatusComponent } from './components/status/status.component';
+import { SocketioComponent } from './components/socketio/socketio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent
+    StatusComponent,
+    SocketioComponent,
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   imports: [
