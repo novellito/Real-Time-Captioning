@@ -1,0 +1,3 @@
+<div class="circle" [ngStyle]="setStatus()"></div>
+<span *ngIf="!serverOnline" class="h3">Session Down</span>
+<span *ngIf="serverOnline"class="h3">Session Online</span>
