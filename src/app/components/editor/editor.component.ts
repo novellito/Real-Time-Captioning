@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { QuillEditorComponent } from 'ngx-quill/src/quill-editor.component';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
