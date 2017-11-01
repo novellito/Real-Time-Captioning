@@ -22,6 +22,8 @@
         "../node_modules/font-awesome/scss/font-awesome.scss",
         "../node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
         "../node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+        "../node_modules/quill/dist/quill.snow.css",
+        "../node_modules/quill/dist/quill.bubble.css",
         "styles.scss"
       ],
       "scripts": [
