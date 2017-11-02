@@ -1,15 +1,2 @@
-
-<div class="container">
-    <div class="row d-flex justify-content-end">
-        <div class="col-md-8">
-            <quill-editor [style]="{height: '60vh'}" placeholder="captions start here!" (onContentChanged)="logChange($event);"></quill-editor> 
-        </div>
-
-    </div>
-
-    <div class="row d-flex justify-content-end">
-        <div class="col-md-8">
-            <quill-editor [modules]="{toolbar: false}" class="chatBox" [style]="{height: '100px'}" placeholder="chat here" (onContentChanged)="logChange($event);"></quill-editor>
-        </div>
-    </div>
-</div>
+<quill-editor [modules] ="{toolbar:this.toolbarOptions}" [style]="{height: '60vh'}" placeholder="captions start here!" (onContentChanged)="logChange($event);"></quill-editor>
+<quill-editor [modules]="{toolbar: false}" class="chatBox" [style]="{height: '100px'}" placeholder="chat here" (onContentChanged)="logChange($event);"></quill-editor>

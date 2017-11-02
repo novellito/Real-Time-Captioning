@@ -9,6 +9,7 @@ import Quill from 'quill';
 const Parchment = Quill.import('parchment');
 const Block = Parchment.query('block');
 
+
 Block.tagName = 'DIV';
 // or class NewBlock extends Block {}; NewBlock.tagName = 'DIV';
 Quill.register(Block /* or NewBlock */, true);
@@ -25,6 +26,11 @@ Quill.register(Font, true);
 })
 export class EditorComponent implements OnInit {
 
+    toolbarOptions = [
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote', 'code-block'],
+      [{ 'size': ['small', false, 'large', 'huge'] }]
+    ];
 
   constructor() {
    }
