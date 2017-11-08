@@ -1,11 +1,19 @@
 .layout-csun {
   height: 56px;  
+  margin-top:20px;
+  margin-left:10px;
 }
 
 header.header {
   float: left;
   border-right: black 2px solid;
   padding-right: 10px;
+ 
+}
+
+.header img{
+  width:160px;
+  height:43px;
 }
 
 .wordmark-container {
@@ -18,7 +26,19 @@ h2.wordmark {
 }
 
 @media(max-width:700px){
-  .layout-csun{
+
+  .wordmark{
     display:none;
+  }
+  
+  header.header{
+    border-right:none;
+  }
+
+  .header img{
+    width:107px;
+    height:30px;
+    // margin-top:20px;
+    // margin-left:10px;
   }
 }

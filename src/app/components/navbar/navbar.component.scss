@@ -2,9 +2,12 @@
     position: fixed;
     background-color: #d00d2d;
     min-height: 100%;
-    max-width: 120px;
-    left:0;
-    // display: block;
+    width: 120px;
+    left: 0;
+}
+
+span {
+    color: white;
 }
 
 .list-group-item {
@@ -12,5 +15,30 @@
 }
 
 .logo {
-    background-color: #55565A; 
+    background-color: #55565A;
+}
+
+.navbar-toggler {
+    display: none;
+}
+
+@media(max-width:700px) {
+    .container-sidebar {
+        margin-top: 2px;
+        width: 100%;
+        position: relative;
+    }
+    .navbar-nav li i {
+        display: none;
+    }
+    span {
+        color: white;
+        font-size: 1.3em;
+    }
+    .navbar-toggler {
+        display: block;
+        position: fixed;
+        top: 2%;
+        right: 5%;
+    }
 }
