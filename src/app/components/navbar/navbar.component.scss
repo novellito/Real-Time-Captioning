@@ -1,9 +1,10 @@
 .container-sidebar {
-    position: absolute;
+    position: fixed;
     background-color: #d00d2d;
     min-height: 100%;
     max-width: 120px;
-    display: block;
+    left:0;
+    // display: block;
 }
 
 .list-group-item {

@@ -1,6 +1,5 @@
 .layout-csun {
-  width: 100vw;
-  height: 56px;
+  height: 56px;  
 }
 
 header.header {
@@ -16,4 +15,10 @@ header.header {
 
 h2.wordmark {
   margin-top: 10px;
+}
+
+@media(max-width:700px){
+  .layout-csun{
+    display:none;
+  }
 }
