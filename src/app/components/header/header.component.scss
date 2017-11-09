@@ -28,15 +28,15 @@ h2.wordmark {
 }
 
 @media(max-width:768px) {
-    .wordmark {
-        display: none;
-    }
-    header.header {
-        border-right: none;
+    .wordmark-container {
+        margin-top: 17px;
+        margin-left: 5px;
+        .wordmark {
+            font-size: 1.3em;
+        }
     }
     .header img {
         width: 107px;
-        height: 30px; // margin-top:20px;
-        // margin-left:10px;
+        height: 30px;
     }
 }

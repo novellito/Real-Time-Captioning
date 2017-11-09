@@ -1,29 +1,30 @@
-.offset{
-    margin-left:5%;
+.offset {
+    margin-left: 5%;
 }
 
-.course-info{
-    padding:20px;
+.course-info {
+    padding: 20px;
 }
 
-.card-container{
-    position:relative;
-    display:grid;
+.card-container {
+    position: relative;
+    display: grid;
     grid-template-columns: 60% 20% 20%;
 }
 
-.transcripts img, .join-session img {
-    display:block;
-    width:60%;
+.transcripts img,
+.join-session img {
+    display: block;
+    width: 60%;
     margin: 0 auto;
+    margin-top: 15px;
 }
 
-@media(max-width:768px){
-    .offset{
-        margin-left:0px;
+@media(max-width:768px) {
+    .offset {
+        margin-left: 0px;
     }
-
-    p{
-        font-size:.9em;
+    p {
+        font-size: .9em;
     }
 }

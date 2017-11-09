@@ -13,8 +13,17 @@ a {
 .list-group-item {
     background-color: #d00d2d;
 }
-.list-group-item.active{
-    border:none;
+
+.list-group-item:hover {
+    background-color: #FF5456;
+}
+
+.list-group-item.active {
+    border: none;
+}
+
+li i.fa-pencil-square-o {
+    margin-left: 8px;
 }
 
 .logo {
@@ -23,6 +32,13 @@ a {
 
 .navbar-toggler {
     display: none;
+}
+
+// allows hamburger menu to collapse properly
+@media(min-width:769px) {
+    .container-sidebar {
+        display: block;
+    }
 }
 
 @media(max-width:768px) {
@@ -43,5 +59,11 @@ a {
         position: fixed;
         top: 2%;
         right: 5%;
+    }
+    .navbar-toggler:hover {
+        cursor: pointer;
+    }
+    a.navlink {
+        padding: 0rem 0rem !important;
     }
 }
