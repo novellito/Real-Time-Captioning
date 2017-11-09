@@ -1,41 +1,38 @@
 .container-sidebar {
     position: fixed;
-    background-color: #d00d2d;
+    background-color: #262626;
     min-height: 100%;
-    width: 120px;
+    width: 100px;
     left: 0;
-}
-
-a {
-    color: white;
-}
-
-.list-group-item {
-    background-color: #d00d2d;
-}
-
-.list-group-item:hover {
-    background-color: #FF5456;
-}
-
-.list-group-item.active {
-    border: none;
-}
-
-li i.fa-pencil-square-o {
-    margin-left: 8px;
-}
-
-.logo {
-    background-color: #55565A;
-}
-
-.navbar-toggler {
-    display: none;
+    a {
+        color: white;
+    }
+    li:nth-child(2) div {
+        margin-left: -14px;
+    }
+    .fa-file-text-o {
+        margin-bottom: 8px;
+    }
+    .fa-pencil-square-o {
+        margin-left: 8px;
+    }
+    .list-group-item {
+        background-color: inherit;
+        &:hover {
+            background-color: rgba(96, 82, 82, 0.67);
+        }
+        &.active {
+            border: none;
+            background-color: rgba(96, 82, 82, 0.67);
+        }
+    }
 }
 
 // allows hamburger menu to collapse properly
 @media(min-width:769px) {
+    .navbar-toggler {
+        display: none;
+    }
     .container-sidebar {
         display: block;
     }
@@ -43,27 +40,20 @@ li i.fa-pencil-square-o {
 
 @media(max-width:768px) {
     .container-sidebar {
-        margin-top: 2px;
         width: 100%;
         position: relative;
-    }
-    .navbar-nav li i {
-        display: none;
-    }
-    span {
-        color: white;
-        font-size: 1.3em;
+        i {
+            display: none;
+        }
     }
     .navbar-toggler {
+        color: white;
         display: block;
         position: fixed;
         top: 2%;
         right: 5%;
-    }
-    .navbar-toggler:hover {
-        cursor: pointer;
-    }
-    a.navlink {
-        padding: 0rem 0rem !important;
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

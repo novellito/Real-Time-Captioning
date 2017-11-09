@@ -1,11 +1,11 @@
 .layout-csun {
     height: 80px;
-    background-color: #FBFBFB;
+    background-color: #262626;
 }
 
 header.header {
     float: left;
-    border-right: black 2px solid;
+    border-right: white 2px solid;
     padding-right: 10px;
     margin-top: 20px;
     margin-left: 10px;
@@ -25,6 +25,7 @@ header.header {
 
 h2.wordmark {
     margin-top: 10px;
+    color:white;
 }
 
 @media(max-width:768px) {

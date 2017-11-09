@@ -1,11 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~quill/dist/quill.core.css";
 
-.navbar-nav .nav-item.active{
-    background-color:#FF5456;
-}
 
 .nav-link{
     padding:0;
     font-size:1.1em;
+}
+
+body{
+    background-color:rgba(243, 223, 223, 0.33);
 }

@@ -1,3 +1,7 @@
+.card{
+    background-color:rgba(198, 40, 40, 0.08);
+    color:rgb(6, 40, 66);
+}
 .offset {
     margin-left: 5%;
 }
@@ -27,4 +31,22 @@
     p {
         font-size: .9em;
     }
+}
+
+.transcripts{
+    border-right: 2px solid #e2c2c2;    
+    border-left: 2px solid #e2c2c2; 
+
+    &:hover{
+        background-color:rgba(198, 40, 40, 0.22);
+        
+    }  
+
+    a p{
+        color:black;
+    }
+}
+
+.card-collapse{
+    background-color:rgba(198, 40, 40, 0.22);
 }
