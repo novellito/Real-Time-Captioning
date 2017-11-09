@@ -4,17 +4,25 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {RouterModule, Routes} from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { StudentListComponent } from './components/student-list/student-list.component';
-
 import { ButtonComponent } from './components/button/button.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EditorComponent } from './components/editor/editor.component';
 import { QuillModule } from 'ngx-quill';
+import { LandingComponent } from './components/landing/landing.component';
 
 
 import { SocketioComponent } from './components/socketio/socketio.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+const appRoutes: Routes = [
+  {path: '', component: LandingComponent},
+  {path: 'dashboard', component: DashboardComponent}
+];
 
 @NgModule({
   declarations: [
@@ -26,7 +34,9 @@ import { SocketioComponent } from './components/socketio/socketio.component';
     NavbarComponent,
     EditorComponent,
     SocketioComponent,
-    StatusComponent
+    StatusComponent,
+    DashboardComponent,
+    LandingComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   imports: [
@@ -34,7 +44,8 @@ import { SocketioComponent } from './components/socketio/socketio.component';
     FormsModule,
     HttpModule,
     QuillModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
