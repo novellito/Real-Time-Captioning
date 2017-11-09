@@ -1,0 +1,42 @@
+.layout-csun {
+    height: 80px;
+    background-color: #FBFBFB;
+}
+
+header.header {
+    float: left;
+    border-right: black 2px solid;
+    padding-right: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.header img {
+    width: 160px;
+    height: 43px;
+}
+
+.wordmark-container {
+    float: left;
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+h2.wordmark {
+    margin-top: 10px;
+}
+
+@media(max-width:768px) {
+    .wordmark-container {
+        margin-top: 17px;
+        margin-left: 5px;
+        .wordmark {
+            font-size: 1.3em;
+        }
+    }
+    .header img {
+        width: 107px;
+        height: 30px;
+    }
+}
