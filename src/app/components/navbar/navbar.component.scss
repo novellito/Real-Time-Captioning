@@ -6,12 +6,15 @@
     left: 0;
 }
 
-span {
+a {
     color: white;
 }
 
 .list-group-item {
     background-color: #d00d2d;
+}
+.list-group-item.active{
+    border:none;
 }
 
 .logo {
@@ -22,7 +25,7 @@ span {
     display: none;
 }
 
-@media(max-width:700px) {
+@media(max-width:768px) {
     .container-sidebar {
         margin-top: 2px;
         width: 100%;
