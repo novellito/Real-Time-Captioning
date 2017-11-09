@@ -7,8 +7,6 @@ const mongoose = require("mongoose");
 const http = require("http");
 //const config = require("./config/database");
 
-const authRouter = require("./routes/auth");
-
 // // Connect To Database
 // mongoose.connect(config.database);
 
@@ -44,7 +42,6 @@ app.use(cors());
 // require('./config/passport')(passport); passport here just in case we need it
 
 // app.use('/users', users);
-app.use("/auth", authRouter);
 
 // Index Route
 app.get("*", (req, res) => {
