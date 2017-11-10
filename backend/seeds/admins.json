@@ -2,31 +2,26 @@
   {
     "username": "mac55181",
     "name": "Mario Cordova",
-    "password": "password",
-    "role": "admin"
+    "password": "password"
   },
   {
     "username": "rg921298",
     "name": "Rene Garcia",
-    "password": "password",
-    "role": "admin"
+    "password": "password"
   },
   {
     "username": "cnt56459",
     "name": "Christian Trinidad",
-    "password": "password",
-    "role": "admin"
+    "password": "password"
   },
   {
     "username": "ea217029",
     "name": "Evelyn Araujl",
-    "password": "password",
-    "role": "admin"
+    "password": "password"
   },
   {
     "username": "gsa63059",
     "name": "Gabe Alabastro",
-    "password": "password",
-    "role": "Admin"
+    "password": "password"
   }
 ]
