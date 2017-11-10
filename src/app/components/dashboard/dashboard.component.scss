@@ -1,11 +1,13 @@
 $transcript-card: rgba(198, 40, 40, 0.22);
+$border-color: #e2c2c2;
+$text-color:rgb(6, 40, 66);
 h1 {
     margin: 2% 0px;
 }
 
 .card {
     background-color: rgba(198, 40, 40, 0.08);
-    color: rgb(6, 40, 66);
+    color: $text-color;
     .card-container {
         position: relative;
         display: grid;
@@ -19,28 +21,29 @@ h1 {
             width: 60%;
             margin: 15px auto 0 auto;
         }
+        p {
+            color: $text-color;
+        }
     }
 }
 
 .transcripts {
-    border-right: 2px solid #e2c2c2;
-    border-left: 2px solid #e2c2c2;
+    border-right: 2px solid $border-color;
+    border-left: 2px solid $border-color;
     &:hover {
         background-color: $transcript-card;
-    }
-    p {
-        color: black;
-    }
-}
-
-.join-session {
-    p {
-        color: black;
     }
 }
 
 .card-collapse {
     background-color: $transcript-card;
+    .recent-transcripts {
+        margin-top: 15px;
+        list-style: none;
+    }
+    span {
+        font-size: 1.5em;
+    }
 }
 
 // small devices

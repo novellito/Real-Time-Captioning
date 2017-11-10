@@ -1,3 +1,4 @@
+$nav-highlight: rgba(96, 82, 82, 0.67);
 .container-sidebar {
     position: absolute;
     background-color: #262626;
@@ -7,7 +8,7 @@
     a {
         color: white;
     }
-    li:nth-child(2) div {
+    li:nth-child(2) div { //positioning "transcript" 
         margin-left: -14px;
     }
     .fa-file-text-o {
@@ -19,11 +20,11 @@
     .list-group-item {
         background-color: inherit;
         &:hover {
-            background-color: rgba(96, 82, 82, 0.67);
+            background-color:$nav-highlight;
         }
         &.active {
             border: none;
-            background-color: rgba(96, 82, 82, 0.67);
+            background-color: $nav-highlight;
         }
     }
     .nav-link {
