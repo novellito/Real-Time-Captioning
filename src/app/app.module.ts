@@ -18,10 +18,12 @@ import { LandingComponent } from './components/landing/landing.component';
 
 import { SocketioComponent } from './components/socketio/socketio.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TranscriptsComponent } from './components/transcripts/transcripts.component';
 
 const appRoutes: Routes = [
   {path: '', component: LandingComponent},
-  {path: 'dashboard', component: DashboardComponent}
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'transcripts', component: TranscriptsComponent}
 ];
 
 @NgModule({
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     SocketioComponent,
     StatusComponent,
     DashboardComponent,
-    LandingComponent
+    LandingComponent,
+    TranscriptsComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   imports: [
