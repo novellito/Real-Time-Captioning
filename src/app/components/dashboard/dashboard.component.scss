@@ -1,3 +1,4 @@
+$transcript-card: rgba(198, 40, 40, 0.22);
 h1 {
     margin: 2% 0px;
 }
@@ -25,15 +26,21 @@ h1 {
     border-right: 2px solid #e2c2c2;
     border-left: 2px solid #e2c2c2;
     &:hover {
-        background-color: rgba(198, 40, 40, 0.22);
+        background-color: $transcript-card;
     }
     p {
         color: black;
     }
 }
 
+.join-session {
+    p {
+        color: black;
+    }
+}
+
 .card-collapse {
-    background-color: rgba(198, 40, 40, 0.22);
+    background-color: $transcript-card;
 }
 
 // small devices

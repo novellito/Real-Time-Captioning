@@ -1,5 +1,5 @@
 .container-sidebar {
-    position: fixed;
+    position: absolute;
     background-color: #262626;
     min-height: 100%;
     width: 100px;
@@ -53,7 +53,7 @@
     .navbar-toggler {
         color: white;
         display: block;
-        position: fixed;
+        position: absolute;
         top: 2%;
         right: 5%;
         &:hover {
