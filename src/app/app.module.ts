@@ -37,7 +37,6 @@ const appRoutes: Routes = [
     SocketioComponent,
     NavbarComponent,
     EditorComponent,
-    SocketioComponent,
     StatusComponent,
     DashboardComponent,
     LandingComponent,
