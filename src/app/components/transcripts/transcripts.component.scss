@@ -1,0 +1,55 @@
+.offset {
+  margin-left: 5%;
+}
+
+.course-info {
+  padding: 20px;
+}
+
+.card-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60% 20% 20%;
+}
+
+.transcripts img,
+.join-session img {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.title {
+  margin: 2% 0px;
+}
+
+a > * {
+  color: #212529;
+}
+
+.all-transcripts {
+  list-style: none;
+  padding-left: 10px;
+  padding-top: 20px;
+}
+
+.card {
+  z-index: 2;
+  margin-bottom: 5px;
+}
+
+.transcript-card {
+  padding-top: 4px;
+  top: -20px;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .offset {
+    margin-left: 0px;
+  }
+  p {
+    font-size: 0.9em;
+  }
+}
