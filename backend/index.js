@@ -5,23 +5,21 @@ const cors = require("cors");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const http = require("http");
-//const config = require("./config/database");
-
-// // Connect To Database
-// mongoose.connect(config.database);
-
-// // On Connection
-// mongoose.connection.on("connected", () => {
-//   console.log("Connected to database " + config.database);
-// });
-
-// // On Error
-// mongoose.connection.on("error", err => {
-//   console.log("Database error: " + err);
-// });rs
-
 const app = express();
 const server = http.Server(app);
+const io = require("socket.io")(server);
+
+// We import out routes
+const AdminRoutes = require("./routes/admins");
+
+// Connect to our mongoDB instance
+mongoose.connect("mongodb://localhost/Real-Time", err => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Connected");
+  }
+});
 
 // Body Parser Middleware
 app.use(bodyParser.json());
@@ -36,12 +34,11 @@ const port = process.env.PORT || 8080;
 // CORS Middleware
 app.use(cors());
 
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
-// require('./config/passport')(passport); passport here just in case we need it
-
-// app.use('/users', users);
+// Setting up our routes.
+app.use("/api/admins", AdminRoutes(io));
 
 // Index Route
 app.get("*", (req, res) => {
@@ -50,17 +47,16 @@ app.get("*", (req, res) => {
 
 app.set("port", port);
 
+io.on("connection", socket => {
+  console.log("user connected");
 
-io.on('connection', (socket) => {
-  console.log('user connected');
-  
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
+  socket.on("disconnect", function() {
+    console.log("user disconnected");
   });
-  
-  socket.on('add-message', (message) => {
+
+  socket.on("add-message", message => {
     console.log(message);
-    io.emit('message', {type:'new-message', text: message});    
+    io.emit("message", { type: "new-message", text: message });
   });
 });
 

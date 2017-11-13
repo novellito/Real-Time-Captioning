@@ -20,12 +20,14 @@ import { SocketioComponent } from './components/socketio/socketio.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StudentSessionComponent } from './components/student-session/student-session.component';
 import { CaptionerSessionComponent } from './components/captioner-session/captioner-session.component';
+import { TranscriptsComponent } from './components/transcripts/transcripts.component';
 
 const appRoutes: Routes = [
   {path: '', component: LandingComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'student-session', component: StudentSessionComponent},
   {path: 'captioner-session', component: CaptionerSessionComponent}
+  {path: 'transcripts', component: TranscriptsComponent}
 ];
 
 @NgModule({
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     LandingComponent,
     StudentSessionComponent,
-    CaptionerSessionComponent
+    CaptionerSessionComponent,
+    TranscriptsComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   imports: [
