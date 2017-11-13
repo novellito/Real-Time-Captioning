@@ -1,0 +1,32 @@
+[
+  {
+    "username": "mac55181",
+    "name": "Mario Cordova",
+    "password": "password",
+    "role": "admin"
+  },
+  {
+    "username": "rg921298",
+    "name": "Rene Garcia",
+    "password": "password",
+    "role": "admin"
+  },
+  {
+    "username": "cnt56459",
+    "name": "Christian Trinidad",
+    "password": "password",
+    "role": "admin"
+  },
+  {
+    "username": "ea217029",
+    "name": "Evelyn Araujl",
+    "password": "password",
+    "role": "admin"
+  },
+  {
+    "username": "gsa63059",
+    "name": "Gabe Alabastro",
+    "password": "password",
+    "role": "Admin"
+  }
+]
