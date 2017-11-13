@@ -2,12 +2,13 @@ $transcript-card: rgba(198, 40, 40, 0.22);
 $border-color: #e2c2c2;
 $text-color:rgb(6, 40, 66);
 h1 {
-    margin: 2% 0px;
+    margin-top: 2%;
 }
 
 .card {
     background-color: rgba(198, 40, 40, 0.08);
     color: $text-color;
+    margin-top: 2%;
     .card-container {
         position: relative;
         display: grid;
@@ -36,9 +37,11 @@ h1 {
 }
 
 .card-collapse {
+    margin-top: 0;
     background-color: $transcript-card;
     .recent-transcripts {
         margin-top: 15px;
+        margin-bottom: 2%;
         list-style: none;
     }
     span {

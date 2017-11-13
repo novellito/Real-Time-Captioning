@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~quill/dist/quill.core.css";
-
+html{
+    overflow: auto;
+}
 body{
+    // overflow-y: auto;
     background-color:rgba(243, 223, 223, 0.33);
+    position: relative;
+    min-height: 100vh;
 }
