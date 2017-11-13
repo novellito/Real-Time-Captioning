@@ -26,7 +26,7 @@ const appRoutes: Routes = [
   {path: '', component: LandingComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'student-session', component: StudentSessionComponent},
-  {path: 'captioner-session', component: CaptionerSessionComponent}
+  {path: 'captioner-session', component: CaptionerSessionComponent},
   {path: 'transcripts', component: TranscriptsComponent}
 ];
 
