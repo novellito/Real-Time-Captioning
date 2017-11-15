@@ -11,9 +11,9 @@ export class SocketioComponent implements OnInit, OnDestroy {
   connection;
   message;
 
-  constructor(private socketService:SocketService) {}
+  constructor(private socketService: SocketService) {}
 
-  sendMessage(){
+  sendMessage() {
     this.socketService.sendMessage(this.message);
     this.message = '';
   }
@@ -21,7 +21,7 @@ export class SocketioComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.connection = this.socketService.getMessages().subscribe(message => {
       this.messages.push(message);
-    })
+    });
   }
 
   ngOnDestroy() {

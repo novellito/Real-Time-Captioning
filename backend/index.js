@@ -13,13 +13,13 @@ const io = require("socket.io")(server);
 const AdminRoutes = require("./routes/admins");
 
 // Connect to our mongoDB instance
-mongoose.connect("mongodb://localhost/Real-Time", err => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Connected");
-  }
-});
+// mongoose.connect("mongodb://localhost/Real-Time", err => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("Connected");
+//   }
+// });
 
 // Body Parser Middleware
 app.use(bodyParser.json());
@@ -54,9 +54,9 @@ io.on("connection", socket => {
     console.log("user disconnected");
   });
 
-  socket.on("add-message", message => {
-    console.log(message);
-    io.emit("message", { type: "new-message", text: message });
+  socket.on("captionerDelta", del => {
+    console.log(del);
+    io.emit("userDel", del);
   });
 });
 

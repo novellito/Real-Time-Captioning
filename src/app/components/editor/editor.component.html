@@ -1,2 +1,14 @@
-<quill-editor [readOnly]="(this.user.userType==='student') ? true : false" [modules] ="{toolbar:this.toolbarOptions}" [style]="{height: '60vh'}" placeholder="captions start here!" (onContentChanged)="logChange($event);"></quill-editor>
-<quill-editor [modules]="{toolbar: false}" class="chatBox" [style]="{height: '100px'}" placeholder="chat here" (onContentChanged)="logChange($event);"></quill-editor>
+<quill-editor 
+[(ngModel)]="message" 
+[readOnly]="(this.user.userType==='student') ? true : false" 
+[modules]="{toolbar:this.toolbarOptions}"
+[style]="{height: '60vh'}" 
+placeholder="captions start here!" 
+(onContentChanged)="logChange($event);"></quill-editor>
+
+<quill-editor 
+[modules]="{toolbar: false}" 
+class="chatBox"
+[style]="{height: '100px'}" 
+placeholder="chat here" 
+(onContentChanged)="logChange($event);"></quill-editor>

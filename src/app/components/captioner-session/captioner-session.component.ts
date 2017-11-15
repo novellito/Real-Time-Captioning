@@ -1,3 +1,4 @@
+import { SocketService } from './../../services/socket.service';
 import { UserTypeService } from './../../services/user-type.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -5,14 +6,22 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-captioner-session',
   templateUrl: './captioner-session.component.html',
   styleUrls: ['./captioner-session.component.scss'],
-  providers: [UserTypeService]
+  providers: [UserTypeService, SocketService]
 })
 export class CaptionerSessionComponent implements OnInit {
 
-  constructor(private user: UserTypeService) { }
+  message: any;
+
+  constructor(private user: UserTypeService, private socketService: SocketService) { }
 
   ngOnInit() {
     this.user.userType = 'captioner';
   }
+
+  sendMessage(){
+    this.socketService.sendMessage(this.message);
+    this.message = '';
+  }
+
 
 }

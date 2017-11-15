@@ -1,3 +1,4 @@
+import { SocketService } from './../../services/socket.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {QuillEditorComponent} from 'ngx-quill/src/quill-editor.component';
 
@@ -24,8 +25,8 @@ quill.register(Font, true);
 export class EditorComponent implements OnInit {
 
   toolbarOptions: any;
-
-  constructor(private user: UserTypeService) {}
+  connection: any;
+  constructor(private user: UserTypeService, private socketService: SocketService) {}
 
   /**
    * A life cycle hook for determining whether the user can
@@ -40,12 +41,25 @@ export class EditorComponent implements OnInit {
         ['blockquote', 'code-block'],
         [{'size': ['small', false, 'large', 'huge']}]
       ];
-
     }
+    quill.setContents([
+      { insert: 'Hello ' },
+      { insert: 'World!', attributes: { bold: true } },
+      { insert: '\n' }
+    ]);
+
+    this.connection = this.socketService.getMessages().subscribe(message => {
+      // this.messages.push(message);
+    });
+ 
   }
 
   logChange($event: any) {
     console.log($event);
-  }
+
+    this.socketService.sendMessage("reree");
+
+    // this.socketService.getMessages();
+;  }
 
 }

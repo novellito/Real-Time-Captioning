@@ -12,7 +12,7 @@ import * as io from 'socket.io-client';
 export class SocketService {
 
    url = 'http://localhost:8080';
-   socket;
+   private socket;
 
   constructor() { }
 
@@ -21,9 +21,9 @@ export class SocketService {
    * @memberof 
    * This function emits the message in the backend
    */
-  sendMessage(message){
-    this.socket.emit('add-message', message);
+  sendMessage(message) {
     console.log('message');
+    this.socket.emit('add-message', message);
   }
 
   /**
@@ -36,7 +36,7 @@ export class SocketService {
     const observable = new Observable(observer => {
 
       this.socket = io(this.url);
-      this.socket.on('message', (data) => {
+      this.socket.on('userDel', (data) => {
         observer.next(data);
       });
       return () => {
