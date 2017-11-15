@@ -11,8 +11,8 @@ import * as io from 'socket.io-client';
 @Injectable()
 export class SocketService {
 
-   url = 'http://localhost:8080';
-   private socket;
+   private url = 'http://localhost:8080';
+   private socket: SocketIOClient.Socket;
 
   constructor() { }
 
@@ -22,8 +22,8 @@ export class SocketService {
    * This function emits the message in the backend
    */
   sendMessage(message) {
-    console.log('message');
-    this.socket.emit('add-message', message);
+    console.log(message);
+    this.socket.emit('captionerDelta', message);
   }
 
   /**
@@ -45,5 +45,10 @@ export class SocketService {
     });
     return observable;
   }
+
+  connect() { // establish connection with backend
+    this.socket = io(this.url);
+  }
+
 
 }

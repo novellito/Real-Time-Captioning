@@ -2,6 +2,7 @@ import { SocketService } from './../../services/socket.service';
 import { UserTypeService } from './../../services/user-type.service';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-captioner-session',
   templateUrl: './captioner-session.component.html',
@@ -12,16 +13,23 @@ export class CaptionerSessionComponent implements OnInit {
 
   message: any;
 
-  constructor(private user: UserTypeService, private socketService: SocketService) { }
+
+  constructor(private user: UserTypeService, private socketService: SocketService) {}
 
   ngOnInit() {
     this.user.userType = 'captioner';
+    this.socketService.connect();
+    // this.socket.emit('captionerDelta', "reee");
+    
   }
 
-  sendMessage(){
-    this.socketService.sendMessage(this.message);
-    this.message = '';
+  re($event){
+    console.log("tras");
+
+    this.socketService.sendMessage($event);
+    // this.message = '';
   }
 
+  
 
 }

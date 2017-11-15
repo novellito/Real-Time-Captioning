@@ -5,7 +5,7 @@
     <div class="col-md-8 col-sm-12 ">
         <h1>Class here</h1>
         {{this.socketService.getMessages().toString()}}
-      <app-editor></app-editor>
+      <app-editor (broadcastCaption)="getDelta();"></app-editor>
     </div>
 
   </div>

@@ -1,5 +1,5 @@
 import { SocketService } from './../../services/socket.service';
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, EventEmitter, Output} from '@angular/core';
 import {QuillEditorComponent} from 'ngx-quill/src/quill-editor.component';
 
 import 'rxjs/add/operator/debounceTime';
@@ -24,8 +24,10 @@ quill.register(Font, true);
 @Component({selector: 'app-editor', templateUrl: './editor.component.html', styleUrls: ['./editor.component.scss']})
 export class EditorComponent implements OnInit {
 
+  @Output() broadcastCaption: EventEmitter<any> = new EventEmitter();
+
+  captions: any;
   toolbarOptions: any;
-  connection: any;
   constructor(private user: UserTypeService, private socketService: SocketService) {}
 
   /**
@@ -42,22 +44,20 @@ export class EditorComponent implements OnInit {
         [{'size': ['small', false, 'large', 'huge']}]
       ];
     }
-    quill.setContents([
-      { insert: 'Hello ' },
-      { insert: 'World!', attributes: { bold: true } },
-      { insert: '\n' }
-    ]);
 
-    this.connection = this.socketService.getMessages().subscribe(message => {
-      // this.messages.push(message);
-    });
- 
   }
 
-  logChange($event: any) {
-    console.log($event);
+  sendDelta($event: any) {
 
-    this.socketService.sendMessage("reree");
+    if (this.user.userType === 'student') {
+      return; // do nothing
+    } else {
+      this.socketService.sendMessage($event.delta);
+    }
+    // console.log($event);
+
+    // this.broadcastCaption.emit($event); //let editor know of changes
+    // this.socketService.sendMessage("reree");
 
     // this.socketService.getMessages();
 ;  }
