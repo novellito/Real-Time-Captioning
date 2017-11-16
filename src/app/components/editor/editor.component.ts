@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import {QuillEditorComponent} from 'ngx-quill/src/quill-editor.component';
 import { SocketService } from './../../services/socket.service';
 import {UserTypeService} from 'app/services/user-type.service';
@@ -15,7 +15,7 @@ Font.whitelist = ['mirza', 'aref'];
 quill.register(Font, true);
 
 @Component({selector: 'app-editor', templateUrl: './editor.component.html', styleUrls: ['./editor.component.scss']})
-export class EditorComponent implements OnInit {
+export class EditorComponent implements OnInit, OnDestroy {
 
   editor: any;
   connection: any;
@@ -68,4 +68,7 @@ export class EditorComponent implements OnInit {
   // TODO: allow captioners & students to message one another
   // sendDM(message: any) {}
 
+  ngOnDestroy() {
+    this.connection.unsubscribe();
+  }
 }
