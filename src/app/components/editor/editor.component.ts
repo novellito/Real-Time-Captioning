@@ -49,7 +49,7 @@ export class EditorComponent implements OnInit, OnDestroy {
    * This helper method hooks onto the current
    * editor in context.
    */
-  grabRef($event){
+  grabRef($event) {
     this.editor = $event;
   }
 
@@ -59,7 +59,7 @@ export class EditorComponent implements OnInit, OnDestroy {
    */
   sendDelta($event: any) {
 
-      if(this.user.userType === 'student') { // do nothing (prevent caption from bouncing back and forth)
+      if (this.user.userType === 'student') { // do nothing (prevent caption from bouncing back and forth)
         return;
       }
       this.socketService.sendCaptions($event.delta);
