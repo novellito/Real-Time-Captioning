@@ -13,8 +13,10 @@ AdminController.storeAdmin = (req, res) => {
       return res.status(201).json(admin);
     })
     .catch(err => {
-      console.log(err);
-      return res.status(500).json({ error: err });
+      const DUPLICATE_KEY = 11000;
+      return err.code === DUPLICATE_KEY
+        ? res.status(400).json(err.errmsg)
+        : res.status(500).json(err.errmsg);
     });
 };
 
