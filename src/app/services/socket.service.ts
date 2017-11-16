@@ -18,7 +18,7 @@ export class SocketService {
 
   /**
    * @param {any} message
-   * @memberof 
+   * @memberof
    * This function emits the message in the backend
    */
   sendMessage(message) {

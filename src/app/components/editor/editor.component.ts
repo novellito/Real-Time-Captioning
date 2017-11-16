@@ -1,7 +1,6 @@
 import { SocketService } from './../../services/socket.service';
-import {Component, OnInit, ViewChild, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, ViewChild, EventEmitter, Output, Input} from '@angular/core';
 import {QuillEditorComponent} from 'ngx-quill/src/quill-editor.component';
-
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
@@ -25,8 +24,11 @@ quill.register(Font, true);
 export class EditorComponent implements OnInit {
 
   @Output() broadcastCaption: EventEmitter<any> = new EventEmitter();
-
+  @Input() studentCaption: any;
   captions: any;
+  editor;
+  connection:any;
+  // captions: any;
   toolbarOptions: any;
   constructor(private user: UserTypeService, private socketService: SocketService) {}
 
@@ -37,6 +39,11 @@ export class EditorComponent implements OnInit {
   ngOnInit() {
     if (this.user.userType === 'student') {
       this.toolbarOptions = false;
+      this.connection = this.socketService.getMessages().subscribe(message => {
+        // this.messages.push(message);
+        console.log(message);
+        this.editor.updateContents(message);
+        });
     } else {
       this.toolbarOptions = [
         [ 'bold', 'italic', 'underline', 'strike'],
@@ -47,19 +54,20 @@ export class EditorComponent implements OnInit {
 
   }
 
+  /**
+   * This helper method hooks onto the current
+   * editor in context.
+   */
+  grabRef($event){
+    this.editor = $event;
+  }
+
   sendDelta($event: any) {
 
-    if (this.user.userType === 'student') {
-      return; // do nothing
-    } else {
+      if(this.user.userType === 'student') { // do nothing
+        return;
+      }
       this.socketService.sendMessage($event.delta);
-    }
-    // console.log($event);
-
-    // this.broadcastCaption.emit($event); //let editor know of changes
-    // this.socketService.sendMessage("reree");
-
-    // this.socketService.getMessages();
-;  }
+ }
 
 }

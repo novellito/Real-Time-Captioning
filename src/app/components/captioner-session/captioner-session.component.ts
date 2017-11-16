@@ -19,17 +19,9 @@ export class CaptionerSessionComponent implements OnInit {
   ngOnInit() {
     this.user.userType = 'captioner';
     this.socketService.connect();
-    // this.socket.emit('captionerDelta', "reee");
-    
   }
 
-  re($event){
-    console.log("tras");
-
-    this.socketService.sendMessage($event);
-    // this.message = '';
-  }
-
+ 
   
 
 }
