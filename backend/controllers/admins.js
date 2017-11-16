@@ -1,25 +1,14 @@
 "use strict";
-
+const _ = require("underscore");
 const AdminModel = require("../models/admin");
-
 let AdminController = {};
 
-AdminController.getAllAdmins = (req, res) => {
-  let getAllAdminsPromise = AdminModel.find({}).exec();
-  getAllAdminsPromise
-    .then(admins => {
-      return res.status(200).json(admins);
-    })
-    .catch(err => {
-      return res.status(500).json({ error: err });
-    });
-};
-
+// Storing Admins.
 AdminController.storeAdmin = (req, res) => {
   let admin = new AdminModel(req.body);
-  let createAdminPromise = admin.save();
+  let createAdmin_Promise = admin.save();
 
-  createAdminPromise
+  createAdmin_Promise
     .then(admin => {
       return res.status(200).json(admin);
     })
@@ -29,11 +18,60 @@ AdminController.storeAdmin = (req, res) => {
     });
 };
 
+// Retrieving Admins.
+AdminController.getAllAdmins = (req, res) => {
+  let getAllAdmins_Promise = AdminModel.find({}).exec();
+  getAllAdmins_Promise
+    .then(admins => {
+      return res.status(200).json(admins);
+    })
+    .catch(err => {
+      return res.status(500).json({ error: err });
+    });
+};
+
+AdminController.getAdminById = (req, res) => {
+  let adminID = req.params.id;
+  let getAdminById_Promise = AdminModel.findById(adminID).exec();
+
+  getAdminById_Promise
+    .then(admin => {
+      return admin
+        ? res.status(200).json(admin)
+        : res
+            .status(404)
+            .json({ error: `Can not find Admin with id: ${adminID}` });
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json({ error: err });
+    });
+};
+
+// Updating Admins.
+AdminController.updateAdminById = (req, res) => {
+  let adminID = req.params.id;
+  let updateAdminById_Promise = AdminModel.findById(adminID).exec();
+  updateAdminById_Promise
+    .then(admin => {
+      _.extend(admin, req.body);
+      return admin.save();
+    })
+    .then(admin => {
+      console.log(admin);
+      return res.status(200).json(admin);
+    })
+    .catch(err => {
+      return res.status(500).json({ error: err.message });
+    });
+};
+
+// Destroying Admins.
 AdminController.destroyById = (req, res) => {
   let adminID = req.params.id;
-  let findByIdAndRemovePromise = AdminModel.findByIdAndRemove(adminID).exec();
+  let findByIdAndRemove_Promise = AdminModel.findByIdAndRemove(adminID).exec();
 
-  findByIdAndRemovePromise
+  findByIdAndRemove_Promise
     .then(admin => {
       return admin
         ? res.status(200).json(admin)
