@@ -19,10 +19,9 @@ export class SocketService {
   /**
    * @param {any} message
    * @memberof
-   * This function emits the message in the backend
+   * This function emits the captions in the backend
    */
-  sendMessage(message) {
-    console.log(message);
+  sendCaptions(message) {
     this.socket.emit('captionerDelta', message);
   }
 
@@ -36,9 +35,12 @@ export class SocketService {
     const observable = new Observable(observer => {
 
       this.socket = io(this.url);
-      this.socket.on('userDel', (data) => {
+      this.socket.on('captions', (data) => {
         observer.next(data);
       });
+      // this.socket.on('dm', (data) => { TODO: DM between captioner & student
+      //   observer.next(data);
+      // });
       return () => {
         this.socket.disconnect();
       };

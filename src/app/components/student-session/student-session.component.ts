@@ -11,24 +11,11 @@ import { UserTypeService } from 'app/services/user-type.service';
 })
 export class StudentSessionComponent implements OnInit {
 
-  connection: any;
-  caption: any;
   constructor(private user: UserTypeService, private socketService: SocketService) { }
 
-
-  //use Observable to listen for changes?
   ngOnInit() {
     this.user.userType = 'student';
-    this.connection = this.socketService.getMessages().subscribe(message => {
-    // this.messages.push(message);
-    console.log(message);
-    this.caption = message;
-    });
-    // this.socketService.connect();
-
-
   }
-
 
 
 }

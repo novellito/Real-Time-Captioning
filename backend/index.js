@@ -56,7 +56,7 @@ io.on("connection", socket => {
 
   socket.on("captionerDelta", del => {
     console.log(del);
-    io.emit("userDel", del);
+    io.emit("captions", del);
   });
 });
 

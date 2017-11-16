@@ -1,15 +1,17 @@
 <quill-editor 
-[(ngModel)]="studentCaption" 
-[readOnly]="(this.user.userType==='student') ? true : false" 
-[modules]="{toolbar:this.toolbarOptions}"
-[style]="{height: '60vh'}" 
-placeholder="captions start here!" 
-(onEditorCreated)="grabRef($event);"
-(onContentChanged)="sendDelta($event);"></quill-editor>
+    [readOnly]="(this.user.userType==='student') ? true : false" 
+    [modules]="{toolbar:this.toolbarOptions}"
+    [style]="{height: '60vh'}" 
+    placeholder="captions start here!" 
+    (onEditorCreated)="grabRef($event);"
+    (onContentChanged)="sendDelta($event);">
+</quill-editor>
+
 <quill-editor 
-[modules]="{toolbar: false}" 
-class="chatBox"
-[style]="{height: '100px'}" 
-placeholder="chat here" 
-(onContentChanged)="sendDelta($event);"></quill-editor>
+    [modules]="{toolbar: false}" 
+    class="chatBox"
+    [style]="{height: '100px'}" 
+    placeholder="chat here" 
+    (onContentChanged)="sendMessage($event);">
+</quill-editor>
 
