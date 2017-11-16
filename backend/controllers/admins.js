@@ -10,7 +10,7 @@ AdminController.storeAdmin = (req, res) => {
 
   createAdmin_Promise
     .then(admin => {
-      return res.status(200).json(admin);
+      return res.status(201).json(admin);
     })
     .catch(err => {
       console.log(err);
