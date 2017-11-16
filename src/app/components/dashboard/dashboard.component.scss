@@ -1,63 +1,63 @@
-$transcript-card: rgba(198, 40, 40, 0.22);
-$border-color: #e2c2c2;
-$text-color:rgb(6, 40, 66);
+$transcript-card: #fff;
+$border-color: rgba(232, 232, 232, 0.61);
+$text-color: rgb(6, 40, 66);
 h1 {
-    margin-top: 2%;
+  margin-top: 2%;
 }
 
 .card {
-    background-color: rgba(198, 40, 40, 0.08);
-    color: $text-color;
-    margin-top: 2%;
-    .card-container {
-        position: relative;
-        display: grid;
-        grid-template-columns: 60% 20% 20%;
-        .course-info {
-            padding: 20px;
-        }
-        .transcripts img,
-        .join-session img {
-            display: block;
-            width: 60%;
-            margin: 15px auto 0 auto;
-        }
-        p {
-            color: $text-color;
-        }
+  background-color: #fff;
+  color: $text-color;
+  margin-top: 2%;
+  .card-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 60% 20% 20%;
+    .course-info {
+      padding: 20px;
     }
+    .transcripts img,
+    .join-session img {
+      display: block;
+      width: 60%;
+      margin: 15px auto 0 auto;
+    }
+    p {
+      color: $text-color;
+    }
+  }
 }
 
 .transcripts {
-    border-right: 2px solid $border-color;
-    border-left: 2px solid $border-color;
-    &:hover {
-        background-color: $transcript-card;
-    }
+  border-right: 2px solid $border-color;
+  border-left: 2px solid $border-color;
+  &:hover {
+    background-color: $transcript-card;
+  }
 }
 
 .card-collapse {
-    margin-top: 0;
-    background-color: $transcript-card;
-    .recent-transcripts {
-        margin-top: 15px;
-        margin-bottom: 2%;
-        list-style: none;
-    }
-    span {
-        font-size: 1.5em;
-    }
+  margin-top: 0;
+  background-color: $transcript-card;
+  .recent-transcripts {
+    margin-top: 15px;
+    margin-bottom: 2%;
+    list-style: none;
+  }
+  span {
+    font-size: 1.5em;
+  }
 }
 
 // small devices
-@media(max-width:576px) {
-    h1:not(.class-title) {
-        text-align: center;
-    }
-    .class-title {
-        font-size: 1.4em;
-    }
-    p {
-        font-size: .8em;
-    }
+@media (max-width: 576px) {
+  h1:not(.class-title) {
+    text-align: center;
+  }
+  .class-title {
+    font-size: 1.4em;
+  }
+  p {
+    font-size: 0.8em;
+  }
 }
