@@ -4,10 +4,11 @@ const chai = require("chai");
 const expect = chai.expect;
 const chaiHTTP = require("chai-http");
 const app = require("../../index");
-
 chai.use(chaiHTTP);
 
-describe("Admin controller", function() {
+let adminID = null;
+
+describe("Admin module", function() {
   this.timeout(5000);
 
   // POST - Add a new admin
@@ -21,8 +22,9 @@ describe("Admin controller", function() {
         password: "hunter2"
       })
       .then(function(res) {
-        expect(res).to.have.status(200);
-        expect(res).to.be.json;
+        adminID = res.body._id;
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.an("object");
       });
   });
 
@@ -33,7 +35,32 @@ describe("Admin controller", function() {
       .get("/api/admins")
       .then(function(res) {
         expect(res).to.have.status(200);
-        expect(res).to.be.json;
+        expect(res.body).to.be.an("array");
+      });
+  });
+
+  // Update an admin with adminID
+  it("Should update an admin", function() {
+    return chai
+      .request(app)
+      .put(`/api/admins/id/${adminID}`)
+      .send({
+        username: "test54321"
+      })
+      .then(function(res) {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.an("object");
+      });
+  });
+
+  //Delete an admin with adminID
+  it("Should delete an admin", function() {
+    return chai
+      .request(app)
+      .delete(`/api/admins/id/${adminID}`)
+      .then(function(res) {
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.an("object");
       });
   });
 });

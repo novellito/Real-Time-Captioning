@@ -60,8 +60,7 @@ AdminController.updateAdminById = (req, res) => {
       return admin.save();
     })
     .then(admin => {
-      console.log(admin);
-      return res.status(200).json(admin);
+      return res.status(201).json(admin);
     })
     .catch(err => {
       return res.status(500).json({ error: err.message });
@@ -76,7 +75,7 @@ AdminController.destroyById = (req, res) => {
   findByIdAndRemove_Promise
     .then(admin => {
       return admin
-        ? res.status(200).json(admin)
+        ? res.status(201).json(admin)
         : res.status(404).json({ error: `No Admin found with id: ${adminID}` });
     })
     .catch(err => {
