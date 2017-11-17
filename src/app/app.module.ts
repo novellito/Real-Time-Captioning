@@ -25,7 +25,7 @@ import { TranscriptsComponent } from './components/transcripts/transcripts.compo
 const appRoutes: Routes = [
   {path: '', component: LandingComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'student-session/:classID', component: StudentSessionComponent},
+  {path: 'student-session/:className/:classID', component: StudentSessionComponent},
   {path: 'captioner-session', component: CaptionerSessionComponent},
   {path: 'transcripts', component: TranscriptsComponent}
 ];

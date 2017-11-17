@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { UserTypeService } from 'app/services/user-type.service';
+import { StudentInfoService } from 'app/services/student-info.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-student-session',
   templateUrl: './student-session.component.html',
   styleUrls: ['./student-session.component.scss'],
-  providers: [UserTypeService]
+  providers: [UserTypeService, StudentInfoService]
 })
 export class StudentSessionComponent implements OnInit {
 
-  constructor(private user: UserTypeService) { }
+  className: any;
+
+  constructor(private user: UserTypeService, private studentInfo: StudentInfoService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.user.userType = 'student';
+    this.className = this.route.snapshot.params['className'];
   }
 
 }
