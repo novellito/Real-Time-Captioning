@@ -4,15 +4,16 @@
   <div class="row d-flex justify-content-center">
     <div class="col-md-9 col-sm-12">
         <h1>Classes</h1>
+        <div *ngFor="let class of classes" >
           <div class="card" id="accordion">
             <div class="card-container">
             <div class="course-info">
-                <h1 class="class-title">Comp 490</h1>
-                <p class="h6">MW 11:00am - 12:15pm</p>
-                <p class="h6">Professor Fitzgerald</p>
+                <h1 class="class-title">{{class.courseName}}</h1>
+                <p class="h6">{{class.day}} {{class.time}}</p>
+                <p class="h6">Professor {{class.professor}}</p>
             </div>
             <div class="transcripts text-center">
-              <a href="#transContent" data-toggle="collapse">
+              <a href="#{{class.courseID}}" data-toggle="collapse">
                 <img src="../../../assets/images/recentTranscript.svg" alt="recent transcripts">
                 <p>Recent Transcripts</p>
               </a>
@@ -26,7 +27,7 @@
           </div>
         </div>
         <div class="card card-collapse">
-          <div id="transContent" class="collapse" role="tabpanel" data-parent="#accordion">
+          <div id="{{class.courseID}}" class="collapse" role="tabpanel" data-parent="#accordion">
             <ul class="recent-transcripts">
               <li><span>Transcript 1</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
               <li><span>Transcript 2</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
@@ -36,123 +37,8 @@
             </ul>         
           </div>
         </div>
-    </div>
-  </div>
-  <div class="row d-flex justify-content-center">
-    <div class="col-md-9 col-sm-12">
-          <div class="card" id="accordion">
-            <div class="card-container">
-            <div class="course-info">
-                <h1 class="class-title">Comp 490</h1>
-                <p class="h6">MW 11:00am - 12:15pm</p>
-                <p class="h6">Professor Fitzgerald</p>
-            </div>
-            <div class="transcripts text-center">
-              <a href="#c4" data-toggle="collapse">
-                <img src="../../../assets/images/recentTranscript.svg" alt="recent transcripts">
-                <p>Recent Transcripts</p>
-              </a>
-            </div>
-            <div class="join-session text-center">
-              <a [routerLink]="['/student-session']">
-                <img src="../../../assets/images/join.svg" alt="join session">                
-                <p>Join Session</p>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="card card-collapse">
-          <div id="c4" class="collapse" role="tabpanel" data-parent="#accordion">
-            <ul class="recent-transcripts">
-              <li><span>Transcript 1</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 2</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-            </ul>         
-          </div>
-        </div>
-    </div>
-  </div>
-  <div class="row d-flex justify-content-center">
-    <div class="col-md-9 col-sm-12">
-          <div class="card" id="accordion">
-            <div class="card-container">
-            <div class="course-info">
-                <h1 class="class-title">Comp 490</h1>
-                <p class="h6">MW 11:00am - 12:15pm</p>
-                <p class="h6">Professor Fitzgerald</p>
-            </div>
-            <div class="transcripts text-center">
-              <a href="#c3" data-toggle="collapse">
-                <img src="../../../assets/images/recentTranscript.svg" alt="recent transcripts">
-                <p>Recent Transcripts</p>
-              </a>
-            </div>
-            <div class="join-session text-center">
-              <a [routerLink]="['/student-session']">
-                <img src="../../../assets/images/join.svg" alt="join session">                
-                <p>Join Session</p>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="card card-collapse">
-          <div id="c3" class="collapse" role="tabpanel" data-parent="#accordion">
-            <ul class="recent-transcripts">
-              <li><span>Transcript 1</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 2</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 2</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 2</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-            </ul>         
-          </div>
-        </div>
-    </div>
-  </div>
-  <div class="row d-flex justify-content-center">
-    <div class="col-md-9 col-sm-12">
-          <div class="card" id="accordion">
-            <div class="card-container">
-            <div class="course-info">
-                <h1 class="class-title">Comp 490</h1>
-                <p class="h6">MW 11:00am - 12:15pm</p>
-                <p class="h6">Professor Fitzgerald</p>
-            </div>
-            <div class="transcripts text-center">
-              <a href="#c2" data-toggle="collapse">
-                <img src="../../../assets/images/recentTranscript.svg" alt="recent transcripts">
-                <p>Recent Transcripts</p>
-              </a>
-            </div>
-            <div class="join-session text-center">
-              <a [routerLink]="['/student-session']">
-                <img src="../../../assets/images/join.svg" alt="join session">                
-                <p>Join Session</p>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="card card-collapse">
-          <div id="c2" class="collapse" role="tabpanel" data-parent="#accordion">
-            <ul class="recent-transcripts">
-              <li><span>Transcript 1</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 1</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 2</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 2</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-            </ul>         
-          </div>
-        </div>
+      </div>
+      
     </div>
   </div>
   
