@@ -22,6 +22,7 @@
               <a [routerLink]="['/student-session', class.courseName, class.courseID]">
                 <img src="../../../assets/images/join.svg" alt="join session">                
                 <p>Join Session</p>
+                <p *ngIf="this.sessionStatus==true;">ONLINE</p>
               </a>
             </div>
           </div>

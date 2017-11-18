@@ -1,3 +1,4 @@
+import { Observer } from 'rxjs/Observer';
 /*
 * This service handles the socket.io communication between the
 * front-end and the back-end
@@ -5,6 +6,7 @@
 import { Injectable } from '@angular/core';
 
 import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 
@@ -13,6 +15,8 @@ export class SocketService {
 
    private url = 'http://localhost:8080';
    private socket: SocketIOClient.Socket;
+   status;
+    sessionStatus = new BehaviorSubject<any>("re");
 
   constructor() { }
 
@@ -52,6 +56,8 @@ export class SocketService {
     this.socket = io(this.url);
     this.socket.emit('room', {room_id : id});
   }
+
+ 
 
 
 }
