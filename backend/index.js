@@ -48,7 +48,11 @@ app.get("*", (req, res) => {
 app.set("port", port);
 
 io.on("connection", socket => {
-  console.log("user connected");
+  
+  socket.on('room', function(data){
+    console.log(`user connected on room# ${data.room_id}`);
+     socket.join(data.room_id);
+  }); 
 
   socket.on("disconnect", function() {
     console.log("user disconnected");

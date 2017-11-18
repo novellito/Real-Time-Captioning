@@ -14,12 +14,16 @@ import { ActivatedRoute } from '@angular/router';
 export class StudentSessionComponent implements OnInit {
 
   className: any;
+  classID: any;
 
-  constructor(private user: UserTypeService, private studentInfo: StudentInfoService, private route: ActivatedRoute) { }
+  constructor(private user: UserTypeService, private studentInfo: StudentInfoService, private route: ActivatedRoute,
+     private socketService: SocketService) { }
 
   ngOnInit() {
     this.user.userType = 'student';
     this.className = this.route.snapshot.params['className'];
+    this.classID = this.route.snapshot.params['classID']
+    this.socketService.connect(this.classID);
   }
 
 

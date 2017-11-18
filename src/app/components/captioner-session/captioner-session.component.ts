@@ -1,6 +1,7 @@
 import { SocketService } from './../../services/socket.service';
 import { UserTypeService } from './../../services/user-type.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -12,16 +13,15 @@ import { Component, OnInit } from '@angular/core';
 export class CaptionerSessionComponent implements OnInit {
 
   message: any;
+  className: any;
 
-
-  constructor(private user: UserTypeService, private socketService: SocketService) {}
+  constructor(private user: UserTypeService, private socketService: SocketService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.user.userType = 'captioner';
-    this.socketService.connect();
+    this.className = this.route.snapshot.params['classID'];
+    this.socketService.connect(this.className);
   }
-
-
 
 
 }

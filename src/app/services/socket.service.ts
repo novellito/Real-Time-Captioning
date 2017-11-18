@@ -34,7 +34,7 @@ export class SocketService {
   getMessages() {
     const observable = new Observable(observer => {
 
-      this.socket = io(this.url);
+      // this.socket = io(this.url);
       this.socket.on('captions', (data) => {
         observer.next(data);
       });
@@ -48,8 +48,9 @@ export class SocketService {
     return observable;
   }
 
-  connect() { // establish connection with backend
+  connect(id) { // establish connection with backend
     this.socket = io(this.url);
+    this.socket.emit('room', {room_id : id});
   }
 
 
