@@ -1,18 +1,19 @@
-const express    = require("express");
-const path       = require("path");
+const express = require("express");
+const path = require("path");
 const bodyParser = require("body-parser");
-const cors       = require("cors");
-const passport   = require("passport");
-const mongoose   = require("mongoose");
-const http       = require("http");
-const app        = express();
-const server     = http.Server(app);
-const io         = require("socket.io")(server);
-const socketIO   = require("./controllers/socket");
+const cors = require("cors");
+const passport = require("passport");
+const mongoose = require("mongoose");
+const http = require("http");
+const app = express();
+const server = http.Server(app);
+const io = require("socket.io")(server);
+const socketIO = require("./controllers/socket");
 mongoose.Promise = global.Promise;
 
 // We import out routes
 const AdminRoutes = require("./routes/admins");
+const StudentRoutes = require("./routes/students");
 
 // Connect to our mongoDB instance
 mongoose.connect(
@@ -45,6 +46,7 @@ app.use(passport.session());
 
 // Setting up our routes.
 app.use("/api/admins", AdminRoutes(io));
+app.use("/api/students", StudentRoutes(io));
 
 // Index Route
 app.get("*", (req, res) => {
