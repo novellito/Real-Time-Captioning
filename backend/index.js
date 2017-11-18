@@ -8,19 +8,24 @@ const http       = require("http");
 const app        = express();
 const server     = http.Server(app);
 const io         = require("socket.io")(server);
-const socketIO   = require("./controllers/socket")
+const socketIO   = require("./controllers/socket");
+mongoose.Promise = global.Promise;
 
 // We import out routes
 const AdminRoutes = require("./routes/admins");
 
 // Connect to our mongoDB instance
-// mongoose.connect("mongodb://localhost/Real-Time", err => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log("Connected");
-//   }
-// });
+mongoose.connect(
+  "mongodb://localhost/Real-Time",
+  { useMongoClient: true },
+  err => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Connected");
+    }
+  }
+);
 
 // Body Parser Middleware
 app.use(bodyParser.json());
@@ -54,3 +59,5 @@ io.on("connection", socket => socketIO(socket));
 server.listen(port, () => {
   console.log("Server started on port: " + port);
 });
+
+module.exports = app;
