@@ -1,13 +1,14 @@
-const express = require("express");
-const path = require("path");
+const express    = require("express");
+const path       = require("path");
 const bodyParser = require("body-parser");
-const cors = require("cors");
-const passport = require("passport");
-const mongoose = require("mongoose");
-const http = require("http");
-const app = express();
-const server = http.Server(app);
-const io = require("socket.io")(server);
+const cors       = require("cors");
+const passport   = require("passport");
+const mongoose   = require("mongoose");
+const http       = require("http");
+const app        = express();
+const server     = http.Server(app);
+const io         = require("socket.io")(server);
+const socketIO   = require("./controllers/socket");
 mongoose.Promise = global.Promise;
 
 // We import out routes
@@ -52,18 +53,7 @@ app.get("*", (req, res) => {
 
 app.set("port", port);
 
-io.on("connection", socket => {
-  console.log("user connected");
-
-  socket.on("disconnect", function() {
-    console.log("user disconnected");
-  });
-
-  socket.on("add-message", message => {
-    console.log(message);
-    io.emit("message", { type: "new-message", text: message });
-  });
-});
+io.on("connection", socket => socketIO(socket));
 
 // Start Server
 server.listen(port, () => {
