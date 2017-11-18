@@ -17,7 +17,7 @@ describe("Class module", function() {
       .request(app)
       .post("/api/classes")
       .send({
-        courseID: "12345",
+        courseID: "78230",
         courseName: "Comp 490"
       })
       .then(function(res) {

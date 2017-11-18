@@ -1,6 +1,6 @@
 "use strict";
 const _ = require("underscore");
-const classModel = require("../models/class");
+const ClassModel = require("../models/class");
 let ClassController = {};
 
 // Storing classes.

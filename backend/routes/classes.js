@@ -1,7 +1,7 @@
 "use strict";
 
 const express = require("express");
-const controller = require("../controllers/classess");
+const controller = require("../controllers/classes");
 let router = express.Router();
 
 module.exports = function(io) {
