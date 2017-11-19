@@ -22,7 +22,7 @@ const TranscriptSchema = new Schema({
     }
   ],
   rawStatus: {
-    type: boolean,
+    type: Boolean,
     required: true,
     default: true
   }

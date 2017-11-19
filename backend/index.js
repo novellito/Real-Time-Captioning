@@ -48,7 +48,7 @@ app.use(passport.session());
 // Setting up our routes.
 app.use("/api/admins", AdminRoutes(io));
 app.use("/api/students", StudentRoutes(io));
-app.use("/api/trancripts", TranscriptRoutes(io));
+app.use("/api/transcripts", TranscriptRoutes(io));
 
 // Index Route
 app.get("*", (req, res) => {

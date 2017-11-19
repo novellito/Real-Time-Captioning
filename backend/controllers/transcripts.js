@@ -16,7 +16,7 @@ TranscriptController.storeTranscript = (req, res) => {
       const DUPLICATE_KEY = 11000;
       return err.code === DUPLICATE_KEY
         ? res.status(400).json(err.errmsg)
-        : res.status(500).json(err.errmsg);
+        : res.status(500).json(err);
     });
 };
 
@@ -40,11 +40,9 @@ TranscriptController.getTranscriptById = (req, res) => {
     .then(transcript => {
       return transcript
         ? res.status(200).json(transcript)
-        : res
-            .status(404)
-            .json({
-              error: `Can not find transcript with id: ${transcriptID}`
-            });
+        : res.status(404).json({
+            error: `Can not find transcript with id: ${transcriptID}`
+          });
     })
     .catch(err => {
       console.log(err);
