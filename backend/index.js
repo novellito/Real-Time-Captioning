@@ -14,6 +14,7 @@ mongoose.Promise = global.Promise;
 // We import out routes
 const AdminRoutes = require("./routes/admins");
 const StudentRoutes = require("./routes/students");
+const TranscriptRoutes = require("./routes/transcripts");
 
 // Connect to our mongoDB instance
 mongoose.connect(
@@ -47,6 +48,7 @@ app.use(passport.session());
 // Setting up our routes.
 app.use("/api/admins", AdminRoutes(io));
 app.use("/api/students", StudentRoutes(io));
+app.use("/api/trancripts", TranscriptRoutes(io));
 
 // Index Route
 app.get("*", (req, res) => {
