@@ -1,12 +1,12 @@
 [
   {
     "courseID": "12345",
-    "transcriptState": "raw",
-    "transcript": "Hello world!"
+    "rawStatus": "raw",
+    "captions": "Hello world!"
   },
   {
     "courseID": "67891",
-    "transcriptState": "raw",
-    "transcript": "Hello world!"
+    "rawStatus": "raw",
+    "captions": "Hello world!"
   }
 ]
