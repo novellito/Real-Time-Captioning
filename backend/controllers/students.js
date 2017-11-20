@@ -36,7 +36,7 @@ StudentController.getStudentById = (req, res) => {
   let studentID = req.params.id;
   let getStudentById_Promise = StudentModel.findById(studentID).exec();
 
-  getstudentById_Promise
+  getStudentById_Promise
     .then(student => {
       return student
         ? res.status(200).json(student)
