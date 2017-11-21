@@ -1,0 +1,28 @@
+.container-fluid {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.title {
+  margin-top: 2%;
+}
+
+.btn-container {
+  margin-top: 5px;
+}
+
+// small devices
+@media (max-width: 576px) {
+  h1:not(.class-title) {
+    text-align: center;
+  }
+  .class-title {
+    font-size: 1.4em;
+  }
+  p {
+    font-size: 0.8em;
+  }
+}

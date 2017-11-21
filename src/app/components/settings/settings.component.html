@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-9 col-sm-12">
+      <h1 class="title">Settings</h1>
+      <form method="post" action="#">
+        <h4>Font Size: 12px</h4>
+        <input type="range" name="font-size" min="10" max="36">
+        <h4>Font Color:</h4>
+        <input type="color" name="font-color" value="black">
+        <div>
+          <h4>Font Family:</h4>
+          <input list="font-family" placeholder="Times New Roman">
+          <datalist id="font-family">
+            <option value="Times New Roman">
+              <option style="color:blue;margin-left:30px;" value="Cursive">
+                <option value="Sans-Serif">
+                  <option value="Monospace">
+          </datalist>
+        </div>
+        <div class="btn-container">
+          <input type="reset" value="Reset">
+          <input type="submit" value="Save">
+          <button type="button" onclick="console.log('Logout')">Logout</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
