@@ -14,11 +14,9 @@ mongoose.Promise = global.Promise;
 // We import out routes
 const AdminRoutes = require("./routes/admins");
 const StudentRoutes = require("./routes/students");
-<<<<<<< HEAD
 const TranscriptRoutes = require("./routes/transcripts");
-=======
 const ClassRoutes = require("./routes/classes");
->>>>>>> dev
+
 
 // Connect to our mongoDB instance
 mongoose.connect(
