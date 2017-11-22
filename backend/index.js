@@ -16,6 +16,7 @@ const AdminRoutes = require("./routes/admins");
 const StudentRoutes = require("./routes/students");
 const TranscriptRoutes = require("./routes/transcripts");
 const ClassRoutes = require("./routes/classes");
+const CaptionistRoutes = require("./routes/captionist");
 
 // Connect to our mongoDB instance
 mongoose.connect(
@@ -51,6 +52,7 @@ app.use("/api/admins", AdminRoutes(io));
 app.use("/api/students", StudentRoutes(io));
 app.use("/api/transcripts", TranscriptRoutes(io));
 app.use("/api/classes", ClassRoutes(io));
+app.use("/api/captionist", CaptionistRoutes(io));
 
 // Index Route
 app.get("*", (req, res) => {
