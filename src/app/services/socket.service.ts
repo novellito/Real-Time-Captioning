@@ -15,6 +15,7 @@ export class SocketService {
 
    private url = 'http://localhost:8080';
    private socket: SocketIOClient.Socket;
+   public id: any;
 
   constructor(private http:Http) { }
 
@@ -24,12 +25,15 @@ export class SocketService {
    * This function emits the captions in the backend
    */
   sendCaptions(del) {
+    //5a16035bd8f6131e348af771 - comp 490 id put into url
     console.log(del);
+   
     this.socket.emit('captionerDelta', del);
-    // let headers = new Headers();
-    // headers.append('Content-Type', 'application/json');
-    // return this.http.post('http://localhost:8080/api/transcripts', del, { headers: headers })
-    // .map(res=>res.json());
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put(`http://localhost:8080/api/transcripts/id/${this.id}`, {captions: del}, { headers: headers })
+    .map(res => res.json());
+
   }
 
   /**

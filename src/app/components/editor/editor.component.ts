@@ -62,7 +62,9 @@ export class EditorComponent implements OnInit, OnDestroy {
       if (this.user.userType === 'student') { // do nothing (prevent caption from bouncing back and forth)
         return;
       }
-      this.socketService.sendCaptions($event.delta);
+      this.socketService.sendCaptions($event.delta).subscribe(data =>{
+        console.log(data);
+      });
  }
 
   // TODO: allow captioners & students to message one another
