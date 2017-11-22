@@ -33,7 +33,8 @@ ClassController.getAllCourses = (req, res) => {
 };
 
 ClassController.getCourseById = (req, res) => {
-  let CourseID = req.params.id;
+  console.log(req.params.id);
+  let courseID = req.params.id;
   let getCourseById_Promise = ClassModel.findById(courseID).exec();
 
   getCourseById_Promise

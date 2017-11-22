@@ -12,7 +12,7 @@ const TranscriptSchema = new Schema({
   },
 
   captions: {
-    type: String
+    type: Object
   },
 
   captionist: [
