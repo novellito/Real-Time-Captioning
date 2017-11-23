@@ -22,7 +22,9 @@ export class StudentSessionComponent implements OnInit {
   ngOnInit() {
     this.user.userType = 'student';
     this.className = this.route.snapshot.params['className'];
-    this.classID = this.route.snapshot.params['classID']
+    this.classID = this.route.snapshot.params['classID'];
+
+    this.socketService.id = this.route.snapshot.params['classID'];
     this.socketService.connect(this.classID);
   }
 

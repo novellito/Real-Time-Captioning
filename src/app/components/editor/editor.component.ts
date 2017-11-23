@@ -30,10 +30,12 @@ export class EditorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.user.userType === 'student') {
       this.toolbarOptions = false;
+
       this.connection = this.socketService.getMessages().subscribe(
           message => {
             this.editor.updateContents(message);
         });
+
 
     } else {
       this.toolbarOptions = [
@@ -51,6 +53,15 @@ export class EditorComponent implements OnInit, OnDestroy {
    */
   grabRef($event) {
     this.editor = $event;
+
+    if (this.editor.getLength() === 1 && this.user.userType === 'student') {
+      this.socketService.updateMessages().subscribe(
+        data => {this.editor.updateContents(data.captions);
+          console.log(data.captions);
+        }
+      );
+    }
+    console.log(this.editor.getLength());
   }
 
    /**
@@ -59,10 +70,11 @@ export class EditorComponent implements OnInit, OnDestroy {
    */
   sendDelta($event: any) {
 
+      console.log(this.editor.getContents());
       if (this.user.userType === 'student') { // do nothing (prevent caption from bouncing back and forth)
         return;
       }
-      this.socketService.sendCaptions($event.delta).subscribe(data =>{
+      this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe(data =>{
         console.log(data);
       });
  }
