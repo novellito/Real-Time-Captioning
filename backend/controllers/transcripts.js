@@ -52,7 +52,6 @@ TranscriptController.getTranscriptById = (req, res) => {
 
 // Updating transcripts.
 TranscriptController.updateTranscriptById = (req, res) => {
-  console.log(req.body);
   let transcriptID = req.params.id;
   let updateTranscriptById_Promise = TranscriptModel.findById(
     transcriptID

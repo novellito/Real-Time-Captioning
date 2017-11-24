@@ -33,10 +33,16 @@ export class EditorComponent implements OnInit, OnDestroy {
     if (this.user.userType === 'student') {
       this.toolbarOptions = false;
 
-      this.connection = this.socketService.getMessages().subscribe(
-          message => {
-            this.editor.updateContents(message);
-        });
+      this.connection = this.socketService.getMessages().subscribe( (message: any) => {
+            console.log(message.currDel);
+
+            if (this.editor.getLength() === 1) {
+              this.editor.updateContents(message.content);
+            } else {
+              this.editor.updateContents(message.currDel);
+            }
+        }
+      );
 
 
     } else {
@@ -60,10 +66,10 @@ export class EditorComponent implements OnInit, OnDestroy {
       // this.connection = this.socketService.updateMessages().subscribe(
       //   data => this.editor.updateContents(data.captions)
       // );
-      this.socketService.updateMessages();
-      this.socket.on("getContent", (data)=>{
-        console.log(data);
-      });
+      // this.socketService.updateMessages();
+      // this.socket.on("getContent", (data)=>{
+      //   console.log(data);
+      // });
     }
   }
 

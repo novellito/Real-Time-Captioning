@@ -27,9 +27,6 @@ export class SocketService {
    *  saves the current contents in the database
    */ 
   sendCaptions(currDel, contents) {
-    // 5a15e8882d83860424cc08c3 transcript id
-    //5a16035bd8f6131e348af771 - comp 490 id put into url
-    console.log(contents);
     this.socket.emit('captionerDelta', {currDel: currDel, content: contents }); // emit captions to the student
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');

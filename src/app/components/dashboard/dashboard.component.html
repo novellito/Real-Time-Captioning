@@ -13,7 +13,7 @@
                 <p class="h6">Professor {{class.professor}}</p>
             </div>
             <div class="transcripts text-center">
-              <a href="#{{class.courseID}}" data-toggle="collapse">
+              <a (click)="loadTranscripts($event);" id={{class._id}} href="#{{class.courseID}}" data-toggle="collapse">
                 <img src="../../../assets/images/recentTranscript.svg" alt="recent transcripts">
                 <p>Recent Transcripts</p>
               </a>
