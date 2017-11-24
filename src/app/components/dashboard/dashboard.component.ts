@@ -15,8 +15,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.studentInfo.getClasses().subscribe(res => {
-      this.classes = res;
       console.log(res);
+      this.classes = res;
     },
     err => {
       console.log(err);

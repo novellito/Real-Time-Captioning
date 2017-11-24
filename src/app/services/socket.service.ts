@@ -1,3 +1,4 @@
+import { UserTypeService } from 'app/services/user-type.service';
 /*
 * This service handles the socket.io communication between the
 * front-end and the back-end
@@ -17,22 +18,25 @@ export class SocketService {
    private socket: SocketIOClient.Socket;
    public id: any; //url id
 
-  constructor(private http:Http) { }
+  constructor(private http: Http, private user: UserTypeService) { }
 
   /**
    * @param {any} message
    * @memberof
-   * This function emits the captions in the backend
-   */
+   * This function emits the captions in the backend &
+   *  saves the current contents in the database
+   */ 
   sendCaptions(currDel, contents) {
+    // 5a15e8882d83860424cc08c3 transcript id
     //5a16035bd8f6131e348af771 - comp 490 id put into url
-    console.log(currDel);
-   
-    this.socket.emit('captionerDelta', currDel);
+    console.log(contents);
+    this.socket.emit('captionerDelta', {currDel: currDel, content: contents }); // emit captions to the student
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.put(`http://localhost:8080/api/transcripts/id/${this.id}`, {captions: contents}, { headers: headers })
-    .map(res => res.json());
+
+    return this.http // send the contents to the database
+      .put(`http://localhost:8080/api/transcripts/id/${this.id}`, {captions: contents}, { headers: headers })
+      .map(res => res.json());
 
   }
 
@@ -55,22 +59,24 @@ export class SocketService {
       return () => {
         this.socket.disconnect();
       };
-    });
+    }); 
     return observable;
   }
 
-  updateMessages() {
+  updateMessages() { //reqUpdate
 
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.get(`http://localhost:8080/api/transcripts/id/${this.id}`, { headers: headers })
-    .map(res => res.json());
+    this.socket.emit('updateContent');
+    
+    // const headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    // return this.http.get(`http://localhost:8080/api/transcripts/id/${this.id}`, { headers: headers })
+    // .map(res => res.json());
 
   }
 
   connect(id) { // establish connection with backend
     this.socket = io(this.url);
-    this.socket.emit('room', {room_id : id});
+    this.socket.emit('room', {room_id : id, user: this.user.userType});
   }
 
 

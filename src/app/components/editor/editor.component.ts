@@ -20,6 +20,8 @@ export class EditorComponent implements OnInit, OnDestroy {
   editor: any;
   connection: any;
   toolbarOptions: any;
+  private socket: SocketIOClient.Socket;
+  
 
   constructor(private user: UserTypeService, private socketService: SocketService) {}
 
@@ -55,13 +57,14 @@ export class EditorComponent implements OnInit, OnDestroy {
     this.editor = $event;
 
     if (this.editor.getLength() === 1 && this.user.userType === 'student') {
-      this.socketService.updateMessages().subscribe(
-        data => {this.editor.updateContents(data.captions);
-          console.log(data.captions);
-        }
-      );
+      // this.connection = this.socketService.updateMessages().subscribe(
+      //   data => this.editor.updateContents(data.captions)
+      // );
+      this.socketService.updateMessages();
+      this.socket.on("getContent", (data)=>{
+        console.log(data);
+      });
     }
-    console.log(this.editor.getLength());
   }
 
    /**
@@ -70,12 +73,10 @@ export class EditorComponent implements OnInit, OnDestroy {
    */
   sendDelta($event: any) {
 
-      console.log(this.editor.getContents());
       if (this.user.userType === 'student') { // do nothing (prevent caption from bouncing back and forth)
         return;
       }
       this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe(data =>{
-        console.log(data);
       });
  }
 
