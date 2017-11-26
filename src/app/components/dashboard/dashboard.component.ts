@@ -11,28 +11,28 @@ import { Http, Headers } from '@angular/http';
 export class DashboardComponent implements OnInit {
 
   classes: any;
-  transcripts: any;
+  classIDs = [];
 
   constructor(private http: Http, private studentInfo: StudentInfoService) { }
 
   ngOnInit() {
     this.studentInfo.getClasses().subscribe(res => {
-      // console.log(res);
       this.classes = res;
+      for (const elem of res){
+        this.classIDs.push(elem._id); // store class IDs for reference in loadTranscripts().
+      }
+      console.log(this.classIDs);
     },
     err => {
       console.log(err);
       return false;
     });
+
   }
 
-  loadTranscripts($event){
-    console.log($event.currentTarget.id);
- 
-      // const headers = new Headers();
-    // headers.append('Content-Type', 'application/json');
-    // return this.http.get(`http://localhost:8080/api/transcripts/id/${this.id}`, { headers: headers })
-    // .map(res => res.json());
+  loadTranscripts($event) {
+    const id = this.classIDs[$event.currentTarget.id];
+    this.studentInfo.getTranscripts(id).subscribe();
   }
 
 }

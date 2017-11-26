@@ -4,7 +4,7 @@
   <div class="row d-flex justify-content-center">
     <div class="col-md-9 col-sm-12">
         <h1>Classes</h1>
-        <div *ngFor="let class of classes">
+        <div *ngFor="let class of classes; let i=index">
           <div class="card" id="accordion">
             <div class="card-container">
             <div class="course-info">
@@ -13,7 +13,7 @@
                 <p class="h6">Professor {{class.professor}}</p>
             </div>
             <div class="transcripts text-center">
-              <a (click)="loadTranscripts($event);" id={{class._id}} href="#{{class.courseID}}" data-toggle="collapse">
+              <a (click)="loadTranscripts($event);" id={{i}} href="#{{class.courseID}}" data-toggle="collapse">
                 <img src="../../../assets/images/recentTranscript.svg" alt="recent transcripts">
                 <p>Recent Transcripts</p>
               </a>
@@ -28,13 +28,9 @@
         </div>
         <div class="card card-collapse">
           <div id="{{class.courseID}}" class="collapse" role="tabpanel" data-parent="#accordion">
-            <ul class="recent-transcripts">
-              <li><span>Transcript 1</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 2</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-              <li><span>Transcript 3</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
-            </ul>         
+            <ul *ngFor="let transcript of this.studentInfo.transcripts" class="recent-transcripts">
+              <li><span>{{transcript}}</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
+            </ul>    
           </div>
         </div>
       </div>

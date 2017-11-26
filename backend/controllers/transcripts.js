@@ -32,16 +32,16 @@ TranscriptController.getAllTranscripts = (req, res) => {
     });
 };
 
-TranscriptController.getTranscriptById = (req, res) => {
-  let transcriptID = req.params.id;
-  let getTranscriptById_Promise = TranscriptModel.findById(transcriptID).exec();
+TranscriptController.getTranscriptByCourseId = (req, res) => {
+  let courseID = req.params.id;
+  let getTranscriptById_Promise = TranscriptModel.find({"courseID":`${courseID}`}).exec();
 
   getTranscriptById_Promise
     .then(transcript => {
       return transcript
         ? res.status(200).json(transcript)
         : res.status(404).json({
-            error: `Can not find transcript with id: ${transcriptID}`
+            error: `Can not find transcript with id: ${courseID}`
           });
     })
     .catch(err => {
