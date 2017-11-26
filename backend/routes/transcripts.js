@@ -18,6 +18,3 @@ module.exports = function(io) {
 
   return router;
 };
-
-//db.getCollection('transcripts').find({"courseID":ObjectId("5a1767bfe4017636b0600de8")});
-

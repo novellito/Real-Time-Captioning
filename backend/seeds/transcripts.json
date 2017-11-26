@@ -1,12 +1,28 @@
 [
   {
-    "courseID": "12345",
-    "rawStatus": "raw",
-    "captions": "Hello world!"
+    "courseID" : "5a1767bfe4017636b0600de8",
+    "captions" : {
+        "ops" : [ 
+            {
+                "insert" : "It is time to sleep\n"
+            }
+        ]
+    },
+    "rawStatus" : true,
+    "captionist" : [],
+    "__v" : 0
   },
   {
-    "courseID": "67891",
-    "rawStatus": "raw",
-    "captions": "Hello world!"
+    "courseID" : "5a1767bfe4017636b0600de8",
+    "captions" : {
+        "ops" : [ 
+            {
+                "insert" : "hey there! \n"
+            }
+        ]
+    },
+    "rawStatus" : true,
+    "captionist" : [],
+    "__v" : 0
   }
 ]

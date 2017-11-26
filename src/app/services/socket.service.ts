@@ -1,8 +1,8 @@
-import { UserTypeService } from 'app/services/user-type.service';
 /*
 * This service handles the socket.io communication between the
 * front-end and the back-end
 */
+import { UserTypeService } from 'app/services/user-type.service';
 import { Injectable } from '@angular/core';
 
 import { Subject } from 'rxjs/Subject';
@@ -16,7 +16,7 @@ export class SocketService {
 
    private url = 'http://localhost:8080';
    private socket: SocketIOClient.Socket;
-   public id: any; //url id
+   public id: any; // url id
 
   constructor(private http: Http, private user: UserTypeService) { }
 
@@ -46,7 +46,6 @@ export class SocketService {
   getMessages() {
     const observable = new Observable(observer => {
 
-      // this.socket = io(this.url);
       this.socket.on('captions', (data) => {
         observer.next(data);
       });
@@ -56,22 +55,12 @@ export class SocketService {
       return () => {
         this.socket.disconnect();
       };
-    }); 
+    });
     return observable;
   }
 
-  updateMessages() { //reqUpdate
 
-    this.socket.emit('updateContent');
-    
-    // const headers = new Headers();
-    // headers.append('Content-Type', 'application/json');
-    // return this.http.get(`http://localhost:8080/api/transcripts/id/${this.id}`, { headers: headers })
-    // .map(res => res.json());
-
-  }
-
-  connect(id) { // establish connection with backend
+  connect(id) { // establish socket connection with backend
     this.socket = io(this.url);
     this.socket.emit('room', {room_id : id, user: this.user.userType});
   }

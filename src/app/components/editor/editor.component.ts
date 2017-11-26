@@ -20,8 +20,6 @@ export class EditorComponent implements OnInit, OnDestroy {
   editor: any;
   connection: any;
   toolbarOptions: any;
-  private socket: SocketIOClient.Socket;
-  
 
   constructor(private user: UserTypeService, private socketService: SocketService) {}
 
@@ -34,8 +32,6 @@ export class EditorComponent implements OnInit, OnDestroy {
       this.toolbarOptions = false;
 
       this.connection = this.socketService.getMessages().subscribe( (message: any) => {
-            console.log(message.currDel);
-
             if (this.editor.getLength() === 1) {
               this.editor.updateContents(message.content);
             } else {
@@ -61,16 +57,6 @@ export class EditorComponent implements OnInit, OnDestroy {
    */
   grabRef($event) {
     this.editor = $event;
-
-    if (this.editor.getLength() === 1 && this.user.userType === 'student') {
-      // this.connection = this.socketService.updateMessages().subscribe(
-      //   data => this.editor.updateContents(data.captions)
-      // );
-      // this.socketService.updateMessages();
-      // this.socket.on("getContent", (data)=>{
-      //   console.log(data);
-      // });
-    }
   }
 
    /**
@@ -90,6 +76,8 @@ export class EditorComponent implements OnInit, OnDestroy {
   // sendDM(message: any) {}
 
   ngOnDestroy() {
-    this.connection.unsubscribe();
+    if (this.user.userType === 'student') {
+      this.connection.unsubscribe();
+    }
   }
 }

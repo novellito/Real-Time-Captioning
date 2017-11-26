@@ -1,6 +1,5 @@
 module.exports = function (socket){
 
-
     socket.on('room', function(data){
     
         console.log(`user connected on room# ${data.room_id}`);
@@ -8,13 +7,8 @@ module.exports = function (socket){
      
         socket.join(data.room_id);
 
-        socket.on("updateContent", data => {
-          socket.emit("getContent", currentContent);
-          // console.log(currentContent);
-        });
-    
          socket.on("captionerDelta", del => {
-          //  console.log(del.content);
+           console.log(del.content);
            socket.to(data.room_id).emit("captions", del);
         });
     
