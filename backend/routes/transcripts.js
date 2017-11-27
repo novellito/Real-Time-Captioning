@@ -11,8 +11,10 @@ module.exports = function(io) {
   router.post("/", controller.storeTranscript);
   // Deletes an Transcript with the specified ID.
   router.delete("/id/:id", controller.destroyById);
-  // Get an Transcript by course id
-  router.get("/id/:id", controller.getTranscriptByCourseId);
+  //Get a Transcript by id
+  router.get("/id/:id", controller.getTranscriptById);
+  // Get a Transcript by course id
+  router.get("/courseID/:id", controller.getTranscriptByCourseId);
   // Update Transcript by id
   router.put("/id/:id", controller.updateTranscriptById);
 

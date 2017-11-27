@@ -39,6 +39,27 @@ describe("Transcript module", function() {
       });
   });
 
+  //get a Transcript by course id
+  it("Should return all transcripts given a course ID", function() {
+
+     chai
+    .request(app)
+    .post("/api/transcripts")
+    .send({
+      courseID: "5a10f8fcec2575181c5648f3",
+      captions: "Chai test",
+      captionist: ["5a10f8fcec2575181c5648f1"]
+    });
+  
+    return chai
+      .request(app)
+      .get("/api/transcripts/courseID/5a10f8fcec2575181c5648f3")
+      .then(function(res) {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an("array");
+      });
+  });
+
   // Update an transcript with transcriptID
   it("Should update an transcript", function() {
     return chai

@@ -25,7 +25,7 @@ export class StudentInfoService {
   getTranscripts(id) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(`http://localhost:8080/api/transcripts/id/${id}`, { headers: headers })
+    return this.http.get(`http://localhost:8080/api/transcripts/courseID/${id}`, { headers: headers })
     .map(res => this.transcripts = res.json().map(i => i['_id'])); // return a list of the transcript id's)
   }
 
