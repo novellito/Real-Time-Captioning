@@ -1,0 +1,6 @@
+11/28/17
+New Features:
+- Ability for captionists to type and students to see
+Improvements:
+
+Bug Fixes:
