@@ -23,7 +23,20 @@ const ClassSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "transcript"
     }
-  ]
+  ],
+  professor: {
+    type: String,
+    required: true,
+    default: "staff"
+  },
+  days: {
+    type: String,
+    required: true
+  },
+  time: {
+    type: Date,
+    required: true
+  }
 });
 
 module.exports = mongoose.model("class", ClassSchema);
