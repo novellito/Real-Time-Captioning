@@ -5,6 +5,11 @@ mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
 const TranscriptSchema = new Schema({
+  transcriptName: {
+    type: String,
+    required: true,
+    default: "Untitled"
+  },
   courseID: {
     type: Schema.Types.ObjectId,
     ref: "Class",
