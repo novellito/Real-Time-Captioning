@@ -12,7 +12,7 @@ const TranscriptSchema = new Schema({
   },
   courseID: {
     type: Schema.Types.ObjectId,
-    ref: "Class",
+    ref: "class",
     required: true
   },
 
@@ -23,7 +23,8 @@ const TranscriptSchema = new Schema({
   captionist: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Captionist"
+      ref: "captionist",
+      required: true
     }
   ],
   rawStatus: {
