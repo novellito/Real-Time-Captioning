@@ -14,20 +14,21 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { EditorComponent } from './components/editor/editor.component';
 import { QuillModule } from 'ngx-quill';
 import { LandingComponent } from './components/landing/landing.component';
- 
- 
+
+
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StudentSessionComponent } from './components/student-session/student-session.component';
 import { CaptionerSessionComponent } from './components/captioner-session/captioner-session.component';
 import { TranscriptsComponent } from './components/transcripts/transcripts.component';
 import { SettingsComponent } from './components/settings/settings.component';
  
+
 const appRoutes: Routes = [
   {path: '', component: LandingComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'student-session/:className/:classID', component: StudentSessionComponent},
-  {path: 'captioner-session/:classID', component: CaptionerSessionComponent},
   {path: 'settings', component: SettingsComponent},  
+  {path: 'captioner-session/:classID/:transcriptID', component: CaptionerSessionComponent},
   {path: 'transcripts', component: TranscriptsComponent}
 ];
 

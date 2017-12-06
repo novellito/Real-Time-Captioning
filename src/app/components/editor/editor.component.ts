@@ -30,10 +30,16 @@ export class EditorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.user.userType === 'student') {
       this.toolbarOptions = false;
-      this.connection = this.socketService.getMessages().subscribe(
-          message => {
-            this.editor.updateContents(message);
-        });
+
+      this.connection = this.socketService.getMessages().subscribe( (message: any) => {
+            if (this.editor.getLength() === 1) {
+              this.editor.updateContents(message.content);
+            } else {
+              this.editor.updateContents(message.currDel);
+            }
+        }
+      );
+
 
     } else {
       this.toolbarOptions = [
@@ -62,13 +68,15 @@ export class EditorComponent implements OnInit, OnDestroy {
       if (this.user.userType === 'student') { // do nothing (prevent caption from bouncing back and forth)
         return;
       }
-      this.socketService.sendCaptions($event.delta);
+      this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe();
  }
 
   // TODO: allow captioners & students to message one another
   // sendDM(message: any) {}
 
   ngOnDestroy() {
-    this.connection.unsubscribe();
+    if (this.user.userType === 'student') {
+      this.connection.unsubscribe();
+    }
   }
 }

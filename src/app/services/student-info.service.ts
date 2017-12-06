@@ -1,49 +1,32 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class StudentInfoService {
 
-  classes = [];
-  constructor() { }
+  transcripts = [];
+  constructor(private http: Http) { }
 
+  /**
+   * @returns a list of a students classes
+   */
   getClasses() {
 
-  return  this.classes = [
-      {
-        'courseName': 'Comp 490',
-        'courseID': '12345',
-        'professor': 'Fitzgerald',
-        'day': 'MW',
-        'time': '11:00am - 12:15pm'
-      },
-      {
-        'courseName': 'Comp 482',
-        'courseID': '67891',
-        'professor': 'Noga',
-        'day': 'MW',
-        'time': '1:00pm - 2:15pm'
-      },
-      {
-        'courseName': 'Bio 107/L',
-        'courseID': '45673',
-        'professor': 'Smith',
-        'day': 'TuTh',
-        'time': '11:00am - 12:15pm'
-      },
-      {
-        'courseName': 'Art 305',
-        'courseID': '32134',
-        'professor': 'Picasso',
-        'day': 'F',
-        'time': '11:00am - 12:15pm'
-      }
-    ];
-
-
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:8080/api/classes', {headers: headers})
+      .map(res => res.json());
   }
 
-  getTranscripts() {
-
+ /**
+   * @returns a list of a students transcripts
+   */
+  getTranscripts(id) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(`http://localhost:8080/api/transcripts/courseID/${id}`, { headers: headers })
+    .map(res => this.transcripts = res.json().map(i => i['_id'])); // return a list of the transcript id's)
   }
 
 }

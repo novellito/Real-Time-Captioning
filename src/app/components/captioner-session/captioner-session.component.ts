@@ -20,6 +20,7 @@ export class CaptionerSessionComponent implements OnInit {
   ngOnInit() {
     this.user.userType = 'captioner';
     this.className = this.route.snapshot.params['classID'];
+    this.socketService.id = this.route.snapshot.params['transcriptID'];
     this.socketService.connect(this.className);
   }
 
