@@ -10,11 +10,23 @@ import { Component, OnInit } from '@angular/core';
 export class TranscriptsComponent implements OnInit {
 
   classes: any;
+  classIDs = [];
 
   constructor(private studentInfo: StudentInfoService) { }
 
   ngOnInit() {
-    this.classes = this.studentInfo.getClasses();
+    this.studentInfo.getClasses().subscribe(res => {
+      this.classes = res;
+      for (const elem of res){
+        this.classIDs.push(elem._id); // store class IDs for reference in loadTranscripts().
+      }
+      console.log(this.classIDs);
+    },
+    err => {
+      console.log(err);
+      return false;
+    });
+
   }
 
 }
