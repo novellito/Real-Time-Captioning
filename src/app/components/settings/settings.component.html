@@ -18,7 +18,7 @@
         <div class="collapse font-family-card" id="collapseExample">
           <h5>Font Size:</h5>
           <h6 class="font-number">12px</h6>
-          <input class="range" type="range" name="font-size" min="10" max="36">
+          <input class="range" type="range" name="font-size" value="12" min="10" max="36">
         </div>
         <!-- <div class="card font-container" id="accordion">
           <a class="a-tag" data-toggle="collapse" href="#collapseExample2">
@@ -34,12 +34,12 @@
           <h5>Font Color:</h5>
           <input type="color" name="font-color" value="black">
         </div> -->
-
         <div class="card font-container color" id="accordion">
           <a class="a-tag" data-toggle="collapse" href="#collapseExample2">
             <div class="card-container">
               <div class="course-info">
-                <i class="fa fa-font family-letter" aria-hidden="true"></i>
+                <i class="fa fa-font family-letter regular-a" aria-hidden="true"></i>
+                <div class="cursive cursive-a">A</div>
                 <p>Font-Family</p>
               </div>
             </div>
@@ -47,34 +47,24 @@
         </div>
         <div class="collapse font-color-card" id="collapseExample2">
           <h5>Font Family:</h5>
-          <input type="radio" name="font" value="Times New Roman">
-          <label class="boo">Times New Roman</label>
+          <input type="radio" name="font" value="Times New Roman" checked="checked">
+          <label class="times-new-roman">Times New
+            <br>Roman</label>
           <br>
-          <input type="radio" name="font" value="Sans-Serif">Sans-Serif
+          <input type="radio" name="font" value="Sans-Serif">
+          <label class="sans-serif">Sans-Serif</label>
           <br>
-          <input type="radio" name="font" value="Monospace">Monospace
+          <input type="radio" name="font" value="Monospace">
+          <label class="monospace">Monospace</label>
           <br>
-          <input type="radio" name="font" value="Cursive">Cursive
+          <input type="radio" name="font" value="Cursive">
+          <label class="cursive">Cursive</label>
           <br>
-        </div>
-
-        <br>
-        <h4>Font Color:</h4>
-        <input type="color" name="font-color" value="black">
-        <div>
-          <h4>Font Family:</h4>
-          <input list="font-family" placeholder="Times New Roman">
-          <datalist id="font-family">
-            <option value="Times New Roman">
-              <option value="Cursive">
-                <option value="Sans-Serif">
-                  <option value="Monospace">
-          </datalist>
         </div>
         <div class="btn-container">
-          <input type="reset" value="Reset">
-          <input type="submit" value="Save">
-          <button type="button" onclick="console.log('Logout')">Logout</button>
+          <input class="button" type="reset" value="Reset">
+          <input class="button" type="submit" value="Save">
+          <button class="button" type="button" onclick="console.log('Logout')">Logout</button>
         </div>
       </form>
     </div>

@@ -11,7 +11,8 @@
 }
 
 .btn-container {
-  margin-top: 5px;
+  margin-top: 300px;
+  float: right;
 }
 
 .card {
@@ -51,6 +52,17 @@
   width: 117px;
 }
 
+.regular-a {
+  font-size: 24px;
+  margin-right: 25px;
+}
+.cursive-a {
+  font-size: 31px;
+  position: absolute;
+  top: 22px;
+  left: 73px;
+}
+
 .font-family-card {
   background: #fff;
   width: 140px;
@@ -64,7 +76,19 @@
   position: absolute;
 }
 
-.boo {
+.times-new-roman {
+  font-family: "Times New Roman";
+}
+
+.sans-serif {
+  font-family: sans-serif;
+}
+
+.monospace {
+  font-family: monospace;
+}
+
+.cursive {
   font-family: cursive;
 }
 
@@ -94,6 +118,35 @@
   margin-left: 176px;
   margin-top: -7px;
   position: absolute;
+}
+
+.button {
+  background: #d22030;
+  background-image: -webkit-linear-gradient(top, #d22030, #bd1829);
+  background-image: -moz-linear-gradient(top, #d22030, #bd1829);
+  background-image: -ms-linear-gradient(top, #d22030, #bd1829);
+  background-image: -o-linear-gradient(top, #d22030, #bd1829);
+  background-image: linear-gradient(to bottom, #d22030, #bd1829);
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  text-shadow: 1px 2px 2px #666666;
+  font-family: Courier New;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 6px 12px 6px 12px;
+  border: solid #821c26 2px;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: #e63553;
+  background-image: -webkit-linear-gradient(top, #e63553, #e84863);
+  background-image: -moz-linear-gradient(top, #e63553, #e84863);
+  background-image: -ms-linear-gradient(top, #e63553, #e84863);
+  background-image: -o-linear-gradient(top, #e63553, #e84863);
+  background-image: linear-gradient(to bottom, #e63553, #e84863);
+  text-decoration: none;
 }
 
 @keyframes rainbow {
