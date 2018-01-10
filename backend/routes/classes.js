@@ -13,6 +13,8 @@ module.exports = function(io) {
   router.delete("/id/:id", controller.destroyById);
   // Get an course by id
   router.get("/id/:id", controller.getCourseById);
+  // Get a class by course id
+  router.get("/courseID/:id", controller.getClassByCourseId);  
   // Update course by id
   router.put("/id/:id", controller.updateCourseById);
 
