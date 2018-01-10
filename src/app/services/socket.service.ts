@@ -30,7 +30,6 @@ export class SocketService {
     this.socket.emit('captionerDelta', {currDel: currDel, content: contents }); // emit captions to the student
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-
     return this.http // send the contents to the database
       .put(`http://localhost:8080/api/transcripts/id/${this.id}`, {captions: contents}, { headers: headers })
       .map(res => res.json());
