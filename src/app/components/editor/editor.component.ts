@@ -28,6 +28,13 @@ export class EditorComponent implements OnInit, OnDestroy {
    * see or access.
    */
   ngOnInit() {
+    if(this.socketService.transcriptLoad) {
+      console.log('transcript trying to load');
+      this.user.loadTranscript(this.socketService.id).subscribe(res => {
+        console.log(res.captions);
+        this.editor.updateContents(res.captions);
+      });
+    }
     if (this.user.userType === 'student') {
       this.toolbarOptions = false;
 

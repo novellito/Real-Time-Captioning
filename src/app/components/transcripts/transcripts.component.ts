@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-transcripts',
   templateUrl: './transcripts.component.html',
   styleUrls: ['./transcripts.component.scss'],
-  providers: [StudentInfoService]  
+  providers: [StudentInfoService]
 })
 export class TranscriptsComponent implements OnInit {
 

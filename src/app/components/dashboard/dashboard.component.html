@@ -29,7 +29,7 @@
         <div class="card card-collapse">
           <div id="{{class.courseID}}" class="collapse" role="tabpanel" data-parent="#accordion">
             <ul *ngFor="let transcript of this.studentInfo.transcripts" class="recent-transcripts">
-              <li><span>{{transcript}}</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
+              <li><a [routerLink]="['/transcript', transcript.id]">{{transcript.transcriptName}}</a><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
             </ul>    
           </div>
         </div>

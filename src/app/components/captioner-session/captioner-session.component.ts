@@ -36,9 +36,7 @@ export class CaptionerSessionComponent implements OnInit {
   }
 
   setTitle(title) {
-    console.log(title);
-
-  this.capUtil.updateTranscriptTitle(this.socketService.id, title).subscribe();
+    this.capUtil.updateTranscriptTitle(this.socketService.id, title).subscribe();
   }
 
 }
