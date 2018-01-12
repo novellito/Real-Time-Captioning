@@ -18,6 +18,8 @@ export class TranscriptComponent implements OnInit {
     this.socketService.transcriptLoad = true;
     this.socketService.id = this.route.snapshot.params['id'];
 
+    // console.log(this.userInfo);
+
   }
 
 }

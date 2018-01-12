@@ -1,3 +1,4 @@
+import { UserTypeService } from './../../services/user-type.service';
 import { StudentInfoService } from './../../services/student-info.service';
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/map';
@@ -6,14 +7,14 @@ import { Http, Headers } from '@angular/http';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [StudentInfoService]
+  providers: [StudentInfoService, UserTypeService]
 })
 export class DashboardComponent implements OnInit {
 
   classes: any;
   classIDs = [];
 
-  constructor(private http: Http, private studentInfo: StudentInfoService) { }
+  constructor(private http: Http, private studentInfo: StudentInfoService, private user: UserTypeService) { }
 
   ngOnInit() {
     this.studentInfo.getClasses().subscribe(res => {
@@ -34,5 +35,7 @@ export class DashboardComponent implements OnInit {
     const id = this.classIDs[$event.currentTarget.id];
     this.studentInfo.getTranscripts(id).subscribe();
   }
+
+
 
 }
