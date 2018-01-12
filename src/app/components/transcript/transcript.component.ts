@@ -1,3 +1,4 @@
+import { CaptionerUtilsService } from './../../services/captioner-utils.service';
 import { ActivatedRoute } from '@angular/router';
 import { SocketService } from './../../services/socket.service';
 import { UserTypeService } from './../../services/user-type.service';
@@ -7,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-transcript',
   templateUrl: './transcript.component.html',
   styleUrls: ['./transcript.component.scss'],
-  providers: [UserTypeService, SocketService]
+  providers: [UserTypeService, SocketService, CaptionerUtilsService]
 })
 export class TranscriptComponent implements OnInit {
 
-  constructor(private userInfo: UserTypeService, private socketService: SocketService, private route: ActivatedRoute) { }
+  constructor(private userInfo: UserTypeService, private socketService: SocketService, 
+    private route: ActivatedRoute, private capUtil: CaptionerUtilsService) { }
 
   ngOnInit() {
     this.userInfo.userType = 'captioner';
@@ -21,5 +23,10 @@ export class TranscriptComponent implements OnInit {
     // console.log(this.userInfo);
 
   }
+
+  setTitle(title) {
+    this.capUtil.updateTranscriptTitle(this.socketService.id, title).subscribe();
+  }
+
 
 }

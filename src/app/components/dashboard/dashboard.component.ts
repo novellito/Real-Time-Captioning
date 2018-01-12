@@ -13,6 +13,8 @@ export class DashboardComponent implements OnInit {
 
   classes: any;
   classIDs = [];
+  transcriptID: any;
+  listElem: any;
 
   constructor(private http: Http, private studentInfo: StudentInfoService, private user: UserTypeService) { }
 
@@ -22,7 +24,6 @@ export class DashboardComponent implements OnInit {
       for (const elem of res){
         this.classIDs.push(elem._id); // store class IDs for reference in loadTranscripts().
       }
-      console.log(this.classIDs);
     },
     err => {
       console.log(err);
@@ -34,6 +35,19 @@ export class DashboardComponent implements OnInit {
   loadTranscripts($event) {
     const id = this.classIDs[$event.currentTarget.id];
     this.studentInfo.getTranscripts(id).subscribe();
+  }
+
+  deleteTranscript() {
+    this.listElem.remove();
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.delete(`http://localhost:8080/api/transcripts/id/${this.transcriptID}`, {headers: headers})
+    .map(res => res.json()).subscribe();
+  }
+
+  storeID(id, $event) {
+    this.transcriptID = id;
+    this.listElem = $event.target.parentElement;
   }
 
 
