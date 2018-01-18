@@ -28,7 +28,7 @@
         </div>
         <div class="card card-collapse">
           <div id="{{class.courseID}}" class="collapse" role="tabpanel" data-parent="#accordion">
-            <ul *ngFor="let transcript of this.studentInfo.transcripts" class="recent-transcripts">
+            <ul *ngFor="let transcript of this.user.transcripts" class="recent-transcripts">
               <li id="transcriptElement">
                 <a [routerLink]="['/transcript', transcript.id]">{{transcript.transcriptName}}</a>
                 <i class="fa fa-download fa-2x" aria-hidden="true"></i> 
@@ -43,30 +43,20 @@
     </div>
   </div>
 
-
   <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
-          <!--Content-->
           <div class="modal-content text-center">
-              <!--Header-->
               <div class="modal-header d-flex justify-content-center">
                   <p class="heading">Are you sure?</p>
               </div>
-
-              <!--Body-->
               <div class="modal-body">
-
                   <i class="fa fa-times fa-4x animated rotateIn"></i>
-
               </div>
-
-              <!--Footer-->
               <div class="modal-footer flex-center">
                   <a (click)="deleteTranscript()" class="btn  btn-outline-secondary-modal" data-dismiss="modal">Yes</a>
                   <a type="button" class="btn  btn-primary-modal waves-effect" data-dismiss="modal">No</a>
               </div>
           </div>
-          <!--/.Content-->
       </div>
   </div>
   

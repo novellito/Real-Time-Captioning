@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs/Subscription';
 import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import {QuillEditorComponent} from 'ngx-quill/src/quill-editor.component';
 import { SocketService } from './../../services/socket.service';
@@ -17,8 +18,8 @@ quill.register(Font, true);
 @Component({selector: 'app-editor', templateUrl: './editor.component.html', styleUrls: ['./editor.component.scss']})
 export class EditorComponent implements OnInit, OnDestroy {
 
+  connection: Subscription;
   editor: any;
-  connection: any;
   toolbarOptions: any;
 
   constructor(private user: UserTypeService, private socketService: SocketService) {}

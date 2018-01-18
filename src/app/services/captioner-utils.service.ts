@@ -8,6 +8,7 @@ export class CaptionerUtilsService {
 
   constructor(private http: Http) { }
 
+   // Takes the couresID (from URL) to get full info about the class
    getClass(courseID) {
      const headers = new Headers();
      headers.append('Content-Type', 'application/json');
@@ -23,8 +24,8 @@ export class CaptionerUtilsService {
       .map(res => res.json());
     }
 
+    // Method for updating the transcripts title in the database
     updateTranscriptTitle(id, name) {
-
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this.http // send the contents to the database
