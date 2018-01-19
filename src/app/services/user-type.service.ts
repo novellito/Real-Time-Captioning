@@ -14,10 +14,12 @@ export class UserTypeService {
   userType: string;
   transcriptTitle: string;
   transcripts = [];
-  
 
   constructor(private http: Http) { }
 
+   /**
+   * @returns specefic transcript info
+   */
   loadTranscript(transcriptID) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -40,9 +42,8 @@ export class UserTypeService {
     });
   }
 
-  
   /**
-   * @returns a list of a students classes
+   * @returns a list of a user's classes
    */
   getClasses() {
     const headers = new Headers();
