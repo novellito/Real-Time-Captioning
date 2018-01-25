@@ -50,6 +50,25 @@ ClassController.getCourseById = (req, res) => {
     });
 };
 
+ClassController.getClassByCourseId = (req, res) => {
+  let courseID = req.params.id;
+  let getTranscriptById_Promise = ClassModel.find({"courseID":`${courseID}`}).exec();
+
+  getTranscriptById_Promise
+    .then(course => {
+      return course
+        ? res.status(200).json(course)
+        : res.status(404).json({
+            error: `Can not find course with id: ${courseID}`
+          });
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json({ error: err });
+    });
+};
+
+
 // Updating courses.
 ClassController.updateCourseById = (req, res) => {
   let courseID = req.params.id;

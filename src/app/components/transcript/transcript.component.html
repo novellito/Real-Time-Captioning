@@ -1,0 +1,9 @@
+<app-navbar></app-navbar>
+<div class="row d-flex justify-content-center ">
+  <input type="text" name="title" class="title" value="{{this.userInfo.transcriptTitle}}" (focusout)="setTitle(title.value)" #title>
+  
+  <div class="col-md-8 col-sm-12 ">
+      <app-editor></app-editor>
+  </div>
+   
+  </div>

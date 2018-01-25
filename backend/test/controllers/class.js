@@ -18,7 +18,10 @@ describe("Class module", function() {
       .post("/api/classes")
       .send({
         courseID: "78230",
-        courseName: "Comp 490"
+        courseName: "Comp 490",
+        professor: "bob smith",
+        days: "MW",
+        time: "2017-07-02"
       })
       .then(function(res) {
         courseID = res.body._id;
@@ -37,6 +40,20 @@ describe("Class module", function() {
         expect(res.body).to.be.an("array");
       });
   });
+
+
+   //get a class by course id
+  it("Should return a class given a course ID", function() {
+
+    return chai
+      .request(app)
+      .get("/api/classes/courseID/12345")
+      .then(function(res) {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an("array");
+      });
+  });
+
 
   // Update an course with courseID
   it("Should update an course", function() {

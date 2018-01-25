@@ -16,7 +16,8 @@ export class SocketService {
 
    private url = 'http://localhost:8080';
    private socket: SocketIOClient.Socket;
-   public id: any; // url id
+   public id: any; // Hash value of transcriptID
+   public transcriptLoad = false; // transcript is not being viewed
 
   constructor(private http: Http, private user: UserTypeService) { }
 
@@ -25,16 +26,16 @@ export class SocketService {
    * @memberof
    * This function emits the captions in the backend &
    *  saves the current contents in the database
-   */ 
+   */
   sendCaptions(currDel, contents) {
-    this.socket.emit('captionerDelta', {currDel: currDel, content: contents }); // emit captions to the student
+    if (!this.transcriptLoad) { // captioner is in session
+      this.socket.emit('captionerDelta', {currDel: currDel, content: contents }); // emit captions to the student
+    }
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-
     return this.http // send the contents to the database
       .put(`http://localhost:8080/api/transcripts/id/${this.id}`, {captions: contents}, { headers: headers })
       .map(res => res.json());
-
   }
 
   /**

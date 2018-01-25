@@ -7,7 +7,7 @@
     (onContentChanged)="sendDelta($event);">
 </quill-editor>
 
-<quill-editor 
+<quill-editor *ngIf="!this.socketService.transcriptLoad"
     [modules]="{toolbar: false}" 
     class="chatBox"
     [style]="{height: '100px'}" 
