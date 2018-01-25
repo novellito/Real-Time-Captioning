@@ -2,10 +2,10 @@
 <div class="container-fluid">
 
   <div class="row d-flex justify-content-center">
-    <div class="col-md-9 col-sm-12">
+    <div class="col-md-9 col-sm-12" id="accordion">
         <h1>Classes</h1>
         <div *ngFor="let class of classes; let i=index">
-          <div class="card" id="accordion">
+          <div class="card">
             <div class="card-container">
             <div class="course-info">
                 <h1 class="class-title">{{class.courseName}}</h1>
@@ -26,16 +26,38 @@
             </div>
           </div>
         </div>
+        <div id="{{class.courseID}}" class="collapse" role="tabpanel" data-parent="#accordion">
         <div class="card card-collapse">
-          <div id="{{class.courseID}}" class="collapse" role="tabpanel" data-parent="#accordion">
-            <ul *ngFor="let transcript of this.studentInfo.transcripts" class="recent-transcripts">
-              <li><span>{{transcript}}</span><i class="fa fa-download fa-2x" aria-hidden="true"></i> <i class="fa fa-print fa-2x" aria-hidden="true"></i></li>
+            <ul *ngFor="let transcript of this.user.transcripts" class="recent-transcripts">
+              <li id="transcriptElement">
+                <a [routerLink]="['/transcript', transcript.id]">{{transcript.transcriptName}}</a>
+                <i class="fa fa-download fa-2x" aria-hidden="true"></i> 
+                <i class="fa fa-print fa-2x" aria-hidden="true"></i>
+                <button (click)="storeID(transcript.id, $event)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalConfirmDelete" >Delete</button>
+              </li>
             </ul>    
           </div>
         </div>
       </div>
       
     </div>
+  </div>
+
+  <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+          <div class="modal-content text-center">
+              <div class="modal-header d-flex justify-content-center">
+                  <p class="heading">Are you sure?</p>
+              </div>
+              <div class="modal-body">
+                  <i class="fa fa-times fa-4x animated rotateIn"></i>
+              </div>
+              <div class="modal-footer flex-center">
+                  <a (click)="deleteTranscript()" class="btn  btn-outline-secondary-modal" data-dismiss="modal">Yes</a>
+                  <a type="button" class="btn  btn-primary-modal waves-effect" data-dismiss="modal">No</a>
+              </div>
+          </div>
+      </div>
   </div>
   
 </div>
