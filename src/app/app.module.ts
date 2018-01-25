@@ -1,3 +1,4 @@
+import { TranscriptComponent } from './components/transcript/transcript.component';
 import { StatusComponent } from './components/status/status.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -29,7 +30,9 @@ const appRoutes: Routes = [
   {path: 'student-session/:className/:classID', component: StudentSessionComponent},
   {path: 'settings', component: SettingsComponent},  
   {path: 'captioner-session/:classID/:transcriptID', component: CaptionerSessionComponent},
-  {path: 'transcripts', component: TranscriptsComponent}
+  {path: 'transcripts', component: TranscriptsComponent},
+  {path: 'captioner-session/:classID', component: CaptionerSessionComponent},
+  {path: 'transcript/:id', component: TranscriptComponent}
 ];
 
 @NgModule({
@@ -46,7 +49,8 @@ const appRoutes: Routes = [
     StudentSessionComponent,
     CaptionerSessionComponent,
     TranscriptsComponent,
-    SettingsComponent
+    SettingsComponent,
+    TranscriptComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   imports: [
