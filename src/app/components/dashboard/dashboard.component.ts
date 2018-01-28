@@ -1,14 +1,16 @@
 import { UserTypeService } from './../../services/user-type.service';
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, ResponseContentType } from '@angular/http';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs/Subscription';
+import { saveAs } from 'file-saver';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [UserTypeService]
+  providers: [UserTypeService,]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
@@ -55,6 +57,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
   storeID(id, $event) {
     this.transcriptID = id;
     this.listElem = $event.target.parentElement;
+  }
+
+  download() {
+    // let blob = new Blob(["test"], { type: 'text/csv' });
+    // saveAs(blob, "data.txt");
+
+    // const headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    // headers.append('responseType', 'text');
+    return this.http.get(`http://localhost:8080/api/downloads/5a6c1fe4a31ca810d42f52b8`, {responseType: ResponseContentType.Blob})
+    .map(res => new Blob([res.blob()], { type: 'application/rtf' })).subscribe(res => {
+      saveAs(res, "thisWorks12.rtf");
+    });
   }
 
   // Unsubscribe to the connections. (avoid memory leak)
