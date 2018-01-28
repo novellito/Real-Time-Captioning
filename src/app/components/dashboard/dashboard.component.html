@@ -30,10 +30,11 @@
         <div class="card card-collapse">
             <ul *ngFor="let transcript of this.user.transcripts" class="recent-transcripts">
               <li id="transcriptElement">
-                <a [routerLink]="['/transcript', transcript.id]">{{transcript.transcriptName}}</a>
-                <a (click)="download(transcript.transcriptName,transcript.id)"><i class="fa fa-download fa-2x" aria-hidden="true"> </i></a> 
-                <i class="fa fa-print fa-2x" aria-hidden="true"></i>
-                <button (click)="storeID(transcript.id, $event)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalConfirmDelete" >Delete</button>
+                  <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
+                  <a [routerLink]="['/transcript', transcript.id]" class="h6">{{transcript.transcriptName}}</a>
+                  <a (click)="download(transcript.transcriptName,transcript.id)"><i class="fa fa-download fa-2x" aria-hidden="true"> </i></a> 
+                  <i class="fa fa-print fa-2x" aria-hidden="true"></i>
+                  <button (click)="storeID(transcript.id, $event)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalConfirmDelete" >Delete</button>
               </li>
             </ul>    
           </div>
