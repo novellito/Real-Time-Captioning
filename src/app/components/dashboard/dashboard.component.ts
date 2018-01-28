@@ -59,16 +59,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.listElem = $event.target.parentElement;
   }
 
-  download() {
-    // let blob = new Blob(["test"], { type: 'text/csv' });
-    // saveAs(blob, "data.txt");
-
-    // const headers = new Headers();
-    // headers.append('Content-Type', 'application/json');
-    // headers.append('responseType', 'text');
-    return this.http.get(`http://localhost:8080/api/downloads/5a6c1fe4a31ca810d42f52b8`, {responseType: ResponseContentType.Blob})
+  // download the transcript file
+  download(name, id) {
+    return this.http.get(`http://localhost:8080/api/downloads/${id}`, {responseType: ResponseContentType.Blob})
     .map(res => new Blob([res.blob()], { type: 'application/rtf' })).subscribe(res => {
-      saveAs(res, "thisWorks12.rtf");
+      saveAs(res, `${name}.rtf`);
     });
   }
 

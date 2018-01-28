@@ -4,7 +4,6 @@
   <div class="row d-flex justify-content-center">
     <div class="col-md-9 col-sm-12" id="accordion">
         <h1>Classes</h1>
-        <button (click)="download()">download</button>
         <div *ngFor="let class of classes; let i=index">
           <div class="card">
             <div class="card-container">
@@ -32,7 +31,7 @@
             <ul *ngFor="let transcript of this.user.transcripts" class="recent-transcripts">
               <li id="transcriptElement">
                 <a [routerLink]="['/transcript', transcript.id]">{{transcript.transcriptName}}</a>
-                <i class="fa fa-download fa-2x" aria-hidden="true"></i> 
+                <a (click)="download(transcript.transcriptName,transcript.id)"><i class="fa fa-download fa-2x" aria-hidden="true"> </i></a> 
                 <i class="fa fa-print fa-2x" aria-hidden="true"></i>
                 <button (click)="storeID(transcript.id, $event)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalConfirmDelete" >Delete</button>
               </li>

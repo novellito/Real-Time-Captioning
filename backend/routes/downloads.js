@@ -1,18 +1,13 @@
 "use strict";
 
 const express = require("express");
-const controller = require("../controllers/transcripts");
-const controller1 = require("../controllers/downloads");
-
-const http = require("http");
-
+const controller = require("../controllers/downloads");
 let router = express.Router();
 
 module.exports = function(io) {
 
-    router.get("/:id", controller1.getDelta);
+    router.get("/:id", controller.getRTF);
   
-    
     return router;
     
 };

@@ -1,5 +1,4 @@
 "use strict";
-const _ = require("underscore");
 const TranscriptModel = require("../models/transcript");
 const htmlToRtf = require('html-to-rtf');
 const QuillDeltaToHtmlConverter = require('quill-delta-to-html');
@@ -7,7 +6,7 @@ const QuillDeltaToHtmlConverter = require('quill-delta-to-html');
 let DownloadController = {};
 
 
-DownloadController.getDelta = (req, res) => {
+DownloadController.getRTF = (req, res) => {
 
     let transcriptID = req.params.id;
     let getTranscriptById_Promise = TranscriptModel.findById(transcriptID).exec();
@@ -16,15 +15,10 @@ DownloadController.getDelta = (req, res) => {
       .then(transcript => {
 
         if(transcript) {
-            console.log(transcript.captions.ops);
-            const convertedDeltaOps = new QuillDeltaToHtmlConverter(transcript.captions.ops); // convert delto to html
-            const html = convertedDeltaOps.convert();
-            console.log(html);
-            res.set({"Access-Control-Expose-Headers": `Content-Disposition`,"Content-Disposition":`attachment; filename=\"test.rtf\"`});
-            let output = htmlToRtf.convertHtmlToRtf(html);
-
+            const convertedDeltaOps = new QuillDeltaToHtmlConverter(transcript.captions.ops); 
+            const html = convertedDeltaOps.convert(); // convert delto to html
+            const output = htmlToRtf.convertHtmlToRtf(html);
             res.send(output);
-
         } else {            
              res.status(404).json({
                 error: `Can not find transcript with id: ${transcriptID}`
