@@ -17,8 +17,8 @@ DownloadController.getRTF = (req, res) => {
         if(transcript) {
             const convertedDeltaOps = new QuillDeltaToHtmlConverter(transcript.captions.ops); 
             const html = convertedDeltaOps.convert(); // convert delto to html
-            const output = htmlToRtf.convertHtmlToRtf(html);
-            res.send(output);
+            const rtfElem = htmlToRtf.convertHtmlToRtf(html);
+            res.send(rtfElem);
         } else {            
              res.status(404).json({
                 error: `Can not find transcript with id: ${transcriptID}`
