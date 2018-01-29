@@ -10,3 +10,6 @@ body {
   min-height: 100vh;
 }
 
+strong { // override bootstraps styles (fixes bold bug in editor)
+  font-weight:bold;
+}

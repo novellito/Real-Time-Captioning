@@ -6,7 +6,7 @@ let router = express.Router();
 
 module.exports = function(io) {
 
-    router.get("/:id", controller.getRTF);
+    router.get("/:id/:status", controller.getRTF);
   
     return router;
     

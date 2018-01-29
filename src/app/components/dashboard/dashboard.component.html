@@ -31,8 +31,9 @@
               <li id="transcriptElement">
                   <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
                   <a [routerLink]="['/transcript', transcript.id]" class="h6">{{transcript.transcriptName}}</a>
-                  <a (click)="this.user.download(transcript.transcriptName,transcript.id)"><i class="fa fa-download fa-2x" aria-hidden="true"> </i></a> 
-                  <i class="fa fa-print fa-2x" aria-hidden="true"></i>
+                  <a (click)="this.user.download(transcript.transcriptName,transcript.id,'raw')"><i class="fa fa-download fa-2x" aria-hidden="true"> </i></a> 
+                  <a *ngIf="!transcript.rawStatus" [routerLink]="['/transcript/modified', transcript.id]" class="h6">| {{transcript.transcriptName}} (modified)</a>
+                  <a (click)="this.user.download(transcript.transcriptName +' (modified)',transcript.id,'edited')"><i class="fa fa-download fa-2x" aria-hidden="true"> </i></a> 
                   <button (click)="this.user.storeID(transcript.id, $event)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalConfirmDelete">Delete</button>
               </li>
             </ul>    

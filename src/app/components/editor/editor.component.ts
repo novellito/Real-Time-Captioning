@@ -1,8 +1,9 @@
 import { Subscription } from 'rxjs/Subscription';
-import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild, Input} from '@angular/core';
 import {QuillEditorComponent} from 'ngx-quill/src/quill-editor.component';
 import { SocketService } from './../../services/socket.service';
 import {UserTypeService} from 'app/services/user-type.service';
+
 import * as Quill from 'quill';
 
 const  quill: any = Quill;
@@ -19,8 +20,10 @@ quill.register(Font, true);
 export class EditorComponent implements OnInit, OnDestroy {
 
   connection: Subscription;
+  test: Subscription;
   editor: any;
   toolbarOptions: any;
+  @Input() editStatus: boolean;
 
   constructor(private user: UserTypeService, private socketService: SocketService) {}
 
@@ -30,10 +33,19 @@ export class EditorComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     if (this.socketService.transcriptLoad) {
-      this.user.loadTranscript(this.socketService.id).subscribe(res => {
+
+      if (this.editStatus) { // display edited transcript
+        this.user.loadTranscript(this.socketService.id).subscribe(res => {
+          this.user.transcriptTitle = res.transcriptName;
+          this.editor.updateContents(res.modCaptions);
+        });
+      } else { // display original transcript
+        this.user.loadTranscript(this.socketService.id).subscribe(res => {
         this.user.transcriptTitle = res.transcriptName;
         this.editor.updateContents(res.captions);
       });
+
+      }
     }
     if (this.user.userType === 'student') {
       this.toolbarOptions = false;
@@ -71,11 +83,11 @@ export class EditorComponent implements OnInit, OnDestroy {
    * editor in context.
    */
   sendDelta($event: any) {
-
-      if (this.user.userType === 'student') { // do nothing (prevent caption from bouncing back and forth)
+      if (this.user.userType === 'student' || $event.source === 'api') { // do nothing (prevent caption from bouncing back and forth)
         return;
+      } else if ($event.source === 'user') { // only save if input comes from a user
+        this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe();
       }
-      this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe();
  }
 
   // TODO: allow captioners & students to message one another

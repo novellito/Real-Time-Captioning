@@ -39,7 +39,7 @@ export class UserTypeService {
     return this.http.get(`http://localhost:8080/api/transcripts/courseID/${id}`, { headers: headers })
     .map(res => {
       this.transcripts = res.json().map(i => {
-        return {id: i['_id'], transcriptName: i['transcriptName'] }
+        return {id: i['_id'], transcriptName: i['transcriptName'], rawStatus: i['rawStatus'] }
       });
     });
   }
@@ -72,8 +72,8 @@ export class UserTypeService {
   /**
    * @returns a rtf version of the transcript and downloads it for the client
    */
-  download(name, id) {
-    return this.http.get(`http://localhost:8080/api/downloads/${id}`, {responseType: ResponseContentType.Blob})
+  download(name, id, status) {
+    return this.http.get(`http://localhost:8080/api/downloads/${id}/${status}`, {responseType: ResponseContentType.Blob})
     .map(res => new Blob([res.blob()], { type: 'application/rtf' })).subscribe(res => {
       saveAs(res, `${name}.rtf`);
     });

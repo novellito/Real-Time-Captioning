@@ -15,7 +15,11 @@ DownloadController.getRTF = (req, res) => {
       .then(transcript => {
 
         if(transcript) {
-            const convertedDeltaOps = new QuillDeltaToHtmlConverter(transcript.captions.ops); 
+          let convertedDeltaOps = null;
+            req.params.status == 'raw' // check if response should be raw transcript or not
+             ?  convertedDeltaOps = new QuillDeltaToHtmlConverter(transcript.captions.ops)
+             :  convertedDeltaOps = new QuillDeltaToHtmlConverter(transcript.modCaptions.ops); 
+
             const html = convertedDeltaOps.convert(); // convert delto to html
             const rtfElem = htmlToRtf.convertHtmlToRtf(html);
             res.send(rtfElem);
