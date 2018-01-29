@@ -31,7 +31,6 @@ export class EditorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.socketService.transcriptLoad) {
       this.user.loadTranscript(this.socketService.id).subscribe(res => {
-        console.log(res.transcriptName)
         this.user.transcriptTitle = res.transcriptName;
         this.editor.updateContents(res.captions);
       });

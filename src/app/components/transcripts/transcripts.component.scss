@@ -14,7 +14,7 @@ a > * {
   list-style: none;
   padding-left: 10px;
   padding-top: 20px;
-  li a:hover {
+  li i:hover, a:hover {
     color: #4d5ec1;
   }
 }
