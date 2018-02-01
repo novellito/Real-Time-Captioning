@@ -20,6 +20,10 @@ const TranscriptSchema = new Schema({
     type: Object
   },
 
+  modCaptions: {
+    type: Object
+  },
+  
   captionist: [
     {
       type: Schema.Types.ObjectId,

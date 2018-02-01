@@ -5,8 +5,8 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import {RouterModule, Routes} from '@angular/router';
- 
+import { RouterModule, Routes } from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { StudentListComponent } from './components/student-list/student-list.component';
 import { ButtonComponent } from './components/button/button.component';
@@ -21,14 +21,19 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StudentSessionComponent } from './components/student-session/student-session.component';
 import { CaptionerSessionComponent } from './components/captioner-session/captioner-session.component';
 import { TranscriptsComponent } from './components/transcripts/transcripts.component';
+import { SettingsComponent } from './components/settings/settings.component';
+
 
 const appRoutes: Routes = [
-  {path: '', component: LandingComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'student-session/:className/:classID', component: StudentSessionComponent},
-  {path: 'captioner-session/:classID', component: CaptionerSessionComponent},
-  {path: 'transcripts', component: TranscriptsComponent},
-  {path: 'transcript/:id', component: TranscriptComponent}
+  { path: '', component: LandingComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'student-session/:className/:classID', component: StudentSessionComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: 'captioner-session/:classID/:transcriptID', component: CaptionerSessionComponent },
+  { path: 'transcripts', component: TranscriptsComponent },
+  { path: 'captioner-session/:classID', component: CaptionerSessionComponent },
+  { path: 'transcript/:id', component: TranscriptComponent },
+  { path: 'transcript/:modified/:id', component: TranscriptComponent }
 ];
 
 @NgModule({
@@ -45,9 +50,10 @@ const appRoutes: Routes = [
     StudentSessionComponent,
     CaptionerSessionComponent,
     TranscriptsComponent,
+    SettingsComponent,
     TranscriptComponent
   ],
-  schemas: [ NO_ERRORS_SCHEMA ],
+  schemas: [NO_ERRORS_SCHEMA],
   imports: [
     BrowserModule,
     FormsModule,

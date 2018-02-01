@@ -1,69 +1,53 @@
 <app-navbar></app-navbar>
 <div class="container-fluid">
-    <div class="row d-flex justify-content-center">
-        <div class="col-md-9 col-sm-12 offset">
-            <h1 class="title">Transcripts</h1>
-            <div *ngFor="let class of classes">
-            <div class="card" id="accordion">
-                <a href="#{{class.courseID}}" data-toggle="collapse">
-                    <div class="card-container">
-                        <div class="course-info">
-                            <h1>{{class.courseName}}</h1>
-                            <p class="h6">{{class.day}} {{class.time}}</p>
-                            <p class="h6">Professor {{class.professor}}</p>
-                        </div>
-                    </div>
-                </a>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-9 col-sm-12" id="accordion">
+        <h1 class="title">Transcripts</h1>
+        <div *ngFor="let class of classes; let i=index">
+          <div class="card">
+            <a (click)="loadTranscripts($event);" id={{i}} href="#{{class.courseID}}"  data-toggle="collapse">        
+            <div class="card-container">
+            <div class="course-info">
+                <h1 class="class-title">{{class.courseName}}</h1>
+                <p class="h6">{{class.day}} {{class.time}}</p>
+                <p class="h6">Professor {{class.professor}}</p>
             </div>
-            <div class="card transcript-card">
-                <div id="{{class.courseID}}" class="collapse" role="tabpanel" data-parent="#accordion">
-                    <ul class="all-transcripts">
-                        <li>
-                            <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
-                            <a href="#"> Date - Transcript 1</a>
-                            <i class="fa fa-download fa-1x" aria-hidden="true"></i>
-                            <i class="fa fa-print fa-1x" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
-                            <a href="#"> Date - Transcript 2</a>
-                            <i class="fa fa-download fa-1x" aria-hidden="true"></i>
-                            <i class="fa fa-print fa-1x" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
-                            <a href="#"> Date - Transcript 3</a>
-                            <i class="fa fa-download fa-1x" aria-hidden="true"></i>
-                            <i class="fa fa-print fa-1x" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
-                            <a href="#"> Date - Transcript 4</a>
-                            <i class="fa fa-download fa-1x" aria-hidden="true"></i>
-                            <i class="fa fa-print fa-1x" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
-                            <a href="#"> Date - Transcript 5</a>
-                            <i class="fa fa-download fa-1x" aria-hidden="true"></i>
-                            <i class="fa fa-print fa-1x" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
-                            <a href="#"> Date - Transcript 6</a>
-                            <i class="fa fa-download fa-1x" aria-hidden="true"></i>
-                            <i class="fa fa-print fa-1x" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
-                            <a href="#"> Date - Transcript 7</a>
-                            <i class="fa fa-download fa-1x" aria-hidden="true"></i>
-                            <i class="fa fa-print fa-1x" aria-hidden="true"></i>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            </div>
+          </div>
+          </a>
         </div>
+        <div id="{{class.courseID}}" class="collapse" role="tabpanel" data-parent="#accordion">
+        <div class="card card-collapse transcript-card">
+            <ul *ngFor="let transcript of this.user.transcripts" class="all-transcripts">
+              <li id="transcriptElement">
+                <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
+                <a [routerLink]="['/transcript', transcript.id]" class="h6">{{transcript.transcriptName}}</a>
+                <a (click)="this.user.download(transcript.transcriptName,transcript.id,'raw')"><i class="fa fa-download fa-1x" aria-hidden="true"> </i></a> 
+                <a *ngIf="!transcript.rawStatus" [routerLink]="['/transcript/modified', transcript.id]" class="h6">| {{transcript.transcriptName}} (modified)</a>
+                <a (click)="this.user.download(transcript.transcriptName +' (modified)',transcript.id,'edited')"><i class="fa fa-download fa-1x" aria-hidden="true"> </i></a>
+                  <a (click)="this.user.storeID(transcript.id, $event)" data-toggle="modal" data-target="#modalConfirmDelete"><i class="fa fa-trash fa-1x" aria-hidden="true"> </i></a> 
+              </li>
+            </ul>    
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+          <div class="modal-content text-center">
+              <div class="modal-header d-flex justify-content-center">
+                  <p class="heading">Are you sure?</p>
+              </div>
+              <div class="modal-body">
+                  <i class="fa fa-times fa-4x animated rotateIn"></i>
+              </div>
+              <div class="modal-footer flex-center">
+                  <a (click)="this.user.deleteTranscript()" class="btn  btn-outline-secondary-modal" data-dismiss="modal">Yes</a>
+                  <a type="button" class="btn  btn-primary-modal waves-effect" data-dismiss="modal">No</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  
 </div>
