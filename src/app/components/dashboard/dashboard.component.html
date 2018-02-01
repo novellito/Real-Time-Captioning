@@ -7,9 +7,9 @@
           <div class="card">
             <div class="card-container">
             <div class="course-info">
-                <h1 class="class-title">{{class.courseName}}</h1>
-                <p class="h6">{{class.day}} {{class.time}}</p>
-                <p class="h6">Professor {{class.professor}}</p>
+              <h1 class="class-title">{{class.courseName}}</h1>
+              <p class="h6">{{class.day}} {{class.time}}</p>
+              <p class="h6">Professor {{class.professor}}</p>
             </div>
             <div class="transcripts text-center">
               <a (click)="loadTranscripts($event);" id={{i}} href="#{{class.courseID}}" data-toggle="collapse">
@@ -19,7 +19,7 @@
             </div>
             <div class="join-session text-center">
               <a [routerLink]="['/student-session', class.courseName, class.courseID]">
-                <img src="../../../assets/images/join.svg" alt="join session">                
+                <img src="../../../assets/images/join.svg" alt="join session">
                 <p>Join Session</p>
               </a>
             </div>
@@ -40,7 +40,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
 
