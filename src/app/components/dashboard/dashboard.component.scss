@@ -41,8 +41,10 @@ h1 {
   background-color: $transcript-card;
   .recent-transcripts {
     margin-top: 15px;
-    margin-bottom: 2%;
     list-style: none;
+    li a:hover {
+      color: #4d5ec1;
+    }
   }
   span {
     font-size: 1.5em;

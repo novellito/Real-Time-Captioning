@@ -28,7 +28,8 @@ const appRoutes: Routes = [
   {path: 'student-session/:className/:classID', component: StudentSessionComponent},
   {path: 'captioner-session/:classID', component: CaptionerSessionComponent},
   {path: 'transcripts', component: TranscriptsComponent},
-  {path: 'transcript/:id', component: TranscriptComponent}
+  {path: 'transcript/:id', component: TranscriptComponent},
+  {path: 'transcript/:modified/:id', component: TranscriptComponent}
 ];
 
 @NgModule({
