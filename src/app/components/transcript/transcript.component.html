@@ -3,7 +3,7 @@
   <input type="text" name="title" class="title" value="{{this.userInfo.transcriptTitle}}" (focusout)="setTitle(title.value)" #title>
   
   <div class="col-md-8 col-sm-12 ">
-      <app-editor></app-editor>
+      <app-editor [editStatus]="editStatus"></app-editor>
   </div>
    
   </div>

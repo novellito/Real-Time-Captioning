@@ -28,14 +28,18 @@ export class SocketService {
    *  saves the current contents in the database
    */
   sendCaptions(currDel, contents) {
-    if (!this.transcriptLoad) { // captioner is in session
-      this.socket.emit('captionerDelta', {currDel: currDel, content: contents }); // emit captions to the student
-    }
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http // send the contents to the database
+    if (!this.transcriptLoad) { // captioner is in session
+      this.socket.emit('captionerDelta', {currDel: currDel, content: contents }); // emit captions to the student
+      return this.http // send the contents to the database
       .put(`http://localhost:8080/api/transcripts/id/${this.id}`, {captions: contents}, { headers: headers })
       .map(res => res.json());
+    } else { // captioner is editing a transcript
+      return this.http // send the contents to the database
+      .put(`http://localhost:8080/api/transcripts/id/${this.id}`, {modCaptions: contents, rawStatus: false}, { headers: headers })
+      .map(res => res.json());
+    }
   }
 
   /**

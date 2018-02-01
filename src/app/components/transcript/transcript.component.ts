@@ -12,14 +12,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TranscriptComponent implements OnInit {
 
-  constructor(private userInfo: UserTypeService, private socketService: SocketService, 
+  editStatus: boolean; // keeps track of whether transcript has been modified
+
+  constructor(private userInfo: UserTypeService, private socketService: SocketService,
     private route: ActivatedRoute, private capUtil: CaptionerUtilsService) { }
 
+
   ngOnInit() {
-    this.userInfo.userType = 'captioner';
+
+    if (this.route.snapshot.params['modified']) {
+      this.editStatus = true;
+    }
+
     this.socketService.transcriptLoad = true;
     this.socketService.id = this.route.snapshot.params['id'];
-
   }
 
   // Method for updating the transcript title
