@@ -1,10 +1,7 @@
-
-<!-- <app-navbar></app-navbar> -->
-<!-- <div class="container"> -->
-<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar bg-primary">
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar bg-red">
   <logo>
 
-    <a class="navbar-brand" href="#">Real Time Captioning</a>
+    <a class="navbar-brand" href="#landing">Real Time Captioning</a>
   </logo>
 
   <links class="d-lg-flex justify-content-end" id="navbarSupportedContent">
@@ -13,13 +10,13 @@
         <a class="nav-link waves-effect waves-light" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-effect waves-light" href="#">Features</a>
+        <a mdbPageScroll class="nav-link waves-effect waves-light" href="#features">Features</a>
       </li>
       <li class="nav-item">
         <a class="nav-link waves-effect waves-light" href="#">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-effect waves-light" href="#">Login</a>
+        <a class="nav-link waves-effect waves-light" [routerLink]="['/dashboard']">Login</a>
       </li>
 
     </ul>
@@ -28,44 +25,49 @@
 </mdb-navbar>
 <!-- </div> -->
 
-<section class="landing">
+<section class="landing" id="landing">
 
   <div class="container mx-auto">
-    <div class="row flex-center pt-5 mt-3">
+    <div class="row flex-center pt-5 mt-4">
       <div class="col-lg-12 text-center">
         <div class="white-text landing-text">
           <h1 class="font-bold"> Insert quote here </h1>
           <h6>"smaller quote here"
           </h6>
           <br>
+          <button class="btn btn-primary">Login</button>
         </div>
       </div>
 
+      <div class="laptops pt-5 mt-3">
+        <img src="../../assets/images/Laptop.png" alt="student laptop">
+        <img src="../../assets/images/Laptop.png" alt="captioner laptop">
+      </div>
 
     </div>
   </div>
 </section>
 
 <div class="container mx-auto">
-  <section class="features">
+  <section class="features" id="features">
 
     <h1 class="mb-3 pt-5 dark-grey-text text-center">
       <strong class="font-bold">Features</strong>
     </h1>
 
     <p class="section-description ">
-     Real-Time-Captioning comes with a variety of features that make the classroom experience enjoyable</p>
+      Real-Time-Captioning comes with a variety of features that make the classroom experience enjoyable</p>
 
     <div class="row features">
       <div class="col-lg-4 text-center">
         <div class="icon-area">
           <div class="circle-icon">
-            <i class="fa fa-download blue-text"></i>
+            <i class="fa fa-download pink-text"></i>
           </div>
           <br>
           <h5 class="dark-grey-text font-bold mt-2">Transcript Downloads</h5>
           <div class="mt-1">
-            <p class="mx-3 grey-text">Download edited & unedited versions of your captions</p>
+            <p class="mx-3 grey-text">Download edited & unedited versions of your captions skip having to email students</p>
           </div>
         </div>
       </div>
@@ -73,10 +75,10 @@
       <div class="col-lg-4 text-center">
         <div class="icon-area">
           <div class="circle-icon">
-            <i class="fa fa-book blue-text"></i>
+            <i class="fa fa-book pink-text"></i>
           </div>
           <br>
-          <h5 class="dark-grey-text font-bold mt-2">Easy tutorials</h5>
+          <h5 class="dark-grey-text font-bold mt-2">Easy Organization</h5>
           <div class="mt-1">
             <p class="mx-3 grey-text">Lorem Ipsum is simply dummy text of the printing and typesetting let. Lorem ipsum dolor sit amet, consectetur
               adipisicing elit.</p>
@@ -87,10 +89,10 @@
       <div class="col-lg-4 text-center mb-4">
         <div class="icon-area">
           <div class="circle-icon">
-            <i class="fa fa-users blue-text"></i>
+            <i class="fa fa-rss-square pink-text"></i>
           </div>
           <br>
-          <h5 class="dark-grey-text font-bold mt-2">Free support</h5>
+          <h5 class="dark-grey-text font-bold mt-2">Portability</h5>
           <div class="mt-1">
             <p class="mx-3 grey-text">Lorem Ipsum is simply dummy text of the printing and typesetting let. Lorem ipsum dolor sit amet, consectetur
               adipisicing elit.</p>
@@ -102,7 +104,7 @@
       <div class="col-lg-4 text-center">
         <div class="icon-area">
           <div class="circle-icon">
-            <i class="fa low-vision blue-text"></i>
+            <i class="fa fa-eye pink-text"></i>
           </div>
           <br>
           <h5 class="dark-grey-text font-bold mt-2">Distraction-Free Mode</h5>
@@ -116,10 +118,10 @@
       <div class="col-lg-4 text-center">
         <div class="icon-area">
           <div class="circle-icon">
-            <i class="fa fa-bolt blue-text"></i>
+            <i class="fa fa-bolt pink-text"></i>
           </div>
           <br>
-          <h5 class="dark-grey-text font-bold mt-2">Easy tutorials</h5>
+          <h5 class="dark-grey-text font-bold mt-2">Quick Login</h5>
           <div class="mt-1">
             <p class="mx-3 grey-text">Lorem Ipsum is simply dummy text of the printing and typesetting let. Lorem ipsum dolor sit amet, consectetur
               adipisicing elit.</p>
@@ -130,7 +132,7 @@
       <div class="col-lg-4 text-center mb-4">
         <div class="icon-area">
           <div class="circle-icon">
-            <i class="fa fa-text-width blue-text"></i>
+            <i class="fa fa-text-width pink-text"></i>
           </div>
           <br>
           <h5 class="dark-grey-text font-bold mt-2">Text-expansion</h5>
@@ -145,3 +147,66 @@
 
   </section>
 </div>
+
+
+<section class="about">
+  <div class="container">
+
+    <h1 class="mb-3 pt-5 white-text text-left">
+      <strong class="font-bold">About Real Time Captioning</strong>
+    </h1>
+    <p class="mx-3 white-text">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dictum nisi nec viverra ullamcorper. Etiam cursus, ligula
+      in consectetur congue, velit risus fermentum mauris, eu malesuada sapien magna at tortor. Vivamus placerat porttitor
+      tortor sit amet accumsan. Praesent luctus dui tincidunt risus porta pulvinar. Ut purus arcu, pulvinar at mollis sit
+      amet, consectetur eu libero. Vivamus condimentum neque quis diam imperdiet pulvinar. Donec erat neque, vehicula laoreet
+      metus vitae, auctor facilisis odio. Mauris quis porta elit dictum. Nullam gravida velit at scelerisque ullamcorper.
+      Praesent id aliquet urna. Cras laoreet ornare quam, ut tempor nulla scelerisque ut. Praesent ut urna fermentum, ornare
+      leo vel, pretium augue.
+
+    </p>
+  </div>
+</section>
+
+<section class="call">
+  <div class="container">
+
+    <h1 class="mb-3 pt-5 white-text text-left">
+      <strong class="font-bold">What are you waiting for?</strong>
+    </h1>
+    <p class="mx-3 h3">
+      Get started now!
+    </p>
+  </div>
+</section>
+
+<footer class="page-footer  stylish-color-dark">
+
+  <div class="social-section text-center">
+    <ul>
+      <li>
+        <a class="social-btns btn-fb">
+          <i class="fa fa-facebook"> </i>
+        </a>
+      </li>
+      <li>
+        <a class="social-btns btn-tw">
+          <i class="fa fa-twitter"> </i>
+        </a>
+      </li>
+      <li>
+        <a class="social-btns btn-gh">
+          <i class="fa fa-github"> </i>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="footer-copyright">
+    <div class="container-fluid">
+      © 2018 Copyright: Real Time Captioning
+    </div>
+  </div>
+
+</footer>
