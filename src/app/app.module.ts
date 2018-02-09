@@ -16,7 +16,6 @@ import { EditorComponent } from './components/editor/editor.component';
 import { QuillModule } from 'ngx-quill';
 import { LandingComponent } from './components/landing/landing.component';
 
-
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StudentSessionComponent } from './components/student-session/student-session.component';
 import { CaptionerSessionComponent } from './components/captioner-session/captioner-session.component';
