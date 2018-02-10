@@ -11,7 +11,7 @@ export class LandingComponent implements OnInit {
   constructor() { }
 
   ngOnInit () {
-    setTimeout(() => this.start = true, 1000);
+    setTimeout(() => this.start = true, 500);
   }
 
 }

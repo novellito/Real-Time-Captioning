@@ -5,8 +5,7 @@
     .landing-text {
         margin-top: 10%;
     }
-
-    .row-container { 
+    .row-container {
         padding-top: 3rem;
         margin-top: 2rem;
     }
@@ -18,53 +17,20 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    margin-top:0;
-    padding-top:0;
-    .typewriter1 {
+    margin-top: 0;
+    padding-top: 0;
+    .screen1 p,
+    .screen2 p {
+        font-size: .7em;
+    }
+    .screen1, .screen2 {
         position: absolute;
-        top:30%;
-        left:25%;
+        top: 22%;
+        left: 29%;
+        width: 133px;
     }
-
-    .typewriter2 {
-        position: absolute;
-        top:79%;
-        right:21%;
-    }
-   
-
-    .cursor-text {
-        color: #fff;
-        font-family: monospace;
-        overflow: hidden;
-        border-right: .15em solid orange;
-        white-space: nowrap;
-        margin: 0 auto;
-        letter-spacing: .15em;
-        animation: typing 4.5s steps(30, end), blink-caret .5s step-end infinite;
-    }
-    /* The typing effect */
-    @keyframes typing {
-        from {
-            width: 0
-        }
-        to {
-            width: 100%
-        }
-    }
-    /* The typewriter1 cursor effect */
-    @keyframes blink-caret {
-        from,
-        to {
-            border-color: transparent
-        }
-        50% {
-            border-color: orange
-        }
-    }
-
-    .laptop1 {
-        position: relative;
+    .screen2 {
+        top: 73%;
     }
     img {
         margin-top: 15%;
@@ -78,7 +44,7 @@
 }
 
 .call {
-    padding: 15% 0px;
+    padding: 12% 0px;
 }
 
 .section-description {
@@ -133,19 +99,26 @@
 }
 
 .about {
-    // background: -webkit-linear-gradient(45deg,#262626 ,#e5e5e5 100%);
+    background: -webkit-linear-gradient(45deg,rgba(250, 14, 14, 0.7),rgba(199, 25, 48, 0.8) 100%);
     //   background: -webkit-linear-gradient(45deg,#EB3349 ,#F45C43 100%);
-    background: -webkit-linear-gradient(45deg, #68d0ff, #453cf5 100%);
+    // background: -webkit-linear-gradient(45deg, #68d0ff, #453cf5 100%);
     padding: 5% 0px;
-}
-
-footer {
-    background: #303841;
+    
 }
 
 @media (min-width: 576px) {
     .container {
         max-width: 540px;
+    }
+    .laptops {
+        .screen1 p,
+        .screen2 p {
+            font-size: .8em;
+        }
+        .screen1 {
+            position: absolute;
+            width: 165px;
+        }
     }
 }
 
@@ -159,15 +132,20 @@ footer {
         flex-direction: row;
         justify-content: center;
         width: 80%;
-        padding-top:10%;
-        .typewriter1 {
-            top:50%;
-            left:-5%;
+        padding-top: 10%;
+        position: relative;
+        .screen1 p,
+        .screen2 p {
+            font-size: .8em;
         }
-        .typewriter2 {
+        .screen1,.screen2 {
             position: absolute;
-            top:50%;
-            right:-7%;
+            width: 165px;
+            top: 50%;
+            left: -2%;
+        }
+        .screen2 {
+            left: 74%;
         }
         img {
             margin: 0 3%;
@@ -186,17 +164,20 @@ footer {
         display: flex;
         flex-direction: row;
         justify-content: center;
-
-        .typewriter1 {
-            top:50%;
-            left:-6%;
-        }
-        .typewriter2 {
-            position: absolute;
-            top:50%;
-            right:-4%;
-        }
         width: 65%;
+        .screen1 p,
+        .screen2 p {
+            font-size: 1em;
+        }
+        .screen1, .screen2 {
+            position: absolute;
+            width: 32%;
+            top: 53%;
+            left: -5%;
+        }
+        .screen2 {
+            left: 75%;
+        }
         img {
             margin: 0 5%;
             margin-top: 5%;
@@ -215,18 +196,20 @@ footer {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        padding-top:1%;
-
-        .typewriter1 {
-            top:50%;
-            left:0%;
+        padding-top: 1%;
+        .screen1 p,
+        .screen2 p {
+            font-size: 1.1em;
         }
-
-         .typewriter2 {
-        position: absolute;
-        top:50%;
-        right:5%;
-    }
+        .screen1,.screen2  {
+            position: absolute;
+            width: 29%;
+            top: 40%;
+            left: -5%;
+        }
+        .screen2 {
+            left: 75%;
+        }
         img {
             margin: 0 5%;
             margin-top: 5%;

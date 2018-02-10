@@ -21,7 +21,7 @@ import { StudentSessionComponent } from './components/student-session/student-se
 import { CaptionerSessionComponent } from './components/captioner-session/captioner-session.component';
 import { TranscriptsComponent } from './components/transcripts/transcripts.component';
 import { SettingsComponent } from './components/settings/settings.component';
-
+import { TypingAnimationDirective } from 'angular-typing-animation'
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -50,7 +50,8 @@ const appRoutes: Routes = [
     CaptionerSessionComponent,
     TranscriptsComponent,
     SettingsComponent,
-    TranscriptComponent
+    TranscriptComponent,
+    TypingAnimationDirective
   ],
   schemas: [NO_ERRORS_SCHEMA],
   imports: [

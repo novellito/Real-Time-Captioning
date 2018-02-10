@@ -31,23 +31,21 @@
     <div class="row flex-center row-container">
       <div class="col-lg-12 text-center">
         <div class="white-text landing-text">
-          <h1 class="font-bold"> Insert quote here </h1>
-          <h6>"smaller quote here"
-          </h6>
-
+          <h1 class="font-bold">Improve Your Closed Captioning Experience</h1>
+          <h6>with a simple, but power application</h6>
           <br>
-          <button class="btn btn-primary">Login</button>
+          <button class="btn btn-primary" [routerLink]="['/dashboard']">Login</button>
         </div>
       </div>
       <div class="laptops">
 
-        <img src="../../assets/images/Laptop.png" alt="student laptop">
-        <div class="typewriter1">
-          <p class="cursor-text">the cat <br> the hat</p>
+        <img class="animated fadeInLeft" src="../../assets/images/Laptop.png" alt="student laptop">
+        <div class="screen1">
+          <p typingAnimation [typeSpeed]="50" [condition]="start" [startDelay]="1000"  class="typewriter1">Welcome to the best closed captioning app ever!</p>
         </div>
-        <img src="../../assets/images/Laptop.png" alt="captioner laptop">
-        <div class="typewriter2">
-          <p class="cursor-text">the cat and the hat2</p>
+        <img class="animated fadeInRight" src="../../assets/images/Laptop.png" alt="captioner laptop">
+        <div class="screen2">
+          <p typingAnimation [typeSpeed]="50" [condition]="start" [startDelay]="1000"  class="typewriter2">Welcome to the best closed captioning app ever!</p>
         </div>
       </div>
 
@@ -184,7 +182,7 @@
   </div>
 </section>
 
-<footer class="page-footer  stylish-color-dark">
+<footer class="page-footer  grey darken-4">
 
   <div class="social-section text-center">
     <ul>
