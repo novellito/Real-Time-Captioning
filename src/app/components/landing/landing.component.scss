@@ -5,14 +5,21 @@
     .landing-text {
         margin-top: 10%;
     }
+
+    .row-container { 
+        padding-top: 3rem;
+        margin-top: 2rem;
+    }
 }
 
 .laptops {
-    width: 80%;
+    max-width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    margin-top:0;
+    padding-top:0;
     .typewriter1 {
         position: absolute;
         top:30%;
@@ -152,6 +159,7 @@ footer {
         flex-direction: row;
         justify-content: center;
         width: 80%;
+        padding-top:10%;
         .typewriter1 {
             top:50%;
             left:-5%;
@@ -162,7 +170,7 @@ footer {
             right:-7%;
         }
         img {
-            margin: 0 5%;
+            margin: 0 3%;
             width: 70%;
             height: 70%;
         }
@@ -207,7 +215,7 @@ footer {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        // width: 90%;
+        padding-top:1%;
 
         .typewriter1 {
             top:50%;
