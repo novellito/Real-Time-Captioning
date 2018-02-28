@@ -1,0 +1,220 @@
+.landing {
+    // background: -webkit-linear-gradient(45deg,#262626 ,#e5e5e5 100%);
+    background: -webkit-linear-gradient(45deg, #EB3349, #F45C43 100%); // background: -webkit-linear-gradient(45deg,#68d0ff,#453cf5 100%);
+    height: 100vh;
+    .landing-text {
+        margin-top: 10%;
+    }
+    .row-container {
+        padding-top: 3rem;
+        margin-top: 2rem;
+    }
+}
+
+.laptops {
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    margin-top: 0;
+    padding-top: 0;
+    .screen1 p,
+    .screen2 p {
+        font-size: .7em;
+    }
+    .screen1, .screen2 {
+        position: absolute;
+        top: 22%;
+        left: 29%;
+        width: 133px;
+    }
+    .screen2 {
+        top: 73%;
+    }
+    img {
+        margin-top: 15%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+#features {
+    padding-bottom: 5%;
+}
+
+.call {
+    padding: 12% 0px;
+}
+
+.section-description {
+    color: #757575;
+    margin-bottom: 3rem;
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: center;
+}
+
+.icon-area {
+    text-align: center;
+    .circle-icon {
+        display: inline-block;
+        font-size: 35px;
+        padding-bottom: 30px;
+        i {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 8px 19px rgba(91, 154, 251, .41);
+            width: 90px;
+            height: 90px;
+        }
+    }
+}
+
+.social-btns {
+    display: inline-block;
+    width: 47px;
+    height: 47px;
+    padding: 0;
+    border-radius: 50%;
+    margin: 10px;
+    &.btn-fb {
+        background-color: #3b5998;
+    }
+    &.btn-tw {
+        background-color: #55acee;
+    }
+    &.btn-gh {
+        background-color: grey;
+    }
+    i {
+        font-size: 1.25rem;
+        line-height: 47px;
+        text-align: center;
+    }
+}
+
+.about {
+    background: -webkit-linear-gradient(45deg,rgba(250, 14, 14, 0.7),rgba(199, 25, 48, 0.8) 100%);
+    //   background: -webkit-linear-gradient(45deg,#EB3349 ,#F45C43 100%);
+    // background: -webkit-linear-gradient(45deg, #68d0ff, #453cf5 100%);
+    padding: 5% 0px;
+    
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+    .laptops {
+        .screen1 p,
+        .screen2 p {
+            font-size: .8em;
+        }
+        .screen1 {
+            position: absolute;
+            width: 165px;
+        }
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+    .laptops {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 80%;
+        padding-top: 10%;
+        position: relative;
+        .screen1 p,
+        .screen2 p {
+            font-size: .8em;
+        }
+        .screen1,.screen2 {
+            position: absolute;
+            width: 165px;
+            top: 50%;
+            left: -2%;
+        }
+        .screen2 {
+            left: 74%;
+        }
+        img {
+            margin: 0 3%;
+            width: 70%;
+            height: 70%;
+        }
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+    .laptops {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 65%;
+        .screen1 p,
+        .screen2 p {
+            font-size: 1em;
+        }
+        .screen1, .screen2 {
+            position: absolute;
+            width: 32%;
+            top: 53%;
+            left: -5%;
+        }
+        .screen2 {
+            left: 75%;
+        }
+        img {
+            margin: 0 5%;
+            margin-top: 5%;
+            width: 70%;
+            height: 70%;
+        }
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+    .laptops {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-top: 1%;
+        .screen1 p,
+        .screen2 p {
+            font-size: 1.1em;
+        }
+        .screen1,.screen2  {
+            position: absolute;
+            width: 29%;
+            top: 40%;
+            left: -5%;
+        }
+        .screen2 {
+            left: 75%;
+        }
+        img {
+            margin: 0 5%;
+            margin-top: 5%;
+            width: 70%;
+            height: 70%;
+        }
+    }
+}

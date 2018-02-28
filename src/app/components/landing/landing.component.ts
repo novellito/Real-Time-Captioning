@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
+  start = false;
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit () {
+    setTimeout(() => this.start = true, 500);
   }
 
 }
