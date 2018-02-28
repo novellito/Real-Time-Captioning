@@ -9,7 +9,7 @@
         
         <div class="card-body">
           
-          <form class="login-form">
+          <form class="login-form" (submit)="onLogin()">
             
             <div class="csunLogo text-center">
               <img src="../../assets/images/csun-seal.png" alt="csun logo">
@@ -17,14 +17,14 @@
             
           <div class="md-form">
             <i class="fa fa-user prefix grey-text"></i>
-            <input mdbActive type="text" id="materialFormCardNameEx" class="form-control">
+            <input mdbActive type="text" id="materialFormCardNameEx" [(ngModel)]="username" name="username" class="form-control" autocomplete="on" >
             <label for="materialFormCardNameEx" class="font-weight-light">CSUN Username</label>
           </div>
           
           
           <div class="md-form">
             <i class="fa fa-lock prefix grey-text"></i>
-            <input mdbActive type="password" id="materialFormCardPasswordEx" class="form-control">
+            <input mdbActive type="password" id="materialFormCardPasswordEx" [(ngModel)]="password" name="password" class="form-control" autocomplete="on">
             <label for="materialFormCardPasswordEx" class="font-weight-light">Password</label>
           </div>
           
