@@ -26,10 +26,6 @@ LoginController.authenticate = (req,res) => {
 
 }
 
-// LoginController.getProfile = (req,res) => {
-//     router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-//         res.json({user: req.user});
-//       });
-// }
+
 
 module.exports = LoginController;
