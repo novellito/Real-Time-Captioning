@@ -1,0 +1,25 @@
+$csun-red: #D00D2D;
+.csunLogo {
+    margin-bottom: 1.5em;
+}
+
+.btn-csun {
+    background-color: $csun-red;
+}
+
+.card {
+    margin-top:15%;
+}
+
+.login-form {
+    input[type=text]:focus:not([readonly]),
+    input[type=password]:focus:not([readonly]) {
+        border-bottom: 1px solid $csun-red;
+        -webkit-box-shadow: 0 1px 0 0 $csun-red;
+        box-shadow: 0 1px 0 0 $csun-red;
+    }
+    input[type=text]:focus:not([readonly])+label,
+    input[type=password]:focus:not([readonly])+label {
+        color: $csun-red;
+    }
+}
