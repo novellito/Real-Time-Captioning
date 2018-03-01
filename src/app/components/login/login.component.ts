@@ -18,52 +18,35 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    if (this.authService.loggedInStatus()) {
+    if (this.authService.loggedInStatus()) { // redirect to dashboard
       this.router.navigate(['dashboard']);
     }
   }
 
   onLogin() {
-    console.log('logggged');
-    this.authService.login();
-
     const user = {
       username: this.username,
       password: this.password
     };
 
    this.authSubscription = this.authService.authenticateUser(user).subscribe(data => {
-      console.log(data);
-      
-      if(data.success) {
-        console.log(data);
-        this.authService.storeLoginData(data.token, data.user);
+      if (data.success) {
+        this.authService.storeLoginData(data.token, data.userData);
         this.router.navigate(['dashboard']);
-        
       } else {
         this.invalidLogin = true;
-        console.log("invalid");
-        
       }
-       // if success then store the data & navigate to dashboard --> else say wrong pw
-
 
     });
 
-
-
-    // console.log(this.authService.loggedIn);
   }
+
   onLogOut() {
     this.authService.logout();
   }
 
   ngOnDestroy() {
-    
       this.authSubscription.unsubscribe();
-    
   }
-
- 
 
 }

@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { UserTypeService } from './../../services/user-type.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,7 +22,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   classIDs = [];
   userObj: object;
 
-  constructor(private router: Router, private authService: AuthService, private http: Http, private user: UserTypeService, ) { }
+  constructor(private authService: AuthService, private http: Http, private user: UserTypeService, ) { }
 
   ngOnInit() {
       this.classSubs = this.user.getClasses().subscribe(res => {
@@ -37,10 +36,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       return false;
     });
 
-    this.authService.getProfile().subscribe(profile => {
-      this.userObj = profile.user;
-    });
-  
   }
 
   // Load set of transcripts based on the id attribute.
@@ -51,8 +46,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
-    return false; //maybe delete
   }
 
   // Unsubscribe to the connections. (avoid memory leak)
