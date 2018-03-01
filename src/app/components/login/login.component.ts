@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   username: string;
   password: string;
   invalidLogin = false;
+  authSubscription: Subscription;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -22,6 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
+    console.log('logggged');
     this.authService.login();
 
     const user = {
@@ -29,8 +32,9 @@ export class LoginComponent implements OnInit {
       password: this.password
     };
 
-    this.authService.authenticateUser(user).subscribe(data => {
-
+   this.authSubscription = this.authService.authenticateUser(user).subscribe(data => {
+      console.log(data);
+      
       if(data.success) {
         console.log(data);
         this.authService.storeLoginData(data.token, data.user);
@@ -52,6 +56,12 @@ export class LoginComponent implements OnInit {
   }
   onLogOut() {
     this.authService.logout();
+  }
+
+  ngOnDestroy() {
+    
+      this.authSubscription.unsubscribe();
+    
   }
 
  

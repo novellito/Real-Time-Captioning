@@ -20,6 +20,7 @@ export class AuthService {
   }
 
   authenticateUser(user) {
+    console.log('authenticating');
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:8080/api/login', user, {headers: headers}).map(res => res.json());
