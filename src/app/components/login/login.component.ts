@@ -11,18 +11,18 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
+  invalidLogin = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    if (this.authService.loggedIn) {
+    if (this.authService.loggedInStatus()) {
       this.router.navigate(['dashboard']);
     }
   }
 
   onLogin() {
     this.authService.login();
-    this.router.navigate(['dashboard']);
 
     const user = {
       username: this.username,
@@ -31,10 +31,15 @@ export class LoginComponent implements OnInit {
 
     this.authService.authenticateUser(user).subscribe(data => {
 
-      if(data.msg == "success") {
-        console.log("login good!");
+      if(data.success) {
+        console.log(data);
+        this.authService.storeLoginData(data.token, data.user);
+        this.router.navigate(['dashboard']);
+        
       } else {
+        this.invalidLogin = true;
         console.log("invalid");
+        
       }
        // if success then store the data & navigate to dashboard --> else say wrong pw
 
