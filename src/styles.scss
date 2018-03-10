@@ -13,3 +13,7 @@ body {
 strong { // override bootstraps styles (fixes bold bug in editor)
   font-weight:bold;
 }
+
+span.typed-cursor {
+ display: none;
+}
