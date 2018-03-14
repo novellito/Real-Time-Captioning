@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="container">
+
+  <div class="row d-flex justify-content-center ">
+    <div class="col-md-4 ">
+
+      <div class="card">
+
+        <div class="card-body">
+
+          <form class="login-form" (submit)="onLogin()">
+
+            <div class="csunLogo text-center">
+              <img src="../../assets/images/csun-seal.png" alt="csun logo">
+            </div>
+
+            <div class="md-form">
+              <i class="fa fa-user prefix grey-text"></i>
+              <input mdbActive type="text" id="materialFormCardNameEx" [(ngModel)]="username" name="username" class="form-control" autocomplete="on">
+              <label for="materialFormCardNameEx" class="font-weight-light">CSUN Username</label>
+            </div>
+
+            <div class="md-form">
+              <i class="fa fa-lock prefix grey-text"></i>
+              <input mdbActive type="password" id="materialFormCardPasswordEx" [(ngModel)]="password" name="password" class="form-control"
+                autocomplete="on">
+              <label for="materialFormCardPasswordEx" class="font-weight-light">Password</label>
+            </div>
+            <p *ngIf="invalidLogin" class="invalid-login text-center">Invalid Credentials</p>
+            <div class="text-center py-4 row d-flex justify-content-center">
+              <button class="btn btn-csun col-sm-10" type="submit">Login</button>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
