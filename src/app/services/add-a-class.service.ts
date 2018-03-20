@@ -4,6 +4,9 @@ import { Http, Headers } from '@angular/http';
 @Injectable()
 export class AddAClassService {
 
+  classArr = [];
+  
+
   constructor(private http: Http) { }
 
 
