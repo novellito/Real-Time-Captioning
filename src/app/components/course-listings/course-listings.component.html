@@ -3,7 +3,7 @@
 
 
   <div *ngFor="let class of classListings; let i = index; " class="card">
-    <!-- <div *ngIf="classDetails.meetings.length > 0"> -->
+    <!-- <div *ngIf="class.classObj[i].meetings.length > 0"> -->
       
       <div class="card-header" id="headingOne">
         <h5 class="mb-0">
@@ -30,7 +30,7 @@
             <!-- <div *ngFor="let classDetails of class.classObj;" > -->
               <tr *ngIf="classDetails.meetings.length > 0">
                 <td></td>
-                <td #professor>{{classDetails.instructors[0].instructor}}</td> 
+                <td>{{classDetails.instructors[0].instructor | fullname}}</td> 
                   <td>{{classDetails.meetings[0].location}}</td>
                   <td>{{classDetails.meetings[0].start_time}}</td>
                   <td>{{classDetails.meetings[0].end_time}}</td>
@@ -41,8 +41,8 @@
               
             </table>
         </div>
-      <!-- </div> -->
       </div>
+      <!-- </div> -->
     </div>
 
 </div>

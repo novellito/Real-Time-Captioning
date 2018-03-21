@@ -27,6 +27,7 @@ import { TypingAnimationDirective } from 'angular-typing-animation';
 import { LoginComponent } from './components/login/login.component'
 import { AuthGuard } from './guards/auth-guard.service';
 import { CourseListingsComponent } from './components/course-listings/course-listings.component';
+import { ProfessorNamePipe } from './components/course-listings/professor-name.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
     TypingAnimationDirective,
     LoginComponent,
     AddAClassComponent,
-    CourseListingsComponent
+    CourseListingsComponent,
+    ProfessorNamePipe
   ],
   schemas: [NO_ERRORS_SCHEMA],
   imports: [
