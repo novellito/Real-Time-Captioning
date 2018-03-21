@@ -40,6 +40,7 @@ export class AddAClassComponent implements OnInit {
 
       }
       this.classArr = newData;
+      console.log(this.classArr)
       localStorage.setItem('classList', JSON.stringify(this.classArr)); // save class listing in local storage
       this.router.navigate(['/add-a-class', event.target.value]);
 

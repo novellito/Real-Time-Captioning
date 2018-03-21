@@ -1,24 +1,49 @@
-<div class="classList">
+<div class="classList" >
 
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </button>
-      </h5>
-    </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-        non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-        aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-        labore sustainable VHS.
+
+  <div *ngFor="let class of classListings; let i = index; " class="card">
+    <!-- <div *ngIf="classDetails.meetings.length > 0"> -->
+      
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <a  class="btn btn-link" data-toggle="collapse" href="#{{i}}" aria-expanded="true" aria-controls="{{i}}">
+            {{class.classObj[0].subject}} {{class.classObj[0].catalog_number}}
+          </a>
+        </h5>
+      </div>
+      
+      <div id="{{i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Professor</th>
+                <th scope="col">Location</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Days</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let classDetails of class.classObj;" >
+            <!-- <div *ngFor="let classDetails of class.classObj;" > -->
+              <tr *ngIf="classDetails.meetings.length > 0">
+                <td></td>
+                <td #professor>{{classDetails.instructors[0].instructor}}</td> 
+                  <td>{{classDetails.meetings[0].location}}</td>
+                  <td>{{classDetails.meetings[0].start_time}}</td>
+                  <td>{{classDetails.meetings[0].end_time}}</td>
+                  <td>{{classDetails.meetings[0].days}}</td>
+                </tr> 
+              <!-- </div> -->
+              </tbody>
+              
+            </table>
+        </div>
+      <!-- </div> -->
       </div>
     </div>
-  </div>
 
 </div>
+
