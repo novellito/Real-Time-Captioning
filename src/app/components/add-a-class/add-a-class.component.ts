@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AddAClassService } from './../../services/add-a-class.service';
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-add-a-class',
@@ -9,33 +9,19 @@ import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
   providers: [AddAClassService]
 })
-export class AddAClassComponent implements OnInit, OnDestroy {
+export class AddAClassComponent implements OnInit {
 
-  // item: strinewData = [];
   classArr = [];
-  classSelection = false;
-
-
   constructor(private addClass: AddAClassService, private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    if(this.route.snapshot.params['course']) { // selecting a course
-      
-      console.log("hey");
-      // console.log(this.addClass.classArr);
-      this.route.queryParams.subscribe(params => {
-       console.log(params)
-    });
-    }
-    
-  }
+  ngOnInit() {}
 
   update(event) {
     console.log(event.target.value);
     this.addClass.getCourse(event.target.value).subscribe(data => {
       const newData = [];
-      for(let i = 0; i < data.classes.length; i++) {
-        if(newData.length === 0) {
+      for (let i = 0; i < data.classes.length; i++) {
+        if (newData.length === 0) {
 
           const newClass = {classObj: []};
           newClass.classObj.push(data.classes[i]);
@@ -54,20 +40,12 @@ export class AddAClassComponent implements OnInit, OnDestroy {
 
       }
       this.classArr = newData;
-      // this.classSelection = true;
-      this.route.snapshot.data = newData;
+      localStorage.setItem('classList', JSON.stringify(this.classArr)); // save class listing in local storage
+      this.router.navigate(['/add-a-class', event.target.value]);
 
-      this.router.navigate([`add-a-class/test`, newData]);
-      // console.log(data);
-      
     });
 
-    // make call to service -- when successful redirect to /:classname
   }
 
-  ngOnDestroy() {
-    this.addClass.classArr = this.classArr;
-    console.log(this.addClass.classArr);
-  }
 
 }
