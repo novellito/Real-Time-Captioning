@@ -27,7 +27,10 @@ export class AddAClassComponent implements OnInit {
           newClass.classObj.push(data.classes[i]);
           newData.push(newClass);
 
-        } else if (data.classes[i].catalog_number !== newData[newData.length - 1].
+        } else if (data.classes[i].meetings.length === 0 || data.classes[i].instructors.length === 0) {
+          // Do nothing if data is empty
+        }
+         else if (data.classes[i].catalog_number !== newData[newData.length - 1].
             classObj[newData[newData.length - 1].classObj.length - 1].catalog_number) { // courses differ create a new one
 
             const newClass = {classObj: []};
