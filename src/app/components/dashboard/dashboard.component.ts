@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { UserTypeService } from './../../services/user-type.service';
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/map';
@@ -19,8 +20,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   transSubFlag = false; // keep track if subscription is made
   classes: object;
   classIDs = [];
+  userObj: object;
 
-  constructor(private http: Http, private user: UserTypeService) { }
+  constructor(private authService: AuthService, private http: Http, private user: UserTypeService, ) { }
 
   ngOnInit() {
       this.classSubs = this.user.getClasses().subscribe(res => {
@@ -33,12 +35,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.log(err);
       return false;
     });
+
   }
 
   // Load set of transcripts based on the id attribute.
   loadTranscripts($event) {
     this.transcriptSub = this.user.getTranscripts(this.classIDs[$event.currentTarget.id]).subscribe();
     this.transSubFlag = true;
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
   // Unsubscribe to the connections. (avoid memory leak)

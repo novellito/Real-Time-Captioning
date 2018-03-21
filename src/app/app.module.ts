@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { TranscriptComponent } from './components/transcript/transcript.component';
 import { StatusComponent } from './components/status/status.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,18 +22,21 @@ import { StudentSessionComponent } from './components/student-session/student-se
 import { CaptionerSessionComponent } from './components/captioner-session/captioner-session.component';
 import { TranscriptsComponent } from './components/transcripts/transcripts.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { TypingAnimationDirective } from 'angular-typing-animation'
+import { TypingAnimationDirective } from 'angular-typing-animation';
+import { LoginComponent } from './components/login/login.component'
+import { AuthGuard } from './guards/auth-guard.service';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent },
   { path: 'student-session/:className/:classID', component: StudentSessionComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'captioner-session/:classID/:transcriptID', component: CaptionerSessionComponent },
   { path: 'transcripts', component: TranscriptsComponent },
   { path: 'captioner-session/:classID', component: CaptionerSessionComponent },
   { path: 'transcript/:id', component: TranscriptComponent },
-  { path: 'transcript/:modified/:id', component: TranscriptComponent }
+  { path: 'transcript/:modified/:id', component: TranscriptComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
@@ -51,7 +55,8 @@ const appRoutes: Routes = [
     TranscriptsComponent,
     SettingsComponent,
     TranscriptComponent,
-    TypingAnimationDirective
+    TypingAnimationDirective,
+    LoginComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
   imports: [
@@ -62,7 +67,7 @@ const appRoutes: Routes = [
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
