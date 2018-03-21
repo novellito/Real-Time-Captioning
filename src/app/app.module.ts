@@ -1,3 +1,4 @@
+import { AddAClassComponent } from './components/add-a-class/add-a-class.component';
 import { AuthService } from './services/auth.service';
 import { TranscriptComponent } from './components/transcript/transcript.component';
 import { StatusComponent } from './components/status/status.component';
@@ -37,6 +38,8 @@ const appRoutes: Routes = [
   { path: 'transcript/:id', component: TranscriptComponent },
   { path: 'transcript/:modified/:id', component: TranscriptComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'add-a-class', component: AddAClassComponent },
+  { path: 'add-a-class/:course', component: AddAClassComponent, data:{classInfo: ''} }
 ];
 
 @NgModule({
@@ -56,7 +59,8 @@ const appRoutes: Routes = [
     SettingsComponent,
     TranscriptComponent,
     TypingAnimationDirective,
-    LoginComponent
+    LoginComponent,
+    AddAClassComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
   imports: [
