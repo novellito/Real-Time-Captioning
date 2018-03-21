@@ -26,10 +26,11 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { TypingAnimationDirective } from 'angular-typing-animation';
 import { LoginComponent } from './components/login/login.component'
 import { AuthGuard } from './guards/auth-guard.service';
+import { CourseListingsComponent } from './components/course-listings/course-listings.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent },
+  { path: 'dashboard',  component: DashboardComponent },
   { path: 'student-session/:className/:classID', component: StudentSessionComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'captioner-session/:classID/:transcriptID', component: CaptionerSessionComponent },
@@ -38,8 +39,10 @@ const appRoutes: Routes = [
   { path: 'transcript/:id', component: TranscriptComponent },
   { path: 'transcript/:modified/:id', component: TranscriptComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'add-a-class', component: AddAClassComponent },
-  { path: 'add-a-class/:course', component: AddAClassComponent, data:{classInfo: ''} }
+  { path: 'add-a-class', component: AddAClassComponent, children:[
+    { path: ':course', component: CourseListingsComponent }
+  ] }
+
 ];
 
 @NgModule({
@@ -60,7 +63,8 @@ const appRoutes: Routes = [
     TranscriptComponent,
     TypingAnimationDirective,
     LoginComponent,
-    AddAClassComponent
+    AddAClassComponent,
+    CourseListingsComponent
   ],
   schemas: [NO_ERRORS_SCHEMA],
   imports: [

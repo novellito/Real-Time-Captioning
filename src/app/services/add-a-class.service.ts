@@ -1,11 +1,10 @@
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Subject }    from 'rxjs/Subject';
 
 @Injectable()
 export class AddAClassService {
-
-  classArr = [];
-  
 
   constructor(private http: Http) { }
 
