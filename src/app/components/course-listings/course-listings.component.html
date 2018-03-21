@@ -1,20 +1,16 @@
-<div class="classList" >
-
-
-
+<div class="classList">
   <div *ngFor="let class of classListings; let i = index; " class="card">
-    <!-- <div *ngIf="class.classObj[i].meetings.length > 0"> -->
-      
-      <div class="card-header" id="headingOne">
-        <h5 class="mb-0">
-          <a  class="btn btn-link" data-toggle="collapse" href="#{{i}}" aria-expanded="true" aria-controls="{{i}}">
-            {{class.classObj[0].subject}} {{class.classObj[0].catalog_number}}
-          </a>
-        </h5>
-      </div>
-      
-      <div id="{{i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <a class="btn btn-link" data-toggle="collapse" href="#{{i}}" aria-expanded="true" aria-controls="{{i}}">
+          {{class.classObj[0].subject}} {{class.classObj[0].catalog_number}}
+        </a>
+      </h5>
+    </div>
+
+    <div id="{{i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <div class="table-responsive">
           <table class="table">
             <thead>
               <tr>
@@ -26,24 +22,22 @@
                 <th scope="col">Days</th>
               </tr>
             </thead>
-            <tbody *ngFor="let classDetails of class.classObj;" >
-            <!-- <div *ngFor="let classDetails of class.classObj;" > -->
+            <tbody *ngFor="let classDetails of class.classObj;">
               <tr *ngIf="classDetails.meetings.length > 0">
-                <td></td>
-                <td>{{classDetails.instructors[0].instructor | fullname}}</td> 
-                  <td>{{classDetails.meetings[0].location}}</td>
-                  <td>{{classDetails.meetings[0].start_time}}</td>
-                  <td>{{classDetails.meetings[0].end_time}}</td>
-                  <td>{{classDetails.meetings[0].days}}</td>
-                </tr> 
-              <!-- </div> -->
-              </tbody>
-              
-            </table>
+                <td class="add-btn">
+                  <button class="btn btn-success btn-sm">Add To Schedule</button>
+                </td>
+                <td>{{classDetails.instructors[0].instructor | fullname}}</td>
+                <td>{{classDetails.meetings[0].location}}</td>
+                <td>{{classDetails.meetings[0].start_time}}</td>
+                <td>{{classDetails.meetings[0].end_time}}</td>
+                <td>{{classDetails.meetings[0].days}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <!-- </div> -->
     </div>
+  </div>
 
 </div>
-

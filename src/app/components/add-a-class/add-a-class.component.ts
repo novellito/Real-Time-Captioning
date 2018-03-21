@@ -29,8 +29,7 @@ export class AddAClassComponent implements OnInit {
 
         } else if (data.classes[i].meetings.length === 0 || data.classes[i].instructors.length === 0) {
           // Do nothing if data is empty
-        }
-         else if (data.classes[i].catalog_number !== newData[newData.length - 1].
+        } else if (data.classes[i].catalog_number !== newData[newData.length - 1].
             classObj[newData[newData.length - 1].classObj.length - 1].catalog_number) { // courses differ create a new one
 
             const newClass = {classObj: []};
@@ -43,7 +42,6 @@ export class AddAClassComponent implements OnInit {
 
       }
       this.classArr = newData;
-      console.log(this.classArr)
       localStorage.setItem('classList', JSON.stringify(this.classArr)); // save class listing in local storage
       this.router.navigate(['/add-a-class', event.target.value]);
 
