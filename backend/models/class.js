@@ -30,12 +30,10 @@ const ClassSchema = new Schema({
     default: "staff"
   },
   days: {
-    type: String,
-    required: true
+    type: String
   },
   time: {
-    type: Date,
-    required: true
+    type: Date
   }
 });
 

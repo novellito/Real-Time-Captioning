@@ -33,6 +33,7 @@ ClassController.getAllCourses = (req, res) => {
 };
 
 ClassController.getCourseById = (req, res) => {
+  
   let courseID = req.params.id;
   let getCourseById_Promise = ClassModel.findById(courseID).exec();
 
@@ -76,6 +77,7 @@ ClassController.updateCourseById = (req, res) => {
   updateCourseById_Promise
     .then(course => {
       _.extend(course, req.body);
+      course.transcripts.push(req.transcripts); // add transcript to course
       return course.save();
     })
     .then(course => {
