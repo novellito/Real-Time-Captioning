@@ -33,7 +33,10 @@ const ClassSchema = new Schema({
     type: String
   },
   time: {
-    type: Date
+    type: String
+  },
+  location: {
+    type: String
   }
 });
 

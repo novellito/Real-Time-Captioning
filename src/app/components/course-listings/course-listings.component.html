@@ -2,7 +2,7 @@
   <div *ngFor="let class of classListings; let i = index; " class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <a class="btn btn-link" data-toggle="collapse" href="#{{i}}" aria-expanded="true" aria-controls="{{i}}">
+        <a class="btn btn-link" data-toggle="collapse" href="#{{i}}" aria-expanded="true" aria-controls="{{i}}" #courseName>
           {{class.classObj[0].subject}} {{class.classObj[0].catalog_number}}
         </a>
       </h5>
@@ -20,18 +20,20 @@
                 <th scope="col">Start Time</th>
                 <th scope="col">End Time</th>
                 <th scope="col">Days</th>
+                <th scope="col">Course ID</th>
               </tr>
             </thead>
             <tbody *ngFor="let classDetails of class.classObj;">
-              <tr *ngIf="classDetails.meetings.length > 0">
+            <tr *ngIf="classDetails.meetings.length > 0">
                 <td class="add-btn">
-                  <button class="btn btn-success btn-sm">Add To Schedule</button>
+                  <button (click)="addClass({courseName:courseName,name:name,location:location,startTime:startTime,endTime:endTime,days:days,courseID:courseID })" class="btn btn-success btn-sm">Add To Schedule</button>
                 </td>
-                <td>{{classDetails.instructors[0].instructor | fullname}}</td>
-                <td>{{classDetails.meetings[0].location}}</td>
-                <td>{{classDetails.meetings[0].start_time}}</td>
-                <td>{{classDetails.meetings[0].end_time}}</td>
-                <td>{{classDetails.meetings[0].days}}</td>
+                <td #name>{{classDetails.instructors[0].instructor | fullname}}</td>
+                <td #location>{{classDetails.meetings[0].location}}</td>
+                <td #startTime>{{classDetails.meetings[0].start_time | standardTime}}</td>
+                <td #endTime>{{classDetails.meetings[0].end_time | standardTime}}</td>
+                <td #days>{{classDetails.meetings[0].days}}</td>
+                <td #courseID>{{classDetails.course_id}}</td>
               </tr>
             </tbody>
           </table>

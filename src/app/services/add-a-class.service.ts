@@ -16,4 +16,22 @@ export class AddAClassService {
     .map(res => res.json());
   }
 
+
+  addClass(classObj) {
+    const data = {
+      courseName: classObj.courseName.innerHTML.trim(),
+      courseID: classObj.courseID.innerHTML.trim(),
+      professor: classObj.name.innerHTML.trim(),
+      days: classObj.days.innerHTML.trim(),
+      time: classObj.startTime.innerHTML.trim() , // classObj.endTime.innerHTML
+      location: classObj.location.innerHTML.trim()
+    };
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json; charset=UTF-8');
+    return this.http.post(`http://localhost:8080/api/classes`, data, {headers: headers})
+    .map(res => res.json());
+  }
+
+
 }

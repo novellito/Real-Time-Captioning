@@ -5,6 +5,7 @@ let ClassController = {};
 
 // Storing classes.
 ClassController.storeCourse = (req, res) => {
+  console.log(req.body.courseName)
   let course = new ClassModel(req.body);
   let createCourse_Promise = course.save();
 
@@ -73,19 +74,27 @@ ClassController.getClassByCourseId = (req, res) => {
 // Updating courses.
 ClassController.updateCourseById = (req, res) => {
   let courseID = req.params.id;
-  let updateCourseById_Promise = ClassModel.findById(courseID).exec();
-  updateCourseById_Promise
-    .then(course => {
-      _.extend(course, req.body);
-      course.transcripts.push(req.transcripts); // add transcript to course
-      return course.save();
-    })
-    .then(course => {
-      return res.status(201).json(course);
-    })
-    .catch(err => {
-      return res.status(500).json({ error: err.message });
+  let updateCourseById_Promise = ClassModel.findById(courseID).populate('transcripts').exec(function(err, course) {
+    // console.log(course);
+    course.transcripts.push(req.transcripts); // add transcript to course
+     console.log(course.transcripts);
+    
+    return course.save();
     });
+  // updateCourseById_Promise
+  //   .then(course => {
+  //     _.extend(course, req.body);
+  //     course.transcripts.push(req.transcripts); // add transcript to course
+  //     course.populate('transcripts');
+  //   //  console.log(course.transcripts);
+  //     return course.save();
+  //   })
+  //   .then(course => {
+  //     return res.status(201).json(course);
+  //   })
+  //   .catch(err => {
+  //     return res.status(500).json({ error: err.message });
+  //   });
 };
 
 // Destroying courses.

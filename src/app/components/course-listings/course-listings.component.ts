@@ -1,3 +1,6 @@
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { AddAClassService } from './../../services/add-a-class.service';
+import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -5,13 +8,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-course-listings',
   templateUrl: './course-listings.component.html',
   styleUrls: ['./course-listings.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [AddAClassService]
 })
-export class CourseListingsComponent implements OnInit {
+export class CourseListingsComponent implements OnInit,OnDestroy {
 
   classListings = [];
+  addSubs: Subscription;
+  
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private addAClass: AddAClassService) { }
 
   ngOnInit() {
 
@@ -29,5 +35,19 @@ export class CourseListingsComponent implements OnInit {
     });
 
   }
+
+  addClass(classObj) {
+   this.addSubs = this.addAClass.addClass(classObj).subscribe(data => {
+     console.log(data);
+   })
+  }
+
+  ngOnDestroy() {
+        this.addSubs.unsubscribe();
+        console.log('unsubscribing');
+
+  }
+
+
 
 }

@@ -28,10 +28,11 @@ import { LoginComponent } from './components/login/login.component'
 import { AuthGuard } from './guards/auth-guard.service';
 import { CourseListingsComponent } from './components/course-listings/course-listings.component';
 import { ProfessorNamePipe } from './components/course-listings/professor-name.pipe';
+import { TimePipe } from './components/course-listings/time.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'dashboard',  component: DashboardComponent },
+  { path: 'dashboard',  canActivate: [AuthGuard],component: DashboardComponent },
   { path: 'student-session/:className/:classID', component: StudentSessionComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'captioner-session/:classID/:transcriptID', component: CaptionerSessionComponent },
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     LoginComponent,
     AddAClassComponent,
     CourseListingsComponent,
-    ProfessorNamePipe
+    ProfessorNamePipe,
+    TimePipe
   ],
   schemas: [NO_ERRORS_SCHEMA],
   imports: [

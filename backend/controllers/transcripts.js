@@ -14,7 +14,7 @@ TranscriptController.storeTranscript = (req, res) => {
 
   getAllTranscripts_Promise
     .then(transcript => {
-      console.log(transcript)
+      // console.log(transcript)
     })
     .catch(err => {
       console.log(err);
