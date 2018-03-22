@@ -13,6 +13,8 @@ module.exports = function(io) {
   router.delete("/id/:id", controller.destroyById);
   // Get an Captionist by id
   router.get("/id/:id", controller.getCaptionistById);
+   // Get an captioner by username
+  router.get("/username/:username", controller.getCaptionerByUsername);
   // Update Captionist by id
   router.put("/id/:id", controller.updateCaptionistById);
 

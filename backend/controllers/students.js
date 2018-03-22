@@ -5,7 +5,11 @@ let StudentController = {};
 
 // Storing students.
 StudentController.storeStudent = (req, res) => {
-  let student = new StudentModel(req.body);
+  const studentInfo = {
+    username:req.body.username,
+    name: req.body.name
+  };
+  let student = new StudentModel(studentInfo);
   let createStudent_Promise = student.save();
 
   createStudent_Promise
@@ -43,6 +47,25 @@ StudentController.getStudentById = (req, res) => {
         : res
             .status(404)
             .json({ error: `Can not find student with id: ${studentID}` });
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json({ error: err });
+    });
+};
+
+StudentController.getStudentByUsername = (req, res) => {
+  let username = req.params.username;
+  let getStudentById_Promise = StudentModel.find({"username":`${username}`}).exec();
+
+  getStudentById_Promise
+    .then(student => {
+        if(student.length > 0) {
+          res.status(200).json(student);
+        } else { // student doesnt exist - need to add them to db
+          console.log('adding new student to db');
+          StudentController.storeStudent({body:{username:username, name:req.params.name}});
+        }
     })
     .catch(err => {
       console.log(err);

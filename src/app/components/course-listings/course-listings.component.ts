@@ -37,13 +37,15 @@ export class CourseListingsComponent implements OnInit,OnDestroy {
   }
 
   addClass(classObj) {
-   this.addSubs = this.addAClass.addClass(classObj).subscribe(data => {
+   this.addSubs = this.addAClass.addClassToCollection(classObj).subscribe(data => {
      console.log(data);
    })
+
+   console.log(localStorage.getItem('user'))
   }
 
   ngOnDestroy() {
-        this.addSubs.unsubscribe();
+        // this.addSubs.unsubscribe();
         console.log('unsubscribing');
 
   }

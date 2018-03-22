@@ -5,12 +5,18 @@ let CaptionistController = {};
 
 // Storing Captionists.
 CaptionistController.storeCaptionist = (req, res) => {
-  let captionist = new CaptionistModel(req.body);
+  const captionerInfo = {
+    username:req.body.username,
+    name: req.body.name
+  };
+  console.log(captionerInfo);
+  let captionist = new CaptionistModel(captionerInfo);
   let createCaptionist_Promise = captionist.save();
-
   createCaptionist_Promise
-    .then(captionist => {
-      return res.status(201).json(captionist);
+  .then(captionist => {
+    console.log('new captionist saved!')
+    console.log(captionist)
+    return res.status(201).json(captionist);
     })
     .catch(err => {
       const DUPLICATE_KEY = 11000;
@@ -45,6 +51,26 @@ CaptionistController.getCaptionistById = (req, res) => {
             .json({
               error: `Can not find Captionist with id: ${captionistID}`
             });
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json({ error: err });
+    });
+};
+
+CaptionistController.getCaptionerByUsername = (req, res) => {
+  let username = req.params.username;
+  let getCaptionistById_Promise = CaptionistModel.find({"username":`${username}`}).exec();
+
+  getCaptionistById_Promise
+    .then(captioner => {
+        if(captioner.length > 0) {
+          console.log('captioner exists!');
+          res.status(200).json(captioner);
+        } else { // student doesnt exist - need to add them to db
+          console.log('adding new captioner to db');
+          CaptionistController.storeCaptionist({body:{username:username, name:req.params.name}});
+        }
     })
     .catch(err => {
       console.log(err);

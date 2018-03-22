@@ -17,7 +17,7 @@ export class AddAClassService {
   }
 
 
-  addClass(classObj) {
+  addClassToCollection(classObj) {
     const data = {
       courseName: classObj.courseName.innerHTML.trim(),
       courseID: classObj.courseID.innerHTML.trim(),
@@ -31,6 +31,10 @@ export class AddAClassService {
     headers.append('Content-Type', 'application/json; charset=UTF-8');
     return this.http.post(`http://localhost:8080/api/classes`, data, {headers: headers})
     .map(res => res.json());
+  }
+
+  addClassToUser(classInfo) {
+    
   }
 
 

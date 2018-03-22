@@ -1,5 +1,8 @@
 const jwt = require('jsonwebtoken');
 const ldap = require('ldapjs');
+const studentsController = require("./students");
+const captionerController = require("./captionists");
+const adminsController = require("./admins");
 
 let LoginController = {};
 
@@ -31,6 +34,11 @@ LoginController.authenticate = (req,res) => {
             ldapRes.on('searchEntry', function (entry) {
 
                 entry = JSON.parse(JSON.stringify(entry.object));
+
+                const fullName = entry.givenName + ' ' + entry.sn;
+                // captionerController.getCaptionerByUsername({params:{username:entry.uid,name:fullName}});
+                studentsController.getStudentByUsername({params:{username:entry.uid,name:fullName}});
+
                 const userData = {
                   fname: entry.givenName,
                   lname: entry.sn,
@@ -38,9 +46,9 @@ LoginController.authenticate = (req,res) => {
                   email: entry.mail
                 }
         
-                console.log(userData);
                 const token = jwt.sign(userData, 'secret', {expiresIn:604800}) // 'secret will be env later on', expires in 1 week
                 res.json({success:true, token: token,userData});
+
             });
 
             ldapRes.on('error', function(err) {
