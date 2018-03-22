@@ -15,8 +15,8 @@ module.exports = function(io) {
   router.get("/id/:id", controller.getStudentById);
   // Get an student by username
   router.get("/username/:username", controller.getStudentByUsername);
-  // Update student by id
-  router.put("/id/:id", controller.updateStudentById);
+  // Update student by username
+  router.put("/username/:username", controller.updateStudentByUsername);
 
   return router;
 };
