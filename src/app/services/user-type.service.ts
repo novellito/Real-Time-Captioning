@@ -48,9 +48,17 @@ export class UserTypeService {
    * @returns a list of a user's classes
    */
   getClasses() {
+
+    // const headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    // return this.http.get('http://localhost:8080/api/classes', {headers: headers})
+    //   .map(res => res.json());
+
+    // handle if student or captioner
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:8080/api/classes', {headers: headers})
+    return this.http.get(`http://localhost:8080/api/students/username/${JSON.parse(localStorage.getItem('user')).userID}`,
+      {headers: headers})
       .map(res => res.json());
   }
 
@@ -59,7 +67,7 @@ export class UserTypeService {
     this.listElem.remove();
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.delete(`http://localhost:8080/api/transcripts/id/${this.transcriptID}`, {headers: headers})
+    return this.http.delete(`http://localhost:8080/api/students/username/${this.transcriptID}`, {headers: headers})
     .map(res => res.json()).subscribe();
   }
 

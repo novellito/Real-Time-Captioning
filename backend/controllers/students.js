@@ -56,7 +56,7 @@ StudentController.getStudentById = (req, res) => {
 
 StudentController.getStudentByUsername = (req, res) => {
   let username = req.params.username;
-  let getStudentById_Promise = StudentModel.find({"username":`${username}`}).exec();
+  let getStudentById_Promise = StudentModel.find({"username":`${username}`}).populate('classes').exec();
 
   getStudentById_Promise
     .then(student => {
@@ -77,11 +77,12 @@ StudentController.getStudentByUsername = (req, res) => {
 StudentController.updateStudentByUsername = (req, res) => {
 
   let username = req.params.username;
-  let updateStudentById_Promise = StudentModel.find({"username":`${username}`}).exec();
+  let updateStudentById_Promise = StudentModel.find({"username":`${username}`}).populate('classes').exec();
   updateStudentById_Promise
     .then(student => {
       _.extend(student, req.body);
       student[0].classes.push(req.body); // add class for student
+      console.log(student[0])
       return student[0].save();
     })
     .then(student => {

@@ -23,7 +23,7 @@ export class AddAClassService {
       courseID: classObj.courseID.innerHTML.trim(),
       professor: classObj.name.innerHTML.trim(),
       days: classObj.days.innerHTML.trim(),
-      time: classObj.startTime.innerHTML.trim() , // classObj.endTime.innerHTML
+      time: classObj.startTime.innerHTML.trim() + '-' + classObj.endTime.innerHTML.trim() , // classObj.endTime.innerHTML
       location: classObj.location.innerHTML.trim()
     };
 
