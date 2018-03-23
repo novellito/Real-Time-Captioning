@@ -27,7 +27,8 @@ LoginController.authenticate = (req,res) => {
                 const token = jwt.sign(userData, 'secret', {expiresIn:604800}) // 'secret will be env later on', expires in 1 week
                 res.json({success:true, token: token,userData});
           });
-          
+
+        // KEEPING THIS FOR TESTING   
         // if you want super user to be captioner  
         //   captionerController.getCaptionerByUsername({params:{username:'super',name:'super user',method:'login'}}, nulll, function() {
         //         const token = jwt.sign(userData, 'secret', {expiresIn:604800}) // 'secret will be env later on', expires in 1 week

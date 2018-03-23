@@ -10,15 +10,7 @@ let TranscriptController = {};
 TranscriptController.storeTranscript = (req, res) => {
   let transcript = new TranscriptModel(req.body);
   let createTranscript_Promise = transcript.save();
-  let getAllTranscripts_Promise = TranscriptModel.find({"courseID":`${req.body.courseID}`}).populate('courseID').exec(); // create association between transcript & classes
-
-  getAllTranscripts_Promise
-    .then(transcript => {
-      // console.log(transcript)
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  let populateTranscript = TranscriptModel.find({"courseID":`${req.body.courseID}`}).populate('courseID').exec(); // create association between transcript & classes
 
   createTranscript_Promise
     .then(transcript => {
@@ -83,7 +75,6 @@ TranscriptController.getTranscriptByCourseId = (req, res) => {
 
 // Updating transcripts.
 TranscriptController.updateTranscriptById = (req, res) => {
-  // console.log(req.body);
   let transcriptID = req.params.id;
   let updateTranscriptById_Promise = TranscriptModel.findById(
     transcriptID

@@ -27,7 +27,6 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
     SocketService, private route: ActivatedRoute, private capUtil: CaptionerUtilsService) {}
 
   ngOnInit() {
-    // this.user.userType = 'captioner';
 
     this.paramsSub = this.route.params.subscribe(params => {
       this.courseID = params['classID'];

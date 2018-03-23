@@ -2,7 +2,7 @@
 const _ = require("underscore");
 const CaptionistModel = require("../models/captionist");
 const studentsController = require("./students");
-var ObjectId = require('mongoose').Types.ObjectId; 
+const ObjectId = require('mongoose').Types.ObjectId; 
 
 let CaptionistController = {};
 

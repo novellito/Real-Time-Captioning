@@ -1,8 +1,8 @@
 "use strict";
 const _ = require("underscore");
 const StudentModel = require("../models/student");
+const ObjectId = require('mongoose').Types.ObjectId; 
 let StudentController = {};
-var ObjectId = require('mongoose').Types.ObjectId; 
 // Storing students.
 StudentController.storeStudent = (req, res) => {
   const studentInfo = {

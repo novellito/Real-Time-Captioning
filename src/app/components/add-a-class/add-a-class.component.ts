@@ -16,8 +16,8 @@ export class AddAClassComponent implements OnInit {
 
   ngOnInit() {}
 
+  // Method to handle the data coming from the metalab api
   update(event) {
-    console.log(event.target.value);
     this.addClass.getCourse(event.target.value).subscribe(data => {
       const newData = [];
       for (let i = 0; i < data.classes.length; i++) {
@@ -48,6 +48,5 @@ export class AddAClassComponent implements OnInit {
     });
 
   }
-
 
 }
