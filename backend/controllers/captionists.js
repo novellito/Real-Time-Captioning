@@ -76,8 +76,6 @@ CaptionistController.getCaptionerByUsername = (req, res, next) => {
           }
           console.log('captioner exists!');
           res.status(200).json(captioner);
-         
-          
         } else { // do nothing if user is not a captioner
           console.log('user is not a captioner! - checking student!');
           next();
@@ -93,18 +91,15 @@ CaptionistController.getCaptionerByUsername = (req, res, next) => {
 
 // Updating Captionists.
 CaptionistController.updateCaptionistByUsername = (req, res) => {
-  let username = req.params.username;
-  // let updateCaptionistById_Promise = CaptionistModel.findById(
-  //   captionistID
-  // ).exec();
 
-  let updateCaptionistById_Promise = CaptionistModel.find({$or:[ {$and:[ {"username":`${username}`}, {classes:  {$ne: new ObjectId(req.body._id)}}]}, 
-                                 {$and:[{"username":`${username}`}, { 'classes': {$size:0} } ]}]}).populate('classes').exec(); // query for the existing class or if the array is empty
+  let username = req.params.username;
+  let updateCaptionistById_Promise = CaptionistModel.find({$or:[ {$and:[ {username:`${username}`}, {classes:  {$ne: new ObjectId(req.body._id)}}]}, 
+                                 {$and:[{username:`${username}`}, { classes: {$size:0} } ]}]}).populate('classes').exec(); // query for the existing class or if the array is empty
 
   updateCaptionistById_Promise
     .then(captionist => {
       _.extend(captionist, req.body);
-      if(!captionist[0].classes) { // duplicate class being added
+      if(captionist.length === 0) { // duplicate class being added
         return res.status(500).json({ error: "duplicate class cant be added!" });
       } else {
         captionist[0].classes.push(req.body); // add class for student

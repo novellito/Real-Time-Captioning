@@ -12,7 +12,7 @@ ClassController.storeCourse = (req, res) => {
     if(course.length > 0) { // if found then don't save it.
     console.log('found the class')
     // console.log(course)
-    res.status(200).json(course)
+    res.status(200).json(course[0]);
     // res.status(200).json({course, status:200})
   } else { // does not exist so save it.
     

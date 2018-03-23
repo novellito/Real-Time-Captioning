@@ -25,9 +25,7 @@ export class CourseListingsComponent implements OnInit,OnDestroy {
       if (!JSON.parse(localStorage.getItem('classList'))) {
         this.router.navigate(['/add-a-class']); // redirect if there is no class selected
       } else {
-
         this.classListings = JSON.parse(localStorage.getItem('classList'));
-        console.log(JSON.parse(localStorage.getItem('classList')));
         localStorage.removeItem('classList');
       }
 
@@ -38,24 +36,15 @@ export class CourseListingsComponent implements OnInit,OnDestroy {
   addClass(classObj) {
    this.addSubs = this.addAClass.addClassToCollection(classObj).subscribe(data => {
      console.log(data);
-    //  if (data.status === 200) { // Duplicate class.
-      // console.log('duplicate class!');
-      //  return;
-    //  } else {
-       this.addAClass.addClassToUser(data).subscribe(res => {
+       this.addAClass.addClassToUser(data ).subscribe(res => {
          console.log(res);
         });
-      // }
    });
-
-   console.log(localStorage.getItem('user'))
    const userID = JSON.parse(localStorage.getItem('user')).userID;
-   console.log(userID)
   }
 
   ngOnDestroy() {
         console.log('unsubscribing');
-
   }
 
 

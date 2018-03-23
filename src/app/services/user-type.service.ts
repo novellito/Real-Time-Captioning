@@ -49,19 +49,18 @@ export class UserTypeService {
    */
   getClasses() {
 
-  
-    // handle if student or captioner
-    // const headers = new Headers();
-    // headers.append('Content-Type', 'application/json');
-    // return this.http.get(`http://localhost:8080/api/captionists/username/${JSON.parse(localStorage.getItem('user')).userID}`,
-    //   {headers: headers})
-    //   .map(res => res.json());
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
 
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.get(`http://localhost:8080/api/students/username/${JSON.parse(localStorage.getItem('user')).userID}`,
+    if (JSON.parse(localStorage.getItem('user')).role === 'captioner') {
+      return this.http.get(`http://localhost:8080/api/captionists/username/${JSON.parse(localStorage.getItem('user')).userID}`,
+        {headers: headers})
+        .map(res => res.json());
+    } else {
+      return this.http.get(`http://localhost:8080/api/students/username/${JSON.parse(localStorage.getItem('user')).userID}`,
       {headers: headers})
       .map(res => res.json());
+    }
   }
 
   // Deletes the transcript element visually and from the database

@@ -34,17 +34,22 @@ export class AddAClassService {
   }
 
   addClassToUser(data) {
-    // do a check on whether to add to captioner or student
+
     const headers = new Headers();
     headers.append('Content-Type', 'application/json; charset=UTF-8');
-    return this.http.put(`http://localhost:8080/api/captionists/username/${JSON.parse(localStorage.getItem('user')).userID}`,
-     data, {headers: headers})
-    .map(res => res.json());
-  //   const headers = new Headers(); //for students 
-  //   headers.append('Content-Type', 'application/json; charset=UTF-8');
-  //   return this.http.put(`http://localhost:8080/api/students/username/${JSON.parse(localStorage.getItem('user')).userID}`,
-  //    data, {headers: headers})
-  //   .map(res => res.json());
+   
+    if (JSON.parse(localStorage.getItem('user')).role === 'captioner') {
+
+      return this.http.put(`http://localhost:8080/api/captionists/username/${JSON.parse(localStorage.getItem('user')).userID}`,
+      data, {headers: headers})
+      .map(res => res.json());
+
+    } else {
+
+        return this.http.put(`http://localhost:8080/api/students/username/${JSON.parse(localStorage.getItem('user')).userID}`,
+         data, {headers: headers})
+        .map(res => res.json());
+    }
   }
 
 

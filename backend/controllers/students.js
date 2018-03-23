@@ -84,8 +84,8 @@ StudentController.getStudentByUsername = (req, res, next) => {
 // Updating students.
 StudentController.updateStudentByUsername = (req, res) => {
   let username = req.params.username;
-  let updateStudentById_Promise = StudentModel.find({$or:[ {$and:[ {"username":`${username}`}, {classes:  {$ne: new ObjectId(req.body._id)}}]}, 
-                                 {$and:[{"username":`${username}`}, { 'classes': {$size:0} } ]}]}).populate('classes').exec(); // query for the existing class or if the array is empty
+  let updateStudentById_Promise = StudentModel.find({$or:[ {$and:[ {"username":username}, {classes:  {$ne: new ObjectId(req.body._id)}}]}, 
+                                 {$and:[{"username":username}, { 'classes': {$size:0} } ]}]}).populate('classes').exec(); // query for the existing class or if the array is empty
   
   updateStudentById_Promise
     .then(student => {
