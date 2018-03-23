@@ -29,18 +29,19 @@ import { AuthGuard } from './guards/auth-guard.service';
 import { CourseListingsComponent } from './components/course-listings/course-listings.component';
 import { ProfessorNamePipe } from './components/course-listings/professor-name.pipe';
 import { TimePipe } from './components/course-listings/time.pipe';
+import { UserAccessGuard } from './guards/user-access-guard.service';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'dashboard',  canActivate: [AuthGuard],component: DashboardComponent },
+  { path: 'dashboard',  canActivate: [AuthGuard], component: DashboardComponent },
   { path: 'student-session/:className/:classID', component: StudentSessionComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'transcripts', component: TranscriptsComponent },
-  { path: 'captioner-session/:classID', component: CaptionerSessionComponent },
+  { path: 'captioner-session/:classID', canActivate: [UserAccessGuard], component: CaptionerSessionComponent },
   { path: 'transcript/:id', component: TranscriptComponent },
   { path: 'transcript/:modified/:id', component: TranscriptComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'add-a-class', component: AddAClassComponent, children:[
+  { path: 'add-a-class', component: AddAClassComponent, children: [
     { path: ':course', component: CourseListingsComponent }
   ] }
 
@@ -78,7 +79,7 @@ const appRoutes: Routes = [
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AuthService, UserAccessGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
