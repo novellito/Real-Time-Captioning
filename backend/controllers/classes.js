@@ -86,6 +86,7 @@ ClassController.getCourseById = (req, res) => {
 };
 
 ClassController.getClassByCourseId = (req, res) => {
+  console.log(req.params)
   let courseID = req.params.id;
   let getTranscriptById_Promise = ClassModel.find({"courseID":`${courseID}`}).exec();
 
