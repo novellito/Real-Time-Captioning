@@ -15,8 +15,8 @@ module.exports = function(io) {
   router.get("/id/:id", controller.getCaptionistById);
    // Get an captioner by username
   router.get("/username/:username", controller.getCaptionerByUsername);
-  // Update Captionist by id
-  router.put("/id/:id", controller.updateCaptionistById);
+  // Update Captionist by username
+  router.put("/username/:username", controller.updateCaptionistByUsername);
 
   return router;
 };

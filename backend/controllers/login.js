@@ -37,17 +37,42 @@ LoginController.authenticate = (req,res) => {
 
                 const fullName = entry.givenName + ' ' + entry.sn;
                 // similar process for checking if logged user is admin
-                let test = captionerController.getCaptionerByUsername({params:{username:entry.uid,name:fullName}});
-                console.log(test);
-                const userData = {
-                  fname: entry.givenName,
-                  lname: entry.sn,
-                  userID: entry.uid,
-                  email: entry.mail
-                }
-        
-                const token = jwt.sign(userData, 'secret', {expiresIn:604800}) // 'secret will be env later on', expires in 1 week
-                res.json({success:true, token: token,userData});
+            //    captionerController.getCaptionerByUsername({params:{username:entry.uid,name:fullName}});
+            // studentsController.getStudentByUsername({params:{username:entry.uid,name:fullName}});
+
+               captionerController.getCaptionerByUsername({params:{username:entry.uid,name:fullName,method:'login'}}, null, function(role) {
+                    console.log('in call back')
+                    if (role === 'captioner') {
+                        const userData = {
+                            fname: entry.givenName,
+                            lname: entry.sn,
+                            userID: entry.uid,
+                            email: entry.mail,
+                            role: 'captioner'
+                          }
+                  
+                          const token = jwt.sign(userData, 'secret', {expiresIn:604800}) // 'secret will be env later on', expires in 1 week
+                          res.json({success:true, token: token,userData});
+
+                        return 'captioner';
+                    } else { // user must be a student
+                        studentsController.getStudentByUsername({params:{username:entry.uid,name:fullName,method:'login'}}, null, function(role) {
+                            const userData = {
+                                fname: entry.givenName,
+                                lname: entry.sn,
+                                userID: entry.uid,
+                                email: entry.mail,
+                                role: 'student'
+                              }
+                      
+                              const token = jwt.sign(userData, 'secret', {expiresIn:604800}) // 'secret will be env later on', expires in 1 week
+                              res.json({success:true, token: token,userData});
+                        });
+                    }});
+
+
+                // for now default is a captionist until we have admins!
+            
 
             });
 

@@ -49,12 +49,14 @@ export class UserTypeService {
    */
   getClasses() {
 
+  
+    // handle if student or captioner
     // const headers = new Headers();
     // headers.append('Content-Type', 'application/json');
-    // return this.http.get('http://localhost:8080/api/classes', {headers: headers})
+    // return this.http.get(`http://localhost:8080/api/captionists/username/${JSON.parse(localStorage.getItem('user')).userID}`,
+    //   {headers: headers})
     //   .map(res => res.json());
 
-    // handle if student or captioner
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.get(`http://localhost:8080/api/students/username/${JSON.parse(localStorage.getItem('user')).userID}`,

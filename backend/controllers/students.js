@@ -54,19 +54,25 @@ StudentController.getStudentById = (req, res) => {
     });
 };
 
-StudentController.getStudentByUsername = (req, res) => {
+StudentController.getStudentByUsername = (req, res, next) => {
   let username = req.params.username;
   let getStudentById_Promise = StudentModel.find({"username":`${username}`}).populate('classes').exec();
 
   getStudentById_Promise
     .then(student => {
         if(student.length > 0) {
+
+          if(req.params.method) {
+            next();
+          }
           console.log('found student');
           console.log(student);
+          // next('student'); // will cause error if not caught
           res.status(200).json(student);
         } else { // student doesnt exist - need to add them to db
           console.log('adding new student to db');
           StudentController.storeStudent({body:{username:username, name:req.params.name}});
+          next();
         }
     })
     .catch(err => {
