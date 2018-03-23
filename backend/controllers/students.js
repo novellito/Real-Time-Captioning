@@ -61,6 +61,8 @@ StudentController.getStudentByUsername = (req, res) => {
   getStudentById_Promise
     .then(student => {
         if(student.length > 0) {
+          console.log('found student');
+          console.log(student);
           res.status(200).json(student);
         } else { // student doesnt exist - need to add them to db
           console.log('adding new student to db');

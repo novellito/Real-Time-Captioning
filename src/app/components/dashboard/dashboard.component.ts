@@ -26,10 +26,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
       this.classSubs = this.user.getClasses().subscribe(res => {
-        console.log(res)
       this.classes = res[0].classes;
       res[0].classes.forEach((element, index) => {
-        console.log(element);
+        // console.log(element);
          this.classIDs.push(element._id); // store class IDs for reference in loadTranscripts().
       });
     },

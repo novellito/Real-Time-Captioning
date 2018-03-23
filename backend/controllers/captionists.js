@@ -1,6 +1,8 @@
 "use strict";
 const _ = require("underscore");
 const CaptionistModel = require("../models/captionist");
+const studentsController = require("./students");
+
 let CaptionistController = {};
 
 // Storing Captionists.
@@ -9,13 +11,13 @@ CaptionistController.storeCaptionist = (req, res) => {
     username:req.body.username,
     name: req.body.name
   };
-  console.log(captionerInfo);
+  // console.log(captionerInfo);
   let captionist = new CaptionistModel(captionerInfo);
   let createCaptionist_Promise = captionist.save();
   createCaptionist_Promise
   .then(captionist => {
     console.log('new captionist saved!')
-    console.log(captionist)
+    // console.log(captionist)
     return res.status(201).json(captionist);
     })
     .catch(err => {
@@ -66,10 +68,13 @@ CaptionistController.getCaptionerByUsername = (req, res) => {
     .then(captioner => {
         if(captioner.length > 0) {
           console.log('captioner exists!');
-          res.status(200).json(captioner);
-        } else { // student doesnt exist - need to add them to db
-          console.log('adding new captioner to db');
-          CaptionistController.storeCaptionist({body:{username:username, name:req.params.name}});
+          res.status(200).json({captioner, msg:"testing"});
+        } else { // do nothing if user is not a captioner
+          console.log('user is not a captioner! - checking student!');
+          studentsController.getStudentByUsername({params:{username:req.params.username,name:req.params.name}});
+          // res.status(401).json("user is not a captioner!");
+          res.status(401).json("user is not a captioner!");
+          return "student";
         }
     })
     .catch(err => {

@@ -15,7 +15,6 @@ export class CourseListingsComponent implements OnInit,OnDestroy {
 
   classListings = [];
   addSubs: Subscription;
-  
 
   constructor(private route: ActivatedRoute, private router: Router, private addAClass: AddAClassService) { }
 
@@ -50,7 +49,6 @@ export class CourseListingsComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy() {
-        // this.addSubs.unsubscribe();
         console.log('unsubscribing');
 
   }

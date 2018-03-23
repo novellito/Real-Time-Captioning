@@ -36,9 +36,9 @@ LoginController.authenticate = (req,res) => {
                 entry = JSON.parse(JSON.stringify(entry.object));
 
                 const fullName = entry.givenName + ' ' + entry.sn;
-                // captionerController.getCaptionerByUsername({params:{username:entry.uid,name:fullName}});
-                studentsController.getStudentByUsername({params:{username:entry.uid,name:fullName}});
-
+                // similar process for checking if logged user is admin
+                let test = captionerController.getCaptionerByUsername({params:{username:entry.uid,name:fullName}});
+                console.log(test);
                 const userData = {
                   fname: entry.givenName,
                   lname: entry.sn,
