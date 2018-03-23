@@ -2,7 +2,7 @@
 const _ = require("underscore");
 const StudentModel = require("../models/student");
 let StudentController = {};
-
+var ObjectId = require('mongoose').Types.ObjectId; 
 // Storing students.
 StudentController.storeStudent = (req, res) => {
   const studentInfo = {
@@ -77,18 +77,20 @@ StudentController.getStudentByUsername = (req, res) => {
 
 // Updating students.
 StudentController.updateStudentByUsername = (req, res) => {
-
   let username = req.params.username;
-  let updateStudentById_Promise = StudentModel.find({"username":`${username}`}).populate('classes').exec();
+  let updateStudentById_Promise = StudentModel.find({$or:[ {$and:[ {"username":`${username}`}, {classes:  {$ne: new ObjectId(req.body._id)}}]}, 
+                                 {$and:[{"username":`${username}`}, { 'classes': {$size:0} } ]}]}).populate('classes').exec(); // query for the existing class or if the array is empty
+  
   updateStudentById_Promise
     .then(student => {
       _.extend(student, req.body);
-      student[0].classes.push(req.body); // add class for student
-      console.log(student[0])
-      return student[0].save();
-    })
-    .then(student => {
-      return res.status(201).json(student);
+      if(!student[0].classes) { // duplicate class being added
+        return res.status(500).json({ error: "duplicate class cant be added!" });
+      } else {
+        student[0].classes.push(req.body); // add class for student
+        student[0].save();
+        return res.status(201).json(student);
+      }
     })
     .catch(err => {
       return res.status(500).json({ error: err.message });

@@ -5,20 +5,53 @@ let ClassController = {};
 
 // Storing classes.
 ClassController.storeCourse = (req, res) => {
-  console.log(req.body.courseName)
-  let course = new ClassModel(req.body);
-  let createCourse_Promise = course.save();
+  // console.log(req.body.courseID)
+  let courseToSave = new ClassModel(req.body); 
 
-  createCourse_Promise
-    .then(course => {
-      return res.status(201).json(course);
-    })
-    .catch(err => {
-      const DUPLICATE_KEY = 11000;
-      return err.code === DUPLICATE_KEY
-        ? res.status(400).json(err.errmsg)
-        : res.status(500).json(err.errmsg);
-    });
+  let getTranscriptById_Promise = ClassModel.find({"courseID":`${req.body.courseID}`}, function(err, course){
+    if(course.length > 0) { // if found then don't save it.
+    console.log('found the class')
+    // console.log(course)
+    res.status(200).json(course)
+    // res.status(200).json({course, status:200})
+  } else { // does not exist so save it.
+    
+    courseToSave.save();
+    console.log('saved class')
+    return res.status(201).json(courseToSave);
+    // createCourse_Promise
+    //   .then(courseToSave => {
+    //     return res.status(201).json(courseToSave);
+    //   })
+    
+  }
+  }).exec();
+
+  // getTranscriptById_Promise
+  // .then(course => {
+  //   if(course) { // if found then don't save it.
+  //     res.status(200).json(course)
+  //   } else { // does not exist so save it.
+  //     // console.log(course)
+  //     console.log(req.body)
+  //     let courseToSave = new ClassModel(req.body); 
+      
+  //     let createCourse_Promise = courseToSave.save();
+  //     createCourse_Promise
+  //       .then(courseToSave => {
+  //         return res.status(201).json(courseToSave);
+  //       })
+      
+  //   }
+      
+  // })
+  // .catch(err => {
+  //   console.log(err);
+  //   return res.status(500).json({ error: err });
+  // });
+  
+  
+
 };
 
 // Retrieving classes.

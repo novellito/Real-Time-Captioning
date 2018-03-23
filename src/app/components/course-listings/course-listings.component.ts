@@ -38,10 +38,15 @@ export class CourseListingsComponent implements OnInit,OnDestroy {
   addClass(classObj) {
    this.addSubs = this.addAClass.addClassToCollection(classObj).subscribe(data => {
      console.log(data);
-     this.addAClass.addClassToUser(data).subscribe(res => {
-       console.log(res);
-     })
-   })
+    //  if (data.status === 200) { // Duplicate class.
+      // console.log('duplicate class!');
+      //  return;
+    //  } else {
+       this.addAClass.addClassToUser(data).subscribe(res => {
+         console.log(res);
+        });
+      // }
+   });
 
    console.log(localStorage.getItem('user'))
    const userID = JSON.parse(localStorage.getItem('user')).userID;
