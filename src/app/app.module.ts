@@ -35,7 +35,7 @@ const appRoutes: Routes = [
   { path: 'dashboard',  canActivate: [AuthGuard],component: DashboardComponent },
   { path: 'student-session/:className/:classID', component: StudentSessionComponent },
   { path: 'settings', component: SettingsComponent },
-  { path: 'captioner-session/:classID/:transcriptID', component: CaptionerSessionComponent },
+  // { path: 'captioner-session/:className/:classID ', component: CaptionerSessionComponent },
   { path: 'transcripts', component: TranscriptsComponent },
   { path: 'captioner-session/:classID', component: CaptionerSessionComponent },
   { path: 'transcript/:id', component: TranscriptComponent },

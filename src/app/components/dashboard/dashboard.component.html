@@ -26,10 +26,15 @@
                 <p>Recent Transcripts</p>
               </a>
             </div>
-            <div class="join-session text-center">
-              <a [routerLink]="['/student-session', class.courseName, class.courseID]">
+            <div class="session text-center">
+              <a *ngIf="userType === 'student'" [routerLink]="['/student-session', class.courseName, class.courseID]">
                 <img src="../../../assets/images/join.svg" alt="join session">
                 <p>Join Session</p>
+              </a>
+
+              <a *ngIf="userType === 'captioner'" [routerLink]="['/captioner-session', class.courseName, class.courseID]">
+                <img src="../../../assets/images/join.svg" alt="start session">
+                <p>Start Session</p>
               </a>
             </div>
           </div>

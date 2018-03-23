@@ -47,7 +47,7 @@ export class EditorComponent implements OnInit, OnDestroy {
 
       }
     }
-    if (this.user.userType === 'student') {
+    if (JSON.parse(localStorage.getItem('user')).role === 'student') {
       this.toolbarOptions = false;
 
       this.connection = this.socketService.getMessages().subscribe( (message: any) => {
@@ -83,7 +83,7 @@ export class EditorComponent implements OnInit, OnDestroy {
    * editor in context.
    */
   sendDelta($event: any) {
-      if (this.user.userType === 'student' || $event.source === 'api') { // do nothing (prevent caption from bouncing back and forth)
+      if (JSON.parse(localStorage.getItem('user')).role === 'student' || $event.source === 'api') { // do nothing (prevent caption from bouncing back and forth)
         return;
       } else if ($event.source === 'user') { // only save if input comes from a user
         this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe();
@@ -94,7 +94,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   // sendDM(message: any) {}
 
   ngOnDestroy() {
-    if (this.user.userType === 'student') {
+    if (JSON.parse(localStorage.getItem('user')).role === 'student') {
       this.connection.unsubscribe();
     }
   }

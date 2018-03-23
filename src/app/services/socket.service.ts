@@ -67,7 +67,7 @@ export class SocketService {
 
   connect(id) { // establish socket connection with backend
     this.socket = io(this.url);
-    this.socket.emit('room', {room_id : id, user: this.user.userType});
+    this.socket.emit('room', {room_id : id, user: JSON.parse(localStorage.getItem('user')).role});
   }
 
 

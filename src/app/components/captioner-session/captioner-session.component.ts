@@ -18,21 +18,30 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
   classSubs: Subscription;
   transcriptSub: Subscription;
   titleSub: Subscription;
+  paramsSub: Subscription;
 
   titleSubFlag = false;
-  courseID: any;
+  courseID;
 
   constructor(private user: UserTypeService, private socketService:
     SocketService, private route: ActivatedRoute, private capUtil: CaptionerUtilsService) {}
 
   ngOnInit() {
-    this.user.userType = 'captioner';
-    this.courseID = this.route.snapshot.params['classID'];
-    this.socketService.connect(this.courseID);
+    // this.user.userType = 'captioner';
+    console.log(this.route.snapshot.params['"classID"'])
 
-   this.classSubs = this.capUtil.getClass(this.courseID).subscribe(res => { // get current class info to access hash id for the class
-    this.transcriptSub = this.capUtil.createTranscript(res[0]._id).subscribe(res2 => {
-        this.socketService.id = res2._id; // assign the hash id value of transcript
+    this.paramsSub = this.route.params.subscribe(params => {
+
+      console.log(params)
+      this.courseID = params['"classID"'];
+      console.log(this.courseID)
+      this.socketService.connect(this.courseID);
+      
+      this.classSubs = this.capUtil.getClass(this.courseID).subscribe(res => { // get current class info to access hash id for the class
+        console.log(res)
+        this.transcriptSub = this.capUtil.createTranscript(res[0]._id).subscribe(res2 => {
+          this.socketService.id = res2._id; // assign the hash id value of transcript
+        });
       });
     });
 
@@ -47,7 +56,8 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
    // Unsubscribe to the connections. (avoid memory leak)
    ngOnDestroy() {
     this.classSubs.unsubscribe();
-    this.transcriptSub.unsubscribe();
+    this.paramsSub.unsubscribe();
+    // this.transcriptSub.unsubscribe();
     if (this.titleSubFlag) {
       this.titleSub.unsubscribe();
     }

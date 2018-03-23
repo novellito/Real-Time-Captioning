@@ -20,11 +20,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   transSubFlag = false; // keep track if subscription is made
   classes: object;
   classIDs = [];
-  userObj: object;
+  userType: string;
 
   constructor(private authService: AuthService, private http: Http, private user: UserTypeService, ) { }
 
   ngOnInit() {
+      this.userType = JSON.parse(localStorage.getItem('user')).role;
+      console.log(this.userType)
       this.classSubs = this.user.getClasses().subscribe(res => {
       this.classes = res[0].classes;
       res[0].classes.forEach((element, index) => {

@@ -12,7 +12,6 @@ import { saveAs } from 'file-saver';
 @Injectable()
 export class UserTypeService {
 
-  userType: string;
   transcriptTitle: string;
   transcripts = [];
 
@@ -49,8 +48,8 @@ export class UserTypeService {
    */
   getClasses() {
 
-      const headers = new Headers();
-      headers.append('Content-Type', 'application/json');
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
 
     if (JSON.parse(localStorage.getItem('user')).role === 'captioner') {
       return this.http.get(`http://localhost:8080/api/captionists/username/${JSON.parse(localStorage.getItem('user')).userID}`,
