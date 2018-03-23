@@ -67,7 +67,7 @@ export class UserTypeService {
     this.listElem.remove();
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.delete(`http://localhost:8080/api/students/username/${this.transcriptID}`, {headers: headers})
+    return this.http.delete(`http://localhost:8080/api/transcripts/id/${this.transcriptID}`, {headers: headers})
     .map(res => res.json()).subscribe();
   }
 

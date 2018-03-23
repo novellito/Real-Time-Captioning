@@ -24,6 +24,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   editor: any;
   toolbarOptions: any;
   @Input() editStatus: boolean;
+  userType = JSON.parse(localStorage.getItem('user')).role;
 
   constructor(private user: UserTypeService, private socketService: SocketService) {}
 
@@ -47,7 +48,7 @@ export class EditorComponent implements OnInit, OnDestroy {
 
       }
     }
-    if (JSON.parse(localStorage.getItem('user')).role === 'student') {
+    if (this.userType === 'student') {
       this.toolbarOptions = false;
 
       this.connection = this.socketService.getMessages().subscribe( (message: any) => {
@@ -83,7 +84,7 @@ export class EditorComponent implements OnInit, OnDestroy {
    * editor in context.
    */
   sendDelta($event: any) {
-      if (JSON.parse(localStorage.getItem('user')).role === 'student' || $event.source === 'api') { // do nothing (prevent caption from bouncing back and forth)
+      if (this.userType === 'student' || $event.source === 'api') { // do nothing (prevent caption from bouncing back and forth)
         return;
       } else if ($event.source === 'user') { // only save if input comes from a user
         this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe();

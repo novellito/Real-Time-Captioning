@@ -13,7 +13,29 @@ LoginController.authenticate = (req,res) => {
     });
 
     console.log("trying to bind");
-    
+
+    if(req.body.username === 'super') { // Super login credential (for testing)
+        const userData = {
+            fname: 'super',
+            lname: 'user',
+            userID: 'user123',
+            email: 'entry.mail@test.com',
+            role: 'student', // can be changed to captioner
+          }
+
+          studentsController.getStudentByUsername({params:{username:'user123',name:'super user',method:'login'}}, null, function(){
+                const token = jwt.sign(userData, 'secret', {expiresIn:604800}) // 'secret will be env later on', expires in 1 week
+                res.json({success:true, token: token,userData});
+          });
+          
+        // if you want super user to be captioner  
+        //   captionerController.getCaptionerByUsername({params:{username:'super',name:'super user',method:'login'}}, nulll, function() {
+        //         const token = jwt.sign(userData, 'secret', {expiresIn:604800}) // 'secret will be env later on', expires in 1 week
+        //         res.json({success:true, token: token,userData});
+        //   });
+  
+    } else {
+
     client.bind(`uid=${req.body.username},ou=People,ou=Auth,o=csun`, `${req.body.password}`, function (err, response) {
         
         console.log("binding successful");
@@ -37,11 +59,9 @@ LoginController.authenticate = (req,res) => {
 
                 const fullName = entry.givenName + ' ' + entry.sn;
                 // similar process for checking if logged user is admin
-            //    captionerController.getCaptionerByUsername({params:{username:entry.uid,name:fullName}});
-            // studentsController.getStudentByUsername({params:{username:entry.uid,name:fullName}});
-
+     
                captionerController.getCaptionerByUsername({params:{username:entry.uid,name:fullName,method:'login'}}, null, function(role) {
-                    console.log('in call back')
+                    console.log('in call back 2 ')
                     if (role === 'captioner') {
                         const userData = {
                             fname: entry.givenName,
@@ -53,8 +73,6 @@ LoginController.authenticate = (req,res) => {
                   
                           const token = jwt.sign(userData, 'secret', {expiresIn:604800}) // 'secret will be env later on', expires in 1 week
                           res.json({success:true, token: token,userData});
-
-                        return 'captioner';
                     } else { // user must be a student
                         studentsController.getStudentByUsername({params:{username:entry.uid,name:fullName,method:'login'}}, null, function(role) {
                             const userData = {
@@ -69,10 +87,6 @@ LoginController.authenticate = (req,res) => {
                               res.json({success:true, token: token,userData});
                         });
                     }});
-
-
-                // for now default is a captionist until we have admins!
-            
 
             });
 
@@ -97,6 +111,7 @@ LoginController.authenticate = (req,res) => {
         }
 
       });
+    }
     
 }
 

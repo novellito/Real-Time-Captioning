@@ -14,7 +14,7 @@ StudentController.storeStudent = (req, res) => {
 
   createStudent_Promise
     .then(student => {
-      return res.status(201).json(student);
+      return "student saved successfully";  
     })
     .catch(err => {
       const DUPLICATE_KEY = 11000;
@@ -62,17 +62,16 @@ StudentController.getStudentByUsername = (req, res, next) => {
     .then(student => {
         if(student.length > 0) {
 
-          if(req.params.method) {
+          if(req.params.method) { // user is trying to login
             next();
+          } else { // send student data for loading dashboard classes
+            res.status(200).json(student);
           }
-          console.log('found student');
-          console.log(student);
-          // next('student'); // will cause error if not caught
-          res.status(200).json(student);
         } else { // student doesnt exist - need to add them to db
           console.log('adding new student to db');
           StudentController.storeStudent({body:{username:username, name:req.params.name}});
           next();
+          return "student added";
         }
     })
     .catch(err => {

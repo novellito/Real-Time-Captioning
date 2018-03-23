@@ -28,17 +28,11 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // this.user.userType = 'captioner';
-    console.log(this.route.snapshot.params['"classID"'])
 
     this.paramsSub = this.route.params.subscribe(params => {
-
-      console.log(params)
-      this.courseID = params['"classID"'];
-      console.log(this.courseID)
+      this.courseID = params['classID'];
       this.socketService.connect(this.courseID);
-      
       this.classSubs = this.capUtil.getClass(this.courseID).subscribe(res => { // get current class info to access hash id for the class
-        console.log(res)
         this.transcriptSub = this.capUtil.createTranscript(res[0]._id).subscribe(res2 => {
           this.socketService.id = res2._id; // assign the hash id value of transcript
         });
@@ -57,7 +51,7 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
    ngOnDestroy() {
     this.classSubs.unsubscribe();
     this.paramsSub.unsubscribe();
-    // this.transcriptSub.unsubscribe();
+    this.transcriptSub.unsubscribe();
     if (this.titleSubFlag) {
       this.titleSub.unsubscribe();
     }
