@@ -9,6 +9,9 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-captioner-session',
+  host: {
+    '(window:keydown)': 'hotkeys($event)'
+  },
   templateUrl: './captioner-session.component.html',
   styleUrls: ['./captioner-session.component.scss'],
   providers: [UserTypeService, SocketService, CaptionerUtilsService]
@@ -18,7 +21,7 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
   classSubs: Subscription;
   transcriptSub: Subscription;
   titleSub: Subscription;
-
+  showHide = false;
   titleSubFlag = false;
   courseID: any;
 
@@ -50,6 +53,12 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
     this.transcriptSub.unsubscribe();
     if (this.titleSubFlag) {
       this.titleSub.unsubscribe();
+    }
+  }
+
+  hotkeys(event) {
+    if (event.keyCode == 68 && event.ctrlKey) {
+      this.showHide = !this.showHide;
     }
   }
 
