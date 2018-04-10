@@ -57,7 +57,7 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
   }
 
   hotkeys(event) {
-    if (event.keyCode == 68 && event.ctrlKey) {
+    if (event.keyCode == 81 && event.ctrlKey) {
       this.showHide = !this.showHide;
     }
   }
