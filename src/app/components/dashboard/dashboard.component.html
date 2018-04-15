@@ -12,13 +12,15 @@
       </div>
         <div *ngFor="let class of classes; let i=index">
           <div class="card">
+              <i (click)="deleteClass(class)" class="fa fa-times delete-btn"></i>
+
             <div class="card-container">
             <div class="course-info">
               <h1 class="class-title">{{class.courseName}}</h1>
               <p class="h6">Professor {{class.professor}}</p>
               <p class="h6">{{class.day}} {{class.time}}</p>
               <p class="h6">Days: {{class.days}}</p>
-              <p class="h6">Location: {{class.location}}</p>
+              <p class="h6">Course ID:{{class.courseID}} Location: {{class.location}}</p>
             </div>
             <div class="transcripts text-center">
               <a (click)="loadTranscripts($event);" id={{i}} href="#{{class.courseID}}" data-toggle="collapse">

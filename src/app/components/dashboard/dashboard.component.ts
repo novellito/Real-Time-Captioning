@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   classes: object;
   classIDs = [];
   userType: string;
+  managing = false;
 
   constructor(private authService: AuthService, private http: Http, private user: UserTypeService, ) { }
 
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.userType = JSON.parse(localStorage.getItem('user')).role;
       this.classSubs = this.user.getClasses().subscribe(res => {
       this.classes = res[0].classes;
+      console.log(this.classes)
       res[0].classes.forEach((element, index) => {
          this.classIDs.push(element._id); // store class IDs for reference in loadTranscripts().
       });
@@ -36,7 +38,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.log(err);
       return false;
     });
+    console.log(this.user.transcripts)
+  }
 
+  // Delete the specefic class
+  deleteClass(className) {
+    console.log(className)
+    console.log('deleting')
   }
 
   // Load set of transcripts based on the id attribute.

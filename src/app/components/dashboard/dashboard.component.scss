@@ -22,6 +22,11 @@ $text-color: rgb(6, 40, 66);
   background-color: #fff;
   color: $text-color;
   margin-top: 2%;
+  .delete-btn {
+    &:hover {
+      cursor: pointer;
+    }
+  }
   .card-container {
     position: relative;
     display: grid;
