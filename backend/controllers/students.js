@@ -82,6 +82,8 @@ StudentController.getStudentByUsername = (req, res, next) => {
 
 // Updating students.
 StudentController.updateStudentByUsername = (req, res) => {
+
+  console.log(req.body)
   let username = req.params.username;
   let updateStudentById_Promise = StudentModel.find({$or:[ {$and:[ {"username":username}, {classes:  {$ne: new ObjectId(req.body._id)}}]}, 
                                  {$and:[{"username":username}, { 'classes': {$size:0} } ]}]}).populate('classes').exec(); // query for the existing class or if the array is empty
@@ -92,9 +94,21 @@ StudentController.updateStudentByUsername = (req, res) => {
       if(!student[0].classes) { // duplicate class being added
         return res.status(500).json({ error: "duplicate class cant be added!" });
       } else {
-        student[0].classes.push(req.body); // add class for student
-        student[0].save();
-        return res.status(201).json(student);
+        
+        if(req.body.id) { // student is deleting a class
+
+          const index = student[0].classes.findIndex(course => course._id==req.body.id);
+          student[0].classes.splice(index,1);
+          student[0].save();
+          return res.status(201).json(student);
+          
+
+        } else { // student is adding class
+
+          student[0].classes.push(req.body); // add class for student
+          student[0].save();
+          return res.status(201).json(student);
+        }
       }
     })
     .catch(err => {

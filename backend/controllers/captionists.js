@@ -98,9 +98,20 @@ CaptionistController.updateCaptionistByUsername = (req, res) => {
       if(captionist.length === 0) { // duplicate class being added
         return res.status(500).json({ error: "duplicate class cant be added!" });
       } else {
-        captionist[0].classes.push(req.body); // add class for captioner
-        captionist[0].save();
-        return res.status(201).json(captionist);
+
+        if(req.body.id) { // captioner is deleting a class
+
+          const index = captionist[0].classes.findIndex(course => course._id==req.body.id);
+          captionist[0].classes.splice(index,1);
+          captionist[0].save();
+          return res.status(201).json(student);
+
+        } else {
+
+          captionist[0].classes.push(req.body); // add class for captioner
+          captionist[0].save();
+          return res.status(201).json(captionist);
+        }
       }
     })
     .catch(err => {
