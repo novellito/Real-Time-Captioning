@@ -89,24 +89,6 @@ export class EditorComponent implements OnInit, OnDestroy {
   * editor in context.
   */
   sendDelta($event: any, hl, text) {
-    console.log($event);
-
-
-    console.log(this.editor.getContents());
-    let oldDelta = this.editor.getContents().ops[0].insert;
-    console.log(oldDelta);
-
-    if ($event.code === 'Space') {
-      let result = Unravel.expand_abbreviation(oldDelta);
-      if (oldDelta !== result) {
-        this.editor.updateContents([{ delete: oldDelta.length - 1 }, { insert: result }]);
-      } else {
-        console.log("no expansion");
-      }
-    }
-
-
-
 
 
     //$event.text = Unravel.expand_abbreviation($event.text)
@@ -114,14 +96,22 @@ export class EditorComponent implements OnInit, OnDestroy {
     if (this.user.userType === 'student' || $event.source === 'api') { // do nothing (prevent caption from bouncing back and forth)
       return;
     } else if ($event.source === 'user') { // only save if input comes from a user
-      //console.log('Firing event.text');
-      //console.log($event.text)
 
-      //this.editor.updateContents($event.delta);
+      console.log($event);
 
-      // console.log(this.editor.hasFocus())
-      // this.editor.focus();
-      // console.log(this.editor.hasFocus())
+
+      console.log(this.editor.getContents());
+      let oldDelta = this.editor.getContents().ops[0].insert;
+      console.log(oldDelta);
+
+
+      let result = Unravel.expand_abbreviation(oldDelta);
+      if (oldDelta !== result) {
+        this.editor.updateContents([{ delete: oldDelta.length - 1 }, { insert: result }]);
+      } else {
+        console.log("no expansion");
+      }
+
 
 
       this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe();
