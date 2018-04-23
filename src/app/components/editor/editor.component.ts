@@ -88,31 +88,20 @@ export class EditorComponent implements OnInit, OnDestroy {
   * Send the delta object to the students in the session
   * editor in context.
   */
-  sendDelta($event: any, hl, text) {
-
-
-    //$event.text = Unravel.expand_abbreviation($event.text)
-
+  sendDelta($event: any) {
+    console.log(this.editor.getSelection());
     if (this.user.userType === 'student' || $event.source === 'api') { // do nothing (prevent caption from bouncing back and forth)
       return;
     } else if ($event.source === 'user') { // only save if input comes from a user
 
-      console.log($event);
-
-
-      console.log(this.editor.getContents());
-      let oldDelta = this.editor.getContents().ops[0].insert;
-      console.log(oldDelta);
-
-
-      let result = Unravel.expand_abbreviation(oldDelta);
-      if (oldDelta !== result) {
-        this.editor.updateContents([{ delete: oldDelta.length - 1 }, { insert: result }]);
-      } else {
-        console.log("no expansion");
+      let text = this.editor.getContents().ops[0].insert;
+      let result = Unravel.expand_abbreviation(text);
+      if (text !== result) {
+        this.editor.updateContents([{ delete: text.length }, { insert: result }]);
       }
-
-
+      let range = this.editor.getSelection();
+      this.editor.setSelection({ index: range.index, length: 0 });
+      console.log(this.editor.getSelection());
 
       this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe();
 
