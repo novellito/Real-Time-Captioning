@@ -18,8 +18,6 @@ const Font = quill.import('formats/font');
 Font.whitelist = ['mirza', 'aref'];
 quill.register(Font, true);
 
-
-
 @Component({ selector: 'app-editor', templateUrl: './editor.component.html', styleUrls: ['./editor.component.scss'] })
 export class EditorComponent implements OnInit, OnDestroy {
 
@@ -89,19 +87,17 @@ export class EditorComponent implements OnInit, OnDestroy {
   * editor in context.
   */
   sendDelta($event: any) {
-    console.log(this.editor.getSelection());
     if (this.user.userType === 'student' || $event.source === 'api') { // do nothing (prevent caption from bouncing back and forth)
       return;
     } else if ($event.source === 'user') { // only save if input comes from a user
 
-      let text = this.editor.getContents().ops[0].insert;
+      let text = $event.text;
       let result = Unravel.expand_abbreviation(text);
+
       if (text !== result) {
         this.editor.updateContents([{ delete: text.length }, { insert: result }]);
+        this.editor.formatText(0, 1, 'bold', true);
       }
-      let range = this.editor.getSelection();
-      this.editor.setSelection({ index: range.index, length: 0 });
-      console.log(this.editor.getSelection());
 
       this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe();
 
