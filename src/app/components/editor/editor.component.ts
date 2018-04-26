@@ -95,8 +95,12 @@ export class EditorComponent implements OnInit, OnDestroy {
       let result = Unravel.expand_abbreviation(text);
 
       if (text !== result) {
-        this.editor.updateContents([{ delete: text.length }, { insert: result }]);
-        this.editor.formatText(0, 1, 'bold', true);
+        result = result + ' \n';
+        this.editor.updateContents([
+          { delete: text.length },
+          { insert: result },
+        ]);
+        setTimeout(() => this.editor.setSelection(result.length), 50);
       }
 
       this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe();
