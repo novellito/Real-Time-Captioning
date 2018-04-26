@@ -3,28 +3,31 @@
         "courseName": "Comp 490",
         "courseID": "12345",
         "professor": "Fitzgerald",
+        "transcripts": [],
         "day": "MW",
-        "time": "11:00am - 12:15pm"
+        "time": ""
       },
       {
         "courseName": "Comp 482",
         "courseID": "67891",
         "professor": "Noga",
         "day": "MW",
-        "time": "1:00pm - 2:15pm"
+        "time": ""
       },
       {
         "courseName": "Bio 107/L",
         "courseID": "45673",
         "professor": "Smith",
+        "transcripts": [],
         "day": "TuTh",
-        "time": "11:00am - 12:15pm"
+        "time": ""
       },
       {
         "courseName": "Art 305",
         "courseID": "32134",
         "professor": "Picasso",
+        "transcripts": [],
         "day": "F",
-        "time": "11:00am - 12:15pm"
+        "time": ""
       }
   ]

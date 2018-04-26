@@ -1,65 +1,86 @@
 $transcript-card: #fff;
 $border-color: rgba(232, 232, 232, 0.61);
 $text-color: rgb(6, 40, 66);
-h1 {
-  margin-top: 2%;
+
+.head {
+    display: flex;
+    h1 {
+        margin-top: 2%;
+    }
+    .btn-containers {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin: auto;
+    }
+    a {
+        height: 50%;
+        margin-top: 3%;
+    }
 }
 
 .card {
-  background-color: #fff;
-  color: $text-color;
-  margin-top: 2%;
-  .card-container {
-    position: relative;
-    display: grid;
-    grid-template-columns: 60% 20% 20%;
-    .course-info {
-      padding: 20px;
+    background-color: #fff;
+    color: $text-color;
+    margin-top: 2%;
+    .delete-btn {
+        width: 16px;
+        &:hover {
+            cursor: pointer;
+            color: #ff3547;
+        }
     }
-    .transcripts img,
-    .join-session img {
-      display: block;
-      width: 60%;
-      margin: 15px auto 0 auto;
+    .card-container {
+        position: relative;
+        display: grid;
+        grid-template-columns: 60% 20% 20%;
+        .course-info {
+            padding: 20px;
+        }
+        .transcripts img,
+        .session img {
+            display: block;
+            width: 60%;
+            margin: 15px auto 0 auto;
+        }
+        p {
+            color: $text-color;
+        }
     }
-    p {
-      color: $text-color;
-    }
-  }
 }
 
 .transcripts {
-  border-right: 2px solid $border-color;
-  border-left: 2px solid $border-color;
-  &:hover {
-    background-color: $transcript-card;
-  }
+    border-right: 2px solid $border-color;
+    border-left: 2px solid $border-color;
+    &:hover {
+        background-color: $transcript-card;
+    }
 }
 
 .card-collapse {
-  margin-top: 0;
-  background-color: $transcript-card;
-  .recent-transcripts {
-    margin-top: 15px;
-    list-style: none;
-    li a:hover {
-      color: #4d5ec1;
+    margin-top: 0;
+    background-color: $transcript-card;
+    .recent-transcripts {
+        margin-top: 15px;
+        list-style: none;
+        li a:hover {
+            color: #4d5ec1;
+        }
     }
-  }
-  span {
-    font-size: 1.5em;
-  }
+    span {
+        font-size: 1.5em;
+    }
 }
 
 // small devices
 @media (max-width: 576px) {
-  h1:not(.class-title) {
-    text-align: center;
-  }
-  .class-title {
-    font-size: 1.4em;
-  }
-  p {
-    font-size: 0.8em;
-  }
+    h1:not(.class-title) {
+        text-align: center;
+    }
+    .class-title {
+        font-size: 1.4em;
+    }
+    p {
+        font-size: 0.8em;
+    }
 }

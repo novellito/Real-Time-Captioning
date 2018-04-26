@@ -16,7 +16,7 @@ export class AuthService {
     return this.http.post('http://localhost:8080/api/login', user, {headers: headers}).map(res => res.json());
   }
 
-  storeLoginData(token, user) { // TODO: store user status (student/caption here) later
+  storeLoginData(token, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
