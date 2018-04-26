@@ -89,7 +89,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   * editor in context.
   */
   sendDelta($event: any) {
-    if (this.user.userType === 'student' || $event.source === 'api') { // do nothing (prevent caption from bouncing back and forth)
+    if (this.userType === 'student' || $event.source === 'api') { // do nothing (prevent caption from bouncing back and forth)
       return;
     } else if ($event.source === 'user') { // only save if input comes from a user
 
