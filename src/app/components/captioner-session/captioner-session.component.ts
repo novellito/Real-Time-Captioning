@@ -9,6 +9,9 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-captioner-session',
+  host: {
+    '(window:keydown)': 'hotkeys($event)'
+  },
   templateUrl: './captioner-session.component.html',
   styleUrls: ['./captioner-session.component.scss'],
   providers: [UserTypeService, SocketService, CaptionerUtilsService]
@@ -20,11 +23,12 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
   titleSub: Subscription;
   paramsSub: Subscription;
 
+  showHide = false;
   titleSubFlag = false;
   courseID;
 
   constructor(private user: UserTypeService, private socketService:
-    SocketService, private route: ActivatedRoute, private capUtil: CaptionerUtilsService) {}
+    SocketService, private route: ActivatedRoute, private capUtil: CaptionerUtilsService) { }
 
   ngOnInit() {
 
@@ -42,17 +46,23 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
 
   // Method for updating the transcripts title
   setTitle(title) {
-   this.titleSub = this.capUtil.updateTranscriptTitle(this.socketService.id, title).subscribe();
-   this.titleSubFlag = true;
+    this.titleSub = this.capUtil.updateTranscriptTitle(this.socketService.id, title).subscribe();
+    this.titleSubFlag = true;
   }
 
-   // Unsubscribe to the connections. (avoid memory leak)
-   ngOnDestroy() {
+  // Unsubscribe to the connections. (avoid memory leak)
+  ngOnDestroy() {
     this.classSubs.unsubscribe();
     this.paramsSub.unsubscribe();
     this.transcriptSub.unsubscribe();
     if (this.titleSubFlag) {
       this.titleSub.unsubscribe();
+    }
+  }
+
+  hotkeys(event) {
+    if (event.keyCode == 81 && event.ctrlKey) {
+      this.showHide = !this.showHide;
     }
   }
 
