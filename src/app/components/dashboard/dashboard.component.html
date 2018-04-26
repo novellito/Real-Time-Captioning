@@ -3,14 +3,29 @@
 <div class="container-fluid">
   <div class="row d-flex justify-content-center">
     <div class="col-md-9 col-sm-12" id="accordion">
-      <h1>Classes</h1>
+
+      <div class="head">
+        <h1>Classes</h1>
+        <div class="btn-containers">
+            <a [routerLink]="['/add-a-class']" class="btn btn-sm btn-danger">
+              Add a class
+            </a>
+            <a (click)="managing=!managing" class="btn btn-sm btn-danger">
+              Manage classes
+            </a>
+        </div>
+      </div>
         <div *ngFor="let class of classes; let i=index">
           <div class="card">
+              <i *ngIf="managing" (click)="setClassData(class)" class="fa fa-times delete-btn" data-toggle="modal" data-target="#classDeleteModal"></i>
+
             <div class="card-container">
             <div class="course-info">
               <h1 class="class-title">{{class.courseName}}</h1>
-              <p class="h6">{{class.day}} {{class.time}}</p>
               <p class="h6">Professor {{class.professor}}</p>
+              <p class="h6">{{class.day}} {{class.time}}</p>
+              <p class="h6">Days: {{class.days}}</p>
+              <p class="h6">Course ID:{{class.courseID}} Location: {{class.location}}</p>
             </div>
             <div class="transcripts text-center">
               <a (click)="loadTranscripts($event);" id={{i}} href="#{{class.courseID}}" data-toggle="collapse">
@@ -18,10 +33,15 @@
                 <p>Recent Transcripts</p>
               </a>
             </div>
-            <div class="join-session text-center">
-              <a [routerLink]="['/student-session', class.courseName, class.courseID]">
+            <div class="session text-center">
+              <a *ngIf="userType === 'student'" [routerLink]="['/student-session', class.courseName, class.courseID]">
                 <img src="../../../assets/images/join.svg" alt="join session">
                 <p>Join Session</p>
+              </a>
+
+              <a *ngIf="userType === 'captioner'" [routerLink]="['/captioner-session', class.courseID]">
+                <img src="../../../assets/images/join.svg" alt="start session">
+                <p>Start Session</p>
               </a>
             </div>
           </div>
@@ -41,7 +61,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -54,8 +73,27 @@
               <div class="modal-body">
                   <i class="fa fa-times fa-4x animated rotateIn"></i>
               </div>
+
               <div class="modal-footer flex-center">
                   <a (click)="this.user.deleteTranscript()" class="btn  btn-outline-secondary-modal" data-dismiss="modal">Yes</a>
+                  <a type="button" class="btn  btn-primary-modal waves-effect" data-dismiss="modal">No</a>
+              </div>
+
+          </div>
+      </div>
+  </div>
+  
+  <div class="modal fade" id="classDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+          <div class="modal-content text-center">
+              <div class="modal-header d-flex justify-content-center">
+                  <p class="heading">Are you sure?</p>
+              </div>
+              <div class="modal-body">
+                  <i class="fa fa-times fa-4x animated rotateIn"></i>
+              </div>
+              <div class="modal-footer flex-center">
+                  <a (click)="this.deleteClass()" class="btn  btn-outline-secondary-modal" data-dismiss="modal">Yes</a>
                   <a type="button" class="btn  btn-primary-modal waves-effect" data-dismiss="modal">No</a>
               </div>
           </div>

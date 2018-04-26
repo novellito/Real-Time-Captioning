@@ -1,15 +1,20 @@
 "use strict";
 const _ = require("underscore");
 const TranscriptModel = require("../models/transcript");
+const classController = require("./classes");
+const ClassModel = require("../models/class");
+
 let TranscriptController = {};
 
 // Storing Transcripts.
 TranscriptController.storeTranscript = (req, res) => {
   let transcript = new TranscriptModel(req.body);
   let createTranscript_Promise = transcript.save();
+  let populateTranscript = TranscriptModel.find({"courseID":`${req.body.courseID}`}).populate('courseID').exec(); // create association between transcript & classes
 
   createTranscript_Promise
     .then(transcript => {
+      classController.updateCourseById({params:{id:req.body.courseID}, transcripts:transcript._id}); // update class schema
       return res.status(201).json(transcript);
     })
     .catch(err => {
@@ -70,7 +75,6 @@ TranscriptController.getTranscriptByCourseId = (req, res) => {
 
 // Updating transcripts.
 TranscriptController.updateTranscriptById = (req, res) => {
-  console.log(req.body);
   let transcriptID = req.params.id;
   let updateTranscriptById_Promise = TranscriptModel.findById(
     transcriptID

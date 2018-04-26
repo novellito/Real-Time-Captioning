@@ -12,11 +12,6 @@ const AdminSchema = new Schema({
       unique: true
     }
   },
-  password: {
-    type: String,
-    required: true,
-    select: false
-  },
   name: {
     type: String,
     required: true

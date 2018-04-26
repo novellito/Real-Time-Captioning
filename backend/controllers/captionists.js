@@ -1,16 +1,25 @@
 "use strict";
 const _ = require("underscore");
 const CaptionistModel = require("../models/captionist");
+const studentsController = require("./students");
+const ObjectId = require('mongoose').Types.ObjectId; 
+
 let CaptionistController = {};
 
 // Storing Captionists.
 CaptionistController.storeCaptionist = (req, res) => {
-  let captionist = new CaptionistModel(req.body);
-  let createCaptionist_Promise = captionist.save();
 
+  const captionerInfo = {
+    username:req.body.username,
+    name: req.body.name
+  };
+  
+  let captionist = new CaptionistModel(captionerInfo);
+  let createCaptionist_Promise = captionist.save();
   createCaptionist_Promise
-    .then(captionist => {
-      return res.status(201).json(captionist);
+  .then(captionist => {
+    console.log('new captionist saved!');
+    return res.status(201).json(captionist);
     })
     .catch(err => {
       const DUPLICATE_KEY = 11000;
@@ -52,19 +61,58 @@ CaptionistController.getCaptionistById = (req, res) => {
     });
 };
 
+CaptionistController.getCaptionerByUsername = (req, res, next) => {
+  let username = req.params.username;
+  let getCaptionistById_Promise = CaptionistModel.find({"username":`${username}`}).populate('classes').exec();
+
+  getCaptionistById_Promise
+    .then(captioner => {
+        if(captioner.length > 0) {
+          if(req.params.method) { // user is trying to login
+            next('captioner'); // let login controllor know that user is a captioner
+          } else {
+            console.log('captioner exists!');  // send captioner data for loading dashboard classes
+            res.status(200).json(captioner);
+          }
+        } else { // do nothing if user is not a captioner
+          console.log('user is not a captioner! - checking student!');
+          next(); // let login controller that user must be a student
+        }
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json({ error: err });
+    });
+};
+
 // Updating Captionists.
-CaptionistController.updateCaptionistById = (req, res) => {
-  let captionistID = req.params.id;
-  let updateCaptionistById_Promise = CaptionistModel.findById(
-    captionistID
-  ).exec();
+CaptionistController.updateCaptionistByUsername = (req, res) => {
+
+  let username = req.params.username;
+  let updateCaptionistById_Promise = CaptionistModel.find({$or:[ {$and:[ {username:`${username}`}, {classes:  {$ne: new ObjectId(req.body._id)}}]}, 
+                                 {$and:[{username:`${username}`}, { classes: {$size:0} } ]}]}).populate('classes').exec(); // query for the existing class or if the array is empty
+
   updateCaptionistById_Promise
     .then(captionist => {
       _.extend(captionist, req.body);
-      return captionist.save();
-    })
-    .then(captionist => {
-      return res.status(201).json(captionist);
+      if(captionist.length === 0) { // duplicate class being added
+        return res.status(500).json({ error: "duplicate class cant be added!" });
+      } else {
+
+        if(req.body.id) { // captioner is deleting a class
+
+          const index = captionist[0].classes.findIndex(course => course._id==req.body.id);
+          captionist[0].classes.splice(index,1);
+          captionist[0].save();
+          return res.status(201).json(student);
+
+        } else {
+
+          captionist[0].classes.push(req.body); // add class for captioner
+          captionist[0].save();
+          return res.status(201).json(captionist);
+        }
+      }
     })
     .catch(err => {
       return res.status(500).json({ error: err.message });

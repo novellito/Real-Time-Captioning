@@ -19,7 +19,7 @@ export class StudentSessionComponent implements OnInit {
      private socketService: SocketService) { }
 
   ngOnInit() {
-    this.user.userType = 'student';
+    // this.user.userType = 'student';
     this.className = this.route.snapshot.params['className'];
     this.classID = this.route.snapshot.params['classID'];
 

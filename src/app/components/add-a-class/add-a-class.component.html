@@ -1,0 +1,108 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-9 col-sm-12" id="accordion">
+      <h1>Add Classes</h1>
+      <select name="class-list" id="class-list" (change)="update($event)">
+          <option value="" selected="selected">&nbsp; </option>
+          <option value="AE">A E - Aerospace Engineering</option>
+          <option value="AM">A M - Applied Mechanics</option>
+          <option value="AAS">AAS - Asian American Studies</option>
+          <option value="ACCT">ACCT - Accounting</option>
+          <option value="AFRS">AFRS - Africana Studies</option>
+          <option value="AIS">AIS - American Indian Studies Program</option>
+          <option value="ANTH">ANTH - Anthropology</option>
+          <option value="ARAB">ARAB - Arabic</option>
+          <option value="ARMN">ARMN - Armenian</option>
+          <option value="ART">ART - Arts</option>
+          <option value="ASTR">ASTR - Astronomy</option>
+          <option value="ATHL">ATHL - Intercollegiate Athletics</option>
+          <option value="BIOL">BIOL - Biology</option>
+          <option value="BLAW">BLAW - Business Law</option>
+          <option value="BUS">BUS - Business</option>
+          <option value="CE">C E - Civil Engineering</option>
+          <option value="CADV">CADV - Child and Adolescent Development</option>
+          <option value="CAS">CAS - Central American Studies</option>
+          <option value="CCE">CCE - Civic and Community Engagement</option>
+          <option value="CD">CD - Communication Disorders and Sciences</option>
+          <option value="CECS">CECS - Engineering and Computer Science</option>
+          <option value="CHS">CH S - Chicana and Chicano Studies</option>
+          <option value="CHEM">CHEM - Chemistry</option>
+          <option value="CHIN">CHIN - Chinese</option>
+          <option value="CIT">CIT - Computer Information Technology</option>
+          <option value="CJS">CJS - Criminology &amp; Justice Studies</option>
+          <option value="CLAS">CLAS - Classics</option>
+          <option value="CM">CM - Construction Management</option>
+          <option value="COMP">COMP - Computer Science</option>
+          <option value="COMS">COMS - Communication Studies</option>
+          <option value="CTVA">CTVA - Cinema and Television Arts</option>
+          <option value="DEAF">DEAF - Deaf Studies</option>
+          <option value="EED">E ED - Elementary Education</option>
+          <option value="ECE">ECE - Electrical and Computer Engineering</option>
+          <option value="ECON">ECON - Economics</option>
+          <option value="EDUC">EDUC - Education</option>
+          <option value="ELPS">ELPS - Educational Leadership and Policy Studies</option>
+          <option value="ENGL">ENGL - English</option>
+          <option value="EOH">EOH - Environmental and Occupational Health</option>
+          <option value="EPC">EPC - Educational Psychology</option>
+          <option value="FCS">FCS - Family and Consumer Sciences</option>
+          <option value="FIN">FIN - Finance, Financial Planning, and Insurance</option>
+          <option value="FLIT">FLIT - Literature in Translation and Cultures</option>
+          <option value="FREN">FREN - French</option>
+          <option value="GBUS">GBUS - Graduate Business</option>
+          <option value="GEOG">GEOG - Geography and Environ Studies</option>
+          <option value="GEOL">GEOL - Geological Sciences</option>
+          <option value="GWS">GWS - Gender and Women's Studies</option>
+          <option value="HEBR">HEBR - Hebrew</option>
+          <option value="HHD">HHD - Health and Human Development</option>
+          <option value="HIST">HIST - History</option>
+          <option value="HSCI">HSCI - Health Sciences</option>
+          <option value="HUM">HUM - Humanities Program</option>
+          <option value="IS">IS - Information Systems</option>
+          <option value="ITAL">ITAL - Italian</option>
+          <option value="JS">J S - Jewish Studies Program</option>
+          <option value="JAPN">JAPN - Japanese</option>
+          <option value="JOUR">JOUR - Journalism</option>
+          <option value="KIN">KIN - Kinesiology</option>
+          <option value="KOR">KOR - Korean</option>
+          <option value="LING">LING - Linguistics/TESL</option>
+          <option value="LRS">LR S - Liberal Studies</option>
+          <option value="ME">M E - Mechanical Engineering</option>
+          <option value="MATH">MATH - Mathematics</option>
+          <option value="MCOM">MCOM - Mass Communication</option>
+          <option value="MGT">MGT - Management</option>
+          <option value="MKT">MKT - Marketing</option>
+          <option value="MSE">MSE - Manufacturing Systems Engineering and Manage</option>
+          <option value="MUS">MUS - Music</option>
+          <option value="NURS">NURS - Nursing</option>
+          <option value="PERS">PERS - Persian</option>
+          <option value="PHIL">PHIL - Philosophy</option>
+          <option value="PHSC">PHSC - Physical Science</option>
+          <option value="PHYS">PHYS - Physics</option>
+          <option value="POLS">POLS - Political Science</option>
+          <option value="PSY">PSY - Psychology</option>
+          <option value="PT">PT - Physical Therapy</option>
+          <option value="QS">QS - Queer Studies</option>
+          <option value="RS">R S - Religious Studies</option>
+          <option value="RTM">RTM - Recreation and Tourism Management</option>
+          <option value="RUSS">RUSS - Russian</option>
+          <option value="S ED">S ED - Secondary Education</option>
+          <option value="SBS">SBS - Social and Behavioral Sciences</option>
+          <option value="SCI">SCI - Science</option>
+          <option value="SCM">SCM - Supply Chain Management</option>
+          <option value="SOC">SOC - Sociology</option>
+          <option value="SOM">SOM - Systems and Operation&nbsp; Management</option>
+          <option value="SPAN">SPAN - Spanish</option>
+          <option value="SPED">SPED - Special Education</option>
+          <option value="SUST">SUST - Sustainability</option>
+          <option value="SWRK">SWRK - Social Work</option>
+          <option value="TH">TH - Theatre</option>
+          <option value="UNIV">UNIV - University</option>
+          <option value="URBS">URBS - Urban Studies and Planning</option>
+          </select>
+        
+          <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

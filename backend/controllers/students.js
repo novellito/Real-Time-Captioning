@@ -1,16 +1,20 @@
 "use strict";
 const _ = require("underscore");
 const StudentModel = require("../models/student");
+const ObjectId = require('mongoose').Types.ObjectId; 
 let StudentController = {};
-
 // Storing students.
 StudentController.storeStudent = (req, res) => {
-  let student = new StudentModel(req.body);
+  const studentInfo = {
+    username:req.body.username,
+    name: req.body.name
+  };
+  let student = new StudentModel(studentInfo);
   let createStudent_Promise = student.save();
 
   createStudent_Promise
     .then(student => {
-      return res.status(201).json(student);
+      return "student saved successfully";  
     })
     .catch(err => {
       const DUPLICATE_KEY = 11000;
@@ -50,17 +54,62 @@ StudentController.getStudentById = (req, res) => {
     });
 };
 
+StudentController.getStudentByUsername = (req, res, next) => {
+  let username = req.params.username;
+  let getStudentById_Promise = StudentModel.find({"username":`${username}`}).populate('classes').exec();
+
+  getStudentById_Promise
+    .then(student => {
+        if(student.length > 0) {
+
+          if(req.params.method) { // user is trying to login
+            next();
+          } else { // send student data for loading dashboard classes
+            res.status(200).json(student);
+          }
+        } else { // student doesnt exist - need to add them to db
+          console.log('adding new student to db');
+          StudentController.storeStudent({body:{username:username, name:req.params.name}});
+          next();
+          return "student added";
+        }
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json({ error: err });
+    });
+};
+
 // Updating students.
-StudentController.updateStudentById = (req, res) => {
-  let studentID = req.params.id;
-  let updateStudentById_Promise = StudentModel.findById(studentID).exec();
+StudentController.updateStudentByUsername = (req, res) => {
+
+  console.log(req.body)
+  let username = req.params.username;
+  let updateStudentById_Promise = StudentModel.find({$or:[ {$and:[ {"username":username}, {classes:  {$ne: new ObjectId(req.body._id)}}]}, 
+                                 {$and:[{"username":username}, { 'classes': {$size:0} } ]}]}).populate('classes').exec(); // query for the existing class or if the array is empty
+  
   updateStudentById_Promise
     .then(student => {
       _.extend(student, req.body);
-      return student.save();
-    })
-    .then(student => {
-      return res.status(201).json(student);
+      if(!student[0].classes) { // duplicate class being added
+        return res.status(500).json({ error: "duplicate class cant be added!" });
+      } else {
+        
+        if(req.body.id) { // student is deleting a class
+
+          const index = student[0].classes.findIndex(course => course._id==req.body.id);
+          student[0].classes.splice(index,1);
+          student[0].save();
+          return res.status(201).json(student);
+          
+
+        } else { // student is adding class
+
+          student[0].classes.push(req.body); // add class for student
+          student[0].save();
+          return res.status(201).json(student);
+        }
+      }
     })
     .catch(err => {
       return res.status(500).json({ error: err.message });

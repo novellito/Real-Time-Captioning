@@ -5,19 +5,20 @@ let ClassController = {};
 
 // Storing classes.
 ClassController.storeCourse = (req, res) => {
-  let course = new ClassModel(req.body);
-  let createCourse_Promise = course.save();
+  let courseToSave = new ClassModel(req.body); 
 
-  createCourse_Promise
-    .then(course => {
-      return res.status(201).json(course);
-    })
-    .catch(err => {
-      const DUPLICATE_KEY = 11000;
-      return err.code === DUPLICATE_KEY
-        ? res.status(400).json(err.errmsg)
-        : res.status(500).json(err.errmsg);
-    });
+  let getTranscriptById_Promise = ClassModel.find({"courseID":`${req.body.courseID}`}, 
+    function(err, course) {
+      if(course.length > 0) { // if found then don't save it since it already exists
+      
+        console.log('found the class');
+        res.status(200).json(course[0]);
+
+      } else { // does not exist so save it.
+        courseToSave.save();
+        console.log('new class saved!');
+        return res.status(201).json(courseToSave);
+    }}).exec();
 };
 
 // Retrieving classes.
@@ -33,6 +34,7 @@ ClassController.getAllCourses = (req, res) => {
 };
 
 ClassController.getCourseById = (req, res) => {
+  
   let courseID = req.params.id;
   let getCourseById_Promise = ClassModel.findById(courseID).exec();
 
@@ -72,17 +74,10 @@ ClassController.getClassByCourseId = (req, res) => {
 // Updating courses.
 ClassController.updateCourseById = (req, res) => {
   let courseID = req.params.id;
-  let updateCourseById_Promise = ClassModel.findById(courseID).exec();
-  updateCourseById_Promise
-    .then(course => {
-      _.extend(course, req.body);
+  let updateCourseById_Promise = ClassModel.findById(courseID).populate('transcripts').exec(
+    function(err, course) {
+      course.transcripts.push(req.transcripts); // add transcript to course
       return course.save();
-    })
-    .then(course => {
-      return res.status(201).json(course);
-    })
-    .catch(err => {
-      return res.status(500).json({ error: err.message });
     });
 };
 

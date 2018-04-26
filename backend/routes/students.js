@@ -13,8 +13,10 @@ module.exports = function(io) {
   router.delete("/id/:id", controller.destroyById);
   // Get an student by id
   router.get("/id/:id", controller.getStudentById);
-  // Update student by id
-  router.put("/id/:id", controller.updateStudentById);
+  // Get an student by username
+  router.get("/username/:username", controller.getStudentByUsername);
+  // Update student by username
+  router.put("/username/:username", controller.updateStudentByUsername);
 
   return router;
 };

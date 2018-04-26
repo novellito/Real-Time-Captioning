@@ -12,15 +12,17 @@ const StudentSchema = new Schema({
       unique: true
     }
   },
-  password: {
-    type: String,
-    required: true,
-    select: false
-  },
   name: {
     type: String,
     required: true
-  }
+  },
+  classes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "class"
+    }
+  ]
 });
 
 module.exports = mongoose.model("student", StudentSchema);
+

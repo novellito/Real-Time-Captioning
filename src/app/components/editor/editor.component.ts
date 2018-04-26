@@ -1,4 +1,5 @@
 import { Unravel } from 'unravel-me';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, OnDestroy, ViewChild, Input } from '@angular/core';
 import { QuillEditorComponent } from 'ngx-quill/src/quill-editor.component';
@@ -26,8 +27,9 @@ export class EditorComponent implements OnInit, OnDestroy {
   editor: any;
   toolbarOptions: any;
   @Input() editStatus: boolean;
+  userType = JSON.parse(localStorage.getItem('user')).role;
 
-  constructor(private user: UserTypeService, private socketService: SocketService) { }
+  constructor(private user: UserTypeService, private socketService: SocketService, private route: ActivatedRoute) { }
 
   /**
    * A life cycle hook for determining what the user can
@@ -51,18 +53,18 @@ export class EditorComponent implements OnInit, OnDestroy {
 
       }
     }
-    if (this.user.userType === 'student') {
+    if (this.userType === 'student') {
       this.toolbarOptions = false;
-
-      this.connection = this.socketService.getMessages().subscribe((message: any) => {
-        if (this.editor.getLength() === 1) {
-          this.editor.updateContents(message.content);
-        } else {
-          this.editor.updateContents(message.currDel);
+      if (!this.route.snapshot.params['id']) {
+        this.connection = this.socketService.getMessages().subscribe((message: any) => {
+          if (this.editor.getLength() === 1) {
+            this.editor.updateContents(message.content);
+          } else {
+            this.editor.updateContents(message.currDel);
+          }
         }
+        );
       }
-      );
-
 
     } else {
       this.toolbarOptions = [
@@ -112,7 +114,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   // sendDM(message: any) {}
 
   ngOnDestroy() {
-    if (this.user.userType === 'student') {
+    if (JSON.parse(localStorage.getItem('user')).role === 'student' && this.connection) {
       this.connection.unsubscribe();
     }
   }
