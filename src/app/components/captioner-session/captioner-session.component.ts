@@ -6,7 +6,6 @@ import { CaptionerUtilsService } from 'app/services/captioner-utils.service';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs/Subscription';
 
-
 @Component({
   selector: 'app-captioner-session',
   host: {
@@ -17,7 +16,6 @@ import { Subscription } from 'rxjs/Subscription';
   providers: [UserTypeService, SocketService, CaptionerUtilsService]
 })
 export class CaptionerSessionComponent implements OnInit, OnDestroy {
-
   classSubs: Subscription;
   transcriptSub: Subscription;
   titleSub: Subscription;
@@ -27,26 +25,33 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
   titleSubFlag = false;
   courseID;
 
-  constructor(private user: UserTypeService, private socketService:
-    SocketService, private route: ActivatedRoute, private capUtil: CaptionerUtilsService) { }
+  constructor(
+    private user: UserTypeService,
+    private socketService: SocketService,
+    private route: ActivatedRoute,
+    private capUtil: CaptionerUtilsService
+  ) {}
 
   ngOnInit() {
-
     this.paramsSub = this.route.params.subscribe(params => {
       this.courseID = params['classID'];
       this.socketService.connect(this.courseID);
-      this.classSubs = this.capUtil.getClass(this.courseID).subscribe(res => { // get current class info to access hash id for the class
-        this.transcriptSub = this.capUtil.createTranscript(res[0]._id).subscribe(res2 => {
-          this.socketService.id = res2._id; // assign the hash id value of transcript
-        });
+      this.classSubs = this.capUtil.getClass(this.courseID).subscribe(res => {
+        // get current class info to access hash id for the class
+        this.transcriptSub = this.capUtil
+          .createTranscript(res[0]._id)
+          .subscribe(res2 => {
+            this.socketService.id = res2._id; // assign the hash id value of transcript
+          });
       });
     });
-
   }
 
   // Method for updating the transcripts title
   setTitle(title) {
-    this.titleSub = this.capUtil.updateTranscriptTitle(this.socketService.id, title).subscribe();
+    this.titleSub = this.capUtil
+      .updateTranscriptTitle(this.socketService.id, title)
+      .subscribe();
     this.titleSubFlag = true;
   }
 
@@ -54,7 +59,6 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.classSubs.unsubscribe();
     this.paramsSub.unsubscribe();
-    this.transcriptSub.unsubscribe();
     if (this.titleSubFlag) {
       this.titleSub.unsubscribe();
     }
@@ -65,5 +69,4 @@ export class CaptionerSessionComponent implements OnInit, OnDestroy {
       this.showHide = !this.showHide;
     }
   }
-
 }
