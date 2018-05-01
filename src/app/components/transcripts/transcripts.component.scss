@@ -29,7 +29,7 @@ a > * {
   z-index: 1;
 }
 
-.card.card-collapse.transcript-card {
+.card.card-collapse.transcript-card > :first-child {
   padding-top: 20px;
 }
 
