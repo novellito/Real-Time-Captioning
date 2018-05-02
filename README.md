@@ -59,7 +59,7 @@ rtc/
 
 <h3> Starting the frontend of the application </h3>
 
- * Run `ng serve` (on another terminal window) for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. <b>Note you may have to run `npm install` if it's your first time running the app</b>
+ * Run `ng serve` (on another terminal window) for a dev server. Navigate to `http://34.209.157.38:4200/`. The app will automatically reload if you change any of the source files. <b>Note you may have to run `npm install` if it's your first time running the app</b>
  
  
 ## Code scaffolding 
