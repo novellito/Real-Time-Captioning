@@ -99,7 +99,7 @@ export class UserTypeService {
    * @returns a rtf version of the transcript and downloads it for the client
    */
   download(name, id, status) {
-    return this.http.get(`http://demo-load-balancer-1858473610.us-west-2.elb.amazonaws.com:8080/api/downloads/${id}/${status}`, {responseType: ResponseContentType.Blob})
+    return this.http.get(`http://172.31.8.206:8080/api/downloads/${id}/${status}`, {responseType: ResponseContentType.Blob})
     .map(res => new Blob([res.blob()], { type: 'application/rtf' })).subscribe(res => {
       saveAs(res, `${name}.rtf`);
     });
