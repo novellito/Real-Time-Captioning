@@ -36,7 +36,7 @@ export class UserTypeService {
   getTranscripts(id) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(`http:/172.31.8.206:8080/api/transcripts/courseID/${id}`, { headers: headers })
+    return this.http.get(`http://172.31.8.206:8080/api/transcripts/courseID/${id}`, { headers: headers })
     .map(res => {
       this.transcripts = res.json().map(i => {
         return {id: i['_id'], transcriptName: i['transcriptName'], rawStatus: i['rawStatus'] }
