@@ -1,5 +1,5 @@
 {
-  "undefined": "34.209.157.38/Real-Time",
-  "dev": "34.209.157.38/Real-Time",
-  "prod": "34.209.157.38/Real-Time"
+  "undefined": "demo-load-balancer-1858473610.us-west-2.elb.amazonaws.com/Real-Time",
+  "dev": "demo-load-balancer-1858473610.us-west-2.elb.amazonaws.com/Real-Time",
+  "prod": "demo-load-balancer-1858473610.us-west-2.elb.amazonaws.com/Real-Time"
 }

@@ -22,7 +22,7 @@ const LoginRoutes = require("./routes/login");
 
 // Connect to our mongoDB instance
 mongoose.connect(
-  "mongodb://34.209.157.38/Real-Time",
+  "mongodb://demo-load-balancer-1858473610.us-west-2.elb.amazonaws.com/Real-Time",
   { useMongoClient: true },
   err => {
     if (err) {
