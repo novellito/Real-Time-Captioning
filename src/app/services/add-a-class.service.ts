@@ -27,7 +27,7 @@ export class AddAClassService {
     };
     const headers = new Headers();
     headers.append('Content-Type', 'application/json; charset=UTF-8');
-    return this.http.post(`https://172.31.8.206:8080/api/classes`, data, {headers: headers})
+    return this.http.post(`https://demo-load-balancer-1858473610.us-west-2.elb.amazonaws.com:443/api/classes`, data, {headers: headers})
     .map(res => res.json());
   }
 
