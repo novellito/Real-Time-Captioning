@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "../dist")));
 
 // Port Number
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 443;
 
 // CORS Middleware
 app.use(cors());
