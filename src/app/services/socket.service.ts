@@ -14,7 +14,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SocketService {
 
-   private url = 'https://172.31.8.206:443';
+   private url = 'https://172.31.8.206:8080';
    private socket: SocketIOClient.Socket;
    public id: any; // Hash value of transcriptID
    public transcriptLoad = false; // transcript is not being viewed
@@ -33,11 +33,11 @@ export class SocketService {
     if (!this.transcriptLoad) { // captioner is in session
       this.socket.emit('captionerDelta', {currDel: currDel, content: contents }); // emit captions to the student
       return this.http // send the contents to the database
-      .put(`https://172.31.8.206:443/api/transcripts/id/${this.id}`, {captions: contents}, { headers: headers })
+      .put(`https://172.31.8.206:8080/api/transcripts/id/${this.id}`, {captions: contents}, { headers: headers })
       .map(res => res.json());
     } else { // captioner is editing a transcript
       return this.http // send the contents to the database
-      .put(`https://172.31.8.206:443/api/transcripts/id/${this.id}`, {modCaptions: contents, rawStatus: false}, { headers: headers })
+      .put(`https://172.31.8.206:8080/api/transcripts/id/${this.id}`, {modCaptions: contents, rawStatus: false}, { headers: headers })
       .map(res => res.json());
     }
   }
