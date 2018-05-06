@@ -27,7 +27,7 @@ export class AddAClassService {
     };
     const headers = new Headers();
     headers.append('Content-Type', 'application/json; charset=UTF-8');
-    return this.http.post(`http://http://demo-load-balancer-1858473610.us-west-2.elb.amazonaws.com:8080/api/classes`, data, {headers: headers})
+    return this.http.post(`http://demo-load-balancer-1858473610.us-west-2.elb.amazonaws.com:8080/api/classes`, data, {headers: headers})
     .map(res => res.json());
   }
 
@@ -38,13 +38,13 @@ export class AddAClassService {
     headers.append('Content-Type', 'application/json; charset=UTF-8');
     if (JSON.parse(localStorage.getItem('user')).role === 'captioner') {
 
-      return this.http.put(`http://http://demo-load-balancer-1858473610.us-west-2.elb.amazonaws.com:8080/api/captionists/username/${JSON.parse(localStorage.getItem('user')).userID}`,
+      return this.http.put(`http://demo-load-balancer-1858473610.us-west-2.elb.amazonaws.com:8080/api/captionists/username/${JSON.parse(localStorage.getItem('user')).userID}`,
       data, {headers: headers})
       .map(res => res.json());
 
     } else {
 
-        return this.http.put(`http://http://demo-load-balancer-1858473610.us-west-2.elb.amazonaws.com:8080/api/students/username/${JSON.parse(localStorage.getItem('user')).userID}`,
+        return this.http.put(`http://demo-load-balancer-1858473610.us-west-2.elb.amazonaws.com:8080/api/students/username/${JSON.parse(localStorage.getItem('user')).userID}`,
          data, {headers: headers})
         .map(res => res.json());
     }
