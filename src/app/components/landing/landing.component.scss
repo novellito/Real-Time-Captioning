@@ -30,6 +30,7 @@
   .screen1 p,
   .screen2 p {
     font-size: 0.7em;
+    color: #000000
   }
   .screen1,
   .screen2 {
@@ -37,6 +38,8 @@
     top: 16%;
     left: 29%;
     width: 133px;
+    color: #000000
+
   }
   .screen2 {
     top: 73%;
@@ -109,10 +112,7 @@
   }
 }
 .about {
-  background: -webkit-linear-gradient(
-    45deg,
-    rgba(250, 14, 14, 0.7),
-    rgba(199, 25, 48, 0.8) 100%
+  background:#D32F2F !important
   );
   // background: -webkit-linear-gradient(45deg,#EB3349 ,#F45C43 100%);
   // background: -webkit-linear-gradient(45deg, #68d0ff, #453cf5 100%);
@@ -126,6 +126,7 @@
     .screen1 p,
     .screen2 p {
       font-size: 0.8em;
+      font-color: 
     }
     .screen1 {
       position: absolute;
@@ -148,6 +149,7 @@
     .screen1 p,
     .screen2 p {
       font-size: 0.8em;
+      color: #000000
     }
     .screen1,
     .screen2 {
@@ -179,6 +181,7 @@
     .screen1 p,
     .screen2 p {
       font-size: 1em;
+      color: #000000
     }
     .screen1,
     .screen2 {
@@ -211,6 +214,7 @@
     .screen1 p,
     .screen2 p {
       font-size: 1.1em;
+      color: #000000
     }
     .screen1,
     .screen2 {
