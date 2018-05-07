@@ -19,7 +19,7 @@ export class SocketService {
    public id: any; // Hash value of transcriptID
    public transcriptLoad = false; // transcript is not being viewed
 
-  constructor(private https: Http, private user: UserTypeService) { }
+  constructor(private http: Http, private user: UserTypeService) { }
 
   /**
    * @param {any} message
