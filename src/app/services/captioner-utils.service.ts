@@ -12,7 +12,7 @@ export class CaptionerUtilsService {
    getClass(courseID) {
      const headers = new Headers();
      headers.append('Content-Type', 'application/json');
-     return this.http.get(`http://csunrealtimecaptioning.com:8080/api/classes/courseID/${courseID}`, {headers: headers})
+     return this.http.get(`https://csunrealtimecaptioning.com:8080/api/classes/courseID/${courseID}`, {headers: headers})
      .map(res => res.json());
     }
 
@@ -20,7 +20,7 @@ export class CaptionerUtilsService {
     createTranscript(id) {
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      return this.http.post(`http://csunrealtimecaptioning.com:8080/api/transcripts`, {courseID: id} , {headers: headers})
+      return this.http.post(`https://csunrealtimecaptioning.com:8080/api/transcripts`, {courseID: id} , {headers: headers})
       .map(res => res.json());
     }
 
@@ -29,7 +29,7 @@ export class CaptionerUtilsService {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this.http // send the contents to the database
-          .put(`http://csunrealtimecaptioning.com:8080/api/transcripts/id/${id}`, {transcriptName: name}, { headers: headers })
+          .put(`https://csunrealtimecaptioning.com:8080/api/transcripts/id/${id}`, {transcriptName: name}, { headers: headers })
           .map(res => res.json());
     }
 
