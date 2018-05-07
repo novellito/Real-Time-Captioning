@@ -1,7 +1,7 @@
 .landing {
   // background: -webkit-linear-gradient(45deg,#262626 ,#e5e5e5 100%);
   background-image: url('../../../assets/images/csunov.jpg');
-  padding: 12% 0px;
+//  padding: 0px 0px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   color: white;
@@ -11,7 +11,6 @@
     #f45c43 100%
     */
    // background: -webkit-linear-gradient(45deg,#68d0ff,#453cf5 100%);
-  height: 100vh;
   .landing-text {
     margin-top: 10%;
   }
@@ -35,7 +34,7 @@
   .screen1,
   .screen2 {
     position: absolute;
-    top: 22%;
+    top: 16%;
     left: 29%;
     width: 133px;
   }
