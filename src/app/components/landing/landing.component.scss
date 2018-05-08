@@ -1,13 +1,16 @@
 .landing {
+  background-image: url('../../../assets/images/csunov.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   // background: -webkit-linear-gradient(45deg,#262626 ,#e5e5e5 100%);
-  background: -webkit-linear-gradient(
-    45deg,
-    #eb3349,
-    #f45c43 100%
-  ); // background: -webkit-linear-gradient(45deg,#68d0ff,#453cf5 100%);
-  height: 100vh;
-  .landing-text {
-    margin-top: 10%;
+  // background: -webkit-linear-gradient(
+  //   45deg,
+  //   #eb3349,
+  //   #f45c43 100%
+  // ); // background: -webkit-linear-gradient(45deg,#68d0ff,#453cf5 100%);
+  // height: 100vh;
+  // .landing-text {
+  //   margin-top: 10%;
   }
   .row-container {
     padding-top: 3rem;
@@ -104,11 +107,12 @@
   }
 }
 .about {
-  background: -webkit-linear-gradient(
-    45deg,
-    rgba(250, 14, 14, 0.7),
-    rgba(199, 25, 48, 0.8) 100%
-  );
+  background-color: #D32F2F !important;
+  // background: -webkit-linear-gradient(
+  //   45deg,
+  //   rgba(250, 14, 14, 0.7),
+  //   rgba(199, 25, 48, 0.8) 100%
+  // );
   // background: -webkit-linear-gradient(45deg,#EB3349 ,#F45C43 100%);
   // background: -webkit-linear-gradient(45deg, #68d0ff, #453cf5 100%);
   padding: 5% 0px;
@@ -143,6 +147,7 @@
     .screen1 p,
     .screen2 p {
       font-size: 0.8em;
+      color: #000000;
     }
     .screen1,
     .screen2 {
@@ -174,6 +179,7 @@
     .screen1 p,
     .screen2 p {
       font-size: 1em;
+      color: #000000;
     }
     .screen1,
     .screen2 {
@@ -206,6 +212,7 @@
     .screen1 p,
     .screen2 p {
       font-size: 1.1em;
+      color: #000000;
     }
     .screen1,
     .screen2 {
