@@ -12,7 +12,7 @@ export class CaptionerUtilsService {
    getClass(courseID) {
      const headers = new Headers();
      headers.append('Content-Type', 'application/json');
-     return this.http.get(`http://localhost:8080/api/classes/courseID/${courseID}`, {headers: headers})
+     return this.http.get(`http://172.31.8.206:8080/api/classes/courseID/${courseID}`, {headers: headers})
      .map(res => res.json());
     }
 
@@ -20,7 +20,7 @@ export class CaptionerUtilsService {
     createTranscript(id) {
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      return this.http.post(`http://localhost:8080/api/transcripts`, {courseID: id} , {headers: headers})
+      return this.http.post(`http://172.31.8.206:8080/api/transcripts`, {courseID: id} , {headers: headers})
       .map(res => res.json());
     }
 
@@ -29,7 +29,7 @@ export class CaptionerUtilsService {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this.http // send the contents to the database
-          .put(`http://localhost:8080/api/transcripts/id/${id}`, {transcriptName: name}, { headers: headers })
+          .put(`http://172.31.8.206:8080/api/transcripts/id/${id}`, {transcriptName: name}, { headers: headers })
           .map(res => res.json());
     }
 
