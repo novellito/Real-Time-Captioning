@@ -26,7 +26,7 @@ export class UserTypeService {
   loadTranscript(transcriptID) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(`https://172.31.8.206:8080/api/transcripts/id/${transcriptID}`, {headers: headers})
+    return this.http.get(`https://172.31.8.100:8080/api/transcripts/id/${transcriptID}`, {headers: headers})
     .map(res => res.json());
   }
 
@@ -36,7 +36,7 @@ export class UserTypeService {
   getTranscripts(id) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(`https://172.31.8.206:8080/api/transcripts/courseID/${id}`, { headers: headers })
+    return this.http.get(`https://172.31.8.100:8080/api/transcripts/courseID/${id}`, { headers: headers })
     .map(res => {
       this.transcripts = res.json().map(i => {
         return {id: i['_id'], transcriptName: i['transcriptName'], rawStatus: i['rawStatus'] }
@@ -53,11 +53,11 @@ export class UserTypeService {
     headers.append('Content-Type', 'application/json');
 
     if (JSON.parse(localStorage.getItem('user')).role === 'captioner') {
-      return this.http.get(`https://172.31.8.206:8080/api/captionists/username/${JSON.parse(localStorage.getItem('user')).userID}`,
+      return this.http.get(`https://172.31.8.100:8080/api/captionists/username/${JSON.parse(localStorage.getItem('user')).userID}`,
         {headers: headers})
         .map(res => res.json());
     } else {
-      return this.http.get(`https://172.31.8.206:8080/api/students/username/${JSON.parse(localStorage.getItem('user')).userID}`,
+      return this.http.get(`https://172.31.8.100:8080/api/students/username/${JSON.parse(localStorage.getItem('user')).userID}`,
       {headers: headers})
       .map(res => res.json());
     }
@@ -69,7 +69,7 @@ export class UserTypeService {
     this.listElem.remove();
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.delete(`https://172.31.8.206:8080/api/transcripts/id/${this.transcriptID}`, {headers: headers})
+    return this.http.delete(`https://172.31.8.100:8080/api/transcripts/id/${this.transcriptID}`, {headers: headers})
     .map(res => res.json()).subscribe();
   }
 
@@ -79,10 +79,10 @@ export class UserTypeService {
     headers.append('Content-Type', 'application/json');
 
     if (this.data.role === 'student') {
-      return this.http.put(`https://172.31.8.206:8080/api/students/username/${this.data.userName}`, {id: this.data.classID}, {headers: headers})
+      return this.http.put(`https://172.31.8.100:8080/api/students/username/${this.data.userName}`, {id: this.data.classID}, {headers: headers})
       .map(res => res.json()).subscribe();
     } else {
-       return this.http.put(`https://172.31.8.206:8080/api/captionists/username/${this.data.userName}`, {id: this.data.classID},
+       return this.http.put(`https://172.31.8.100:8080/api/captionists/username/${this.data.userName}`, {id: this.data.classID},
         {headers: headers})
         .map(res => res.json()).subscribe();
     }
@@ -99,7 +99,7 @@ export class UserTypeService {
    * @returns a rtf version of the transcript and downloads it for the client
    */
   download(name, id, status) {
-    return this.http.get(`https://172.31.8.206:8080/api/downloads/${id}/${status}`, {responseType: ResponseContentType.Blob})
+    return this.http.get(`https://172.31.8.100:8080/api/downloads/${id}/${status}`, {responseType: ResponseContentType.Blob})
     .map(res => new Blob([res.blob()], { type: 'application/rtf' })).subscribe(res => {
       saveAs(res, `${name}.rtf`);
     });

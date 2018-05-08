@@ -1,5 +1,5 @@
 {
-  "undefined": "172.31.8.206:27017/Real-Time",
-  "dev": "172.31.8.206:27017/Real-Time",
-  "prod": "172.31.8.206:27017/Real-Time"
+  "undefined": "172.31.8.100:27017/Real-Time",
+  "dev": "172.31.8.100:27017/Real-Time",
+  "prod": "172.31.8.100:27017/Real-Time"
 }
