@@ -23,6 +23,7 @@ $text-color: rgb(6, 40, 66);
     background-color: #fff;
     color: $text-color;
     margin-top: 2%;
+    z-index: 2;
     .delete-btn {
         width: 16px;
         &:hover {
@@ -49,34 +50,21 @@ $text-color: rgb(6, 40, 66);
     }
 }
 
-.transcripts {
-    border-right: 2px solid $border-color;
-    border-left: 2px solid $border-color;
-    &:hover {
-        background-color: $transcript-card;
-    }
-}
-
-.card {
-    margin-top: 2%;
-    z-index: 2;
-}
-  
 .transcript-card {
-    top: -25px;
-    z-index: 1;
+  padding-top: 4px;
+  top: -20px;
+  z-index: 1;
 }
 
-.card.card-collapse.transcript-card {
-    padding-top: 20px;
+ol {
+  padding-top: 20px;
 }
 
 .card-collapse {
     margin-top: 0;
     background-color: $transcript-card;
     .recent-transcripts {
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 15px;
         list-style: none;
         li a:hover {
             color: #4d5ec1;
@@ -85,6 +73,14 @@ $text-color: rgb(6, 40, 66);
     span {
         font-size: 1.5em;
     }
+}
+
+a > * {
+  color: #212529;
+}
+
+h2.class-title {
+  margin: 20px;
 }
 
 // small devices
