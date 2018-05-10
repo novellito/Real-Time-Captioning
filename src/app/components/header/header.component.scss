@@ -1,0 +1,47 @@
+.layout-csun {
+    height: 80px;
+    background-color: #262626;
+    header.header {
+        float: left;
+        border-right: white 2px solid;
+        padding-right: 10px;
+        margin: 20px 0 0 10px;
+        img {
+            width: 160px;
+            height: 43px;
+        }
+    }
+    .wordmark-container {
+        float: left;
+        padding-left: 10px;
+        margin: 20px 0 0 10px;
+        .wordmark {
+            margin-top: 10px;
+            color: white;
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .wordmark-container {
+        margin: 17px 0 0 5px;
+        .wordmark {
+            font-size: 1.3em;
+        }
+    }
+    .header img {
+        width: 107px;
+        height: 30px;
+    }
+}
+
+@media(max-width:480px) {
+    .layout-csun {
+        .wordmark {
+            display: none;
+        }
+        header.header {
+            border-right: none;
+        }
+    }
+}

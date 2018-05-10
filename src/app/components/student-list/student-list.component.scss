@@ -1,0 +1,25 @@
+$primary-color: #D22030;
+.student-list {
+    .student-list-header {
+        background-color: $primary-color;
+        padding: 8px;
+        border-radius: 4px;
+    }
+    list-style-type: none;
+    padding: 10px;
+    .student-list-header-title {
+        margin: 0 auto;
+        color: #fff;
+    }
+    .student-card {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .btn {
+        background-color: $primary-color;
+        padding: 0.6rem 1.13rem;
+    }
+    .card-title {
+        padding-left: 6px;
+    }
+}

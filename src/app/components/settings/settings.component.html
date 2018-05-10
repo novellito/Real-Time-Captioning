@@ -1,0 +1,73 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-9 col-sm-12">
+      <h1 class="title">Settings</h1>
+      <form method="post" action="#">
+        <div class="card font-container" id="accordion">
+          <a class="a-tag" data-toggle="collapse" href="#collapseExample">
+            <div class="card-container">
+              <div class="course-info">
+                <i class="fa fa-font first-letter" aria-hidden="true"></i>
+                <i class="fa fa-font second-letter" aria-hidden="true"></i>
+                <p>Font-Size</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="collapse font-family-card" id="collapseExample">
+          <h5>Font Size:</h5>
+          <h6 class="font-number">12px</h6>
+          <input class="range" type="range" name="font-size" value="12" min="10" max="36">
+        </div>
+        <!-- <div class="card font-container" id="accordion">
+          <a class="a-tag" data-toggle="collapse" href="#collapseExample2">
+            <div class="card-container">
+              <div class="course-info">
+                <i class="fa fa-font color-letter" aria-hidden="true"></i>
+                <p>Font-Color</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="collapse font-color-card" id="collapseExample2">
+          <h5>Font Color:</h5>
+          <input type="color" name="font-color" value="black">
+        </div> -->
+        <div class="card font-container color" id="accordion">
+          <a class="a-tag" data-toggle="collapse" href="#collapseExample2">
+            <div class="card-container">
+              <div class="course-info">
+                <i class="fa fa-font family-letter regular-a" aria-hidden="true"></i>
+                <div class="cursive cursive-a">A</div>
+                <p>Font-Family</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="collapse font-color-card" id="collapseExample2">
+          <h5>Font Family:</h5>
+          <input type="radio" name="font" value="Times New Roman" checked="checked">
+          <label class="times-new-roman">Times New
+            <br>Roman</label>
+          <br>
+          <input type="radio" name="font" value="Sans-Serif">
+          <label class="sans-serif">Sans-Serif</label>
+          <br>
+          <input type="radio" name="font" value="Monospace">
+          <label class="monospace">Monospace</label>
+          <br>
+          <input type="radio" name="font" value="Cursive">
+          <label class="cursive">Cursive</label>
+          <br>
+        </div>
+        <div class="btn-container">
+          <input class="button" type="reset" value="Reset">
+          <input class="button" type="submit" value="Save">
+          <button class="button" type="button" onclick="console.log('Logout')">Logout</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

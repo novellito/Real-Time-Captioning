@@ -1,0 +1,33 @@
+[
+      {
+        "courseName": "Comp 490",
+        "courseID": "12345",
+        "professor": "Fitzgerald",
+        "transcripts": [],
+        "day": "MW",
+        "time": ""
+      },
+      {
+        "courseName": "Comp 482",
+        "courseID": "67891",
+        "professor": "Noga",
+        "day": "MW",
+        "time": ""
+      },
+      {
+        "courseName": "Bio 107/L",
+        "courseID": "45673",
+        "professor": "Smith",
+        "transcripts": [],
+        "day": "TuTh",
+        "time": ""
+      },
+      {
+        "courseName": "Art 305",
+        "courseID": "32134",
+        "professor": "Picasso",
+        "transcripts": [],
+        "day": "F",
+        "time": ""
+      }
+  ]

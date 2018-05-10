@@ -1,0 +1,211 @@
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar bg-red">
+  <logo>
+    <a class="navbar-brand" href="#landing">Real Time Captioning</a>
+  </logo>
+
+  <links class="d-lg-flex justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav ">
+      <li class="nav-item">
+        <a *ngIf="!loggedOut" [routerLink]="['/dashboard']" class="nav-link waves-effect waves-light" href="#">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a mdbPageScroll class="nav-link waves-effect waves-light" href="#features">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light" href="#">About</a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="loggedOut" class="nav-link waves-effect waves-light" [routerLink]="['/login']">Login</a>
+        <a *ngIf="!loggedOut" (click)="logout()" class="nav-link waves-effect waves-light" [routerLink]="['/dashboard']">Logout</a>
+      </li>
+
+    </ul>
+  </links>
+
+</mdb-navbar>
+
+<section class="landing" id="landing">
+
+  <div class="container mx-auto">
+    <div class="row flex-center row-container">
+      <div class="col-lg-12 text-center">
+        <div class="white-text landing-text">
+          <h1 class="font-bold">Improve Your Captioning Experience</h1>
+          <h6>with a simple, but power application</h6>
+          <br>
+          <button *ngIf="loggedOut" class="btn btn-primary" [routerLink]="['/login']">Login</button>
+          <button *ngIf="!loggedOut" class="btn btn-primary" [routerLink]="['/dashboard']">Dashboard</button>
+        </div>
+      </div>
+      <div class="laptops">
+        <img class="animated fadeInLeft" src="../../assets/images/Laptop.png" alt="student laptop">
+        <div class="screen1">
+          <p typingAnimation [typeSpeed]="50" [condition]="start" [startDelay]="1000" class="typewriter1">Welcome to the best closed captioning app ever!</p>
+        </div>
+        <img class="animated fadeInRight" src="../../assets/images/Laptop.png" alt="captioner laptop">
+        <div class="screen2">
+          <p typingAnimation [typeSpeed]="50" [condition]="start" [startDelay]="1000" class="typewriter2">Welcome to the best closed captioning app ever!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container mx-auto">
+  <section class="features" id="features">
+
+    <h1 class="mb-3 pt-5 dark-grey-text text-center">
+      <strong class="font-bold">Key Features</strong>
+    </h1>
+
+    <p class="section-description ">
+      Real-Time-Captioning comes with a variety of features that make the classroom experience enjoyable.</p>
+    <div class="row features">
+      <div class="col-lg-4 text-center">
+        <div class="icon-area">
+          <div class="circle-icon">
+            <i class="fa fa-download pink-text"></i>
+          </div>
+          <br>
+          <h5 class="dark-grey-text font-bold mt-2">Transcript Downloads</h5>
+          <div class="mt-1">
+            <p class="mx-3 grey-text">Never worry about waiting for your captioner to email you the transcripts because now you will have access as
+              soon as the class is over!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 text-center mb-4">
+        <div class="icon-area">
+          <div class="circle-icon">
+            <i class="fa fa-text-width pink-text"></i>
+          </div>
+          <br>
+          <h5 class="dark-grey-text font-bold mt-2">Text-expansion</h5>
+          <div class="mt-1">
+            <p class="mx-3 grey-text">Access a variety of word shortcuts for maximum captioning efficency.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 text-center mb-4">
+        <div class="icon-area">
+          <div class="circle-icon">
+            <i class="fa fa-rss-square pink-text"></i>
+          </div>
+          <br>
+          <h5 class="dark-grey-text font-bold mt-2">Portability</h5>
+          <div class="mt-1">
+            <p class="mx-3 grey-text">Students can now comfortably sit around the classroom without having to rely on a captioner's laptops.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row features">
+
+      <div class="col-lg-4 text-center">
+        <div class="icon-area">
+          <div class="circle-icon">
+            <i class="fa fa-book pink-text"></i>
+          </div>
+          <br>
+          <h5 class="dark-grey-text font-bold mt-2">Easy Organization</h5>
+          <div class="mt-1">
+            <p class="mx-3 grey-text">The simple interface makes it easy to manage transcripts and join or start a captioning session.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 text-center">
+        <div class="icon-area">
+          <div class="circle-icon">
+            <i class="fa fa-bolt pink-text"></i>
+          </div>
+          <br>
+          <h5 class="dark-grey-text font-bold mt-2">Quick Login</h5>
+          <div class="mt-1">
+            <p class="mx-3 grey-text">Integrated with the schools single sign on system, you can get started without having to register!</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 text-center">
+        <div class="icon-area">
+          <div class="circle-icon">
+            <i class="fa fa-eye pink-text"></i>
+          </div>
+          <br>
+          <h5 class="dark-grey-text font-bold mt-2">Distraction-Free Mode</h5>
+          <div class="mt-1">
+            <p class="mx-3 grey-text">Hide any potential distractions and focus on the class only.</p>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+  </section>
+</div>
+
+
+<section class="about">
+  <div class="container">
+
+    <h1 class="mb-3 pt-5 white-text text-left">
+      <strong class="font-bold">About Real Time Captioning</strong>
+    </h1>
+    <p class="white-text">
+      Originally starting out as a proof concept, Real Time Captioning was created to solve the various issues that concern closed
+      captioning duirng a classroom session. Previous methods used older inefficient technologies that made the classroom
+      experience unpleasant for both the student and the captioner. A student would have to rely on a captioner's laptop
+      to view the closed captions and sit next to them in class, making them feel isolated from their peers. Moreover, transcripts
+      were not readily available which meant students would not have access to the classroom material.
+    </p>
+  </div>
+</section>
+
+<section class="call">
+  <div class="container">
+
+    <h1 class="mb-3 pt-5 text-left">
+      <strong class="font-bold">What are you waiting for?</strong>
+    </h1>
+    <p class="mx-3 h3">
+      Get started now!
+    </p>
+  </div>
+</section>
+
+<footer class="page-footer  grey darken-4">
+
+  <div class="social-section text-center">
+    <ul>
+      <li>
+        <a class="social-btns btn-fb">
+          <i class="fa fa-facebook"> </i>
+        </a>
+      </li>
+      <li>
+        <a class="social-btns btn-tw">
+          <i class="fa fa-twitter"> </i>
+        </a>
+      </li>
+      <li>
+        <a class="social-btns btn-gh">
+          <i class="fa fa-github"> </i>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="footer-copyright">
+    <div class="container-fluid">
+      © 2018 Copyright: Real Time Captioning
+    </div>
+  </div>
+
+</footer>

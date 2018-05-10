@@ -1,0 +1,80 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-9 col-sm-12" id="accordion">
+
+      <div class="head">
+        <h1>Classes</h1>
+          <a [routerLink]="['/add-a-class']" class="btn btn-sm btn-danger">
+            Add a class
+          </a>
+      </div>
+        <div *ngFor="let class of classes; let i=index">
+          <div class="card">
+              <i (click)="deleteClass(class)" class="fa fa-times delete-btn"></i>
+
+            <div class="card-container">
+            <div class="course-info">
+              <h1 class="class-title">{{class.courseName}}</h1>
+              <p class="h6">Professor {{class.professor}}</p>
+              <p class="h6">{{class.day}} {{class.time}}</p>
+              <p class="h6">Days: {{class.days}}</p>
+              <p class="h6">Course ID:{{class.courseID}} Location: {{class.location}}</p>
+            </div>
+            <div class="transcripts text-center">
+              <a (click)="loadTranscripts($event);" id={{i}} href="#{{class.courseID}}" data-toggle="collapse">
+                <img src="../../../assets/images/recentTranscript.svg" alt="recent transcripts">
+                <p>Recent Transcripts</p>
+              </a>
+            </div>
+            <div class="session text-center">
+              <a *ngIf="userType === 'student'" [routerLink]="['/student-session', class.courseName, class.courseID]">
+                <img src="../../../assets/images/join.svg" alt="join session">
+                <p>Join Session</p>
+              </a>
+
+              <a *ngIf="userType === 'captioner'" [routerLink]="['/captioner-session', class.courseID]">
+                <img src="../../../assets/images/join.svg" alt="start session">
+                <p>Start Session</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div id="{{class.courseID}}" class="collapse" role="tabpanel" data-parent="#accordion">
+        <div class="card card-collapse">
+            <ul *ngFor="let transcript of this.user.transcripts" class="recent-transcripts">
+              <li id="transcriptElement">
+                  <i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i>
+                  <a [routerLink]="['/transcript', transcript.id]" class="h6">{{transcript.transcriptName}}</a>
+                  <a (click)="this.user.download(transcript.transcriptName,transcript.id,'raw')"><i class="fa fa-download fa-2x" aria-hidden="true"> </i></a> 
+                  <a *ngIf="!transcript.rawStatus" [routerLink]="['/transcript/modified', transcript.id]" class="h6">| {{transcript.transcriptName}} (modified)</a>
+                  <a *ngIf="!transcript.rawStatus" (click)="this.user.download(transcript.transcriptName +' (modified)',transcript.id,'edited')"><i class="fa fa-download fa-2x" aria-hidden="true"> </i></a> 
+                  <button (click)="this.user.storeID(transcript.id, $event)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalConfirmDelete">Delete</button>
+              </li>
+            </ul>    
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+          <div class="modal-content text-center">
+              <div class="modal-header d-flex justify-content-center">
+                  <p class="heading">Are you sure?</p>
+              </div>
+              <div class="modal-body">
+                  <i class="fa fa-times fa-4x animated rotateIn"></i>
+              </div>
+              <div class="modal-footer flex-center">
+                  <a (click)="this.user.deleteTranscript()" class="btn  btn-outline-secondary-modal" data-dismiss="modal">Yes</a>
+                  <a type="button" class="btn  btn-primary-modal waves-effect" data-dismiss="modal">No</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+</div>

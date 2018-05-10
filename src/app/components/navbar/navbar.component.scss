@@ -1,0 +1,65 @@
+$nav-highlight: rgba(96, 82, 82, 0.67);
+
+.container-sidebar {
+    position: absolute;
+    background-color: #262626;
+    height: 100%;
+    width: 100px;
+    left: 0;
+    a {
+        color: white;
+    }
+    li:nth-child(2) div { //positioning "transcript" 
+        margin-left: -14px;
+    }
+    .fa-file-text-o {
+        margin-bottom: 8px;
+    }
+    .fa-pencil-square-o {
+        margin-left: 8px;
+    }
+    .list-group-item {
+        background-color: inherit;
+        &:hover {
+            background-color:$nav-highlight;
+        }
+        &.active {
+            border: none;
+            background-color: $nav-highlight;
+        }
+    }
+    .nav-link {
+        padding: 0;
+        font-size: 1.1em;
+    }
+}
+
+// allows hamburger menu to collapse properly
+@media(min-width:769px) {
+    .navbar-toggler {
+        display: none;
+    }
+    .container-sidebar {
+        display: block;
+    }
+}
+
+@media(max-width:768px) {
+    .container-sidebar {
+        width: 100%;
+        position: relative;
+        i {
+            display: none;
+        }
+    }
+    .navbar-toggler {
+        color: white;
+        display: block;
+        position: absolute;
+        top: 2%;
+        right: 5%;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

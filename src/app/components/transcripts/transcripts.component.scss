@@ -1,0 +1,40 @@
+.course-info {
+  padding: 20px;
+}
+
+.title {
+  margin-top: 2%;
+}
+
+a > * {
+  color: #212529;
+}
+
+.all-transcripts {
+  list-style: none;
+  padding-left: 10px;
+  padding-top: 20px;
+  li i:hover, a:hover {
+    color: #4d5ec1;
+  }
+}
+
+.card {
+  z-index: 2;
+  margin-bottom: 5px;
+}
+
+.transcript-card {
+  padding-top: 4px;
+  top: -20px;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .offset {
+    margin-left: 0px;
+  }
+  p {
+    font-size: 0.9em;
+  }
+}

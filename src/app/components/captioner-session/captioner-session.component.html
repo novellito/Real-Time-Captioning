@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<app-navbar></app-navbar>
+<div class="container">
+  
+  <div class="row d-flex justify-content-end ">
+    <div class="col-md-8 col-sm-12 ">
+        <input type="text" name="title" class="title" value="Untitled" (focusout)="setTitle(title.value)" #title>
+      <app-editor (broadcastCaption)="getDelta();"></app-editor>
+    </div>
+    <div class="col-md-3 col-sm-12 list">
+      <app-student-list></app-student-list>
+    </div>
+  </div>
+
+</div>
