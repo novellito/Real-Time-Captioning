@@ -9,7 +9,7 @@ let LoginController = {};
 LoginController.authenticate = (req,res) => {
 
     let client = ldap.createClient({
-        url: 'ldap://sdir.csun.edu'
+        url: 'ldaps://sdir.csun.edu'
     });
 
     console.log("trying to bind");

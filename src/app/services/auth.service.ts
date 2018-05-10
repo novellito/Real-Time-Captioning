@@ -13,7 +13,7 @@ export class AuthService {
   authenticateUser(user) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://172.31.8.100:8080/api/login', user, {headers: headers}).map(res => res.json());
+    return this.http.post('https://csunrealtimecaptioning.com:8080/api/login', user, {headers: headers}).map(res => res.json());
   }
 
   storeLoginData(token, user) {
@@ -29,7 +29,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken); // send token with request to the endpoint
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://172.31.8.100:8080/api/login', { headers: headers })
+    return this.http.get('https://csunrealtimecaptioning.com:8080/api/login', { headers: headers })
       .map(res => res.json());
   }
 

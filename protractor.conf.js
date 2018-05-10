@@ -12,7 +12,7 @@ exports.config = {
     'browserName': 'chrome'
   },
   directConnect: true,
-  baseUrl: 'http://csunrealtimecaptioning.com:4200/',
+  baseUrl: 'https://csunrealtimecaptioning.com:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
