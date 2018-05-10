@@ -1,4 +1,15 @@
 # RTC
+![landing](https://user-images.githubusercontent.com/21237266/39331554-c10e3794-4959-11e8-86fa-9cd3a38e5695.jpg)
+## Features
+
+![features](https://user-images.githubusercontent.com/21237266/39331557-c29fad2c-4959-11e8-87bb-8d604ac7aff8.PNG)
+
+### Text Expansion
+![unravel](https://user-images.githubusercontent.com/21237266/39331496-99b32a9c-4959-11e8-99fb-e676e42d5a43.gif)
+
+### Distraction Free Mode
+![Distraction free mode](https://user-images.githubusercontent.com/21237266/39331923-bb180a62-495a-11e8-87ec-853347266b53.gif)
+
 
 ## Dependencies & Setup 
 Make sure you have a version of node.js that's at least version 6.0 or above. To check what version you have run `node -v`

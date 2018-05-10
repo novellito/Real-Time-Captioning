@@ -19,6 +19,7 @@ import { QuillModule } from 'ngx-quill';
 import { LandingComponent } from './components/landing/landing.component';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HelpComponent } from './components/help/help.component';
 import { StudentSessionComponent } from './components/student-session/student-session.component';
 import { CaptionerSessionComponent } from './components/captioner-session/captioner-session.component';
 import { TranscriptsComponent } from './components/transcripts/transcripts.component';
@@ -34,6 +35,7 @@ import { UserAccessGuard } from './guards/user-access-guard.service';
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'dashboard',  canActivate: [AuthGuard], component: DashboardComponent },
+  { path: 'help', component: HelpComponent },
   { path: 'student-session/:className/:classID', component: StudentSessionComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'transcripts', component: TranscriptsComponent },
@@ -57,6 +59,7 @@ const appRoutes: Routes = [
     EditorComponent,
     StatusComponent,
     DashboardComponent,
+    HelpComponent,
     LandingComponent,
     StudentSessionComponent,
     CaptionerSessionComponent,

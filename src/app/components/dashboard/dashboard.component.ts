@@ -13,43 +13,64 @@ import { Subscription } from 'rxjs/Subscription';
   providers: [UserTypeService]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-
   classSubs: Subscription;
   transcriptSub: Subscription;
 
   transSubFlag = false; // keep track if subscription is made
-  classes: object;
+  classes = [];
   classIDs = [];
   userType: string;
+  userName: string;
   managing = false;
+  classToDelete: any;
 
-  constructor(private authService: AuthService, private http: Http, private user: UserTypeService, ) { }
+  constructor(
+    private authService: AuthService,
+    private http: Http,
+    private user: UserTypeService
+  ) {}
 
   ngOnInit() {
-      this.userType = JSON.parse(localStorage.getItem('user')).role;
-      this.classSubs = this.user.getClasses().subscribe(res => {
-      this.classes = res[0].classes;
-      console.log(this.classes)
-      res[0].classes.forEach((element, index) => {
-         this.classIDs.push(element._id); // store class IDs for reference in loadTranscripts().
-      });
-    },
-    err => {
-      console.log(err);
-      return false;
-    });
-    console.log(this.user.transcripts)
+    this.userName = JSON.parse(localStorage.getItem('user')).userID;
+    this.userType = JSON.parse(localStorage.getItem('user')).role;
+    this.classSubs = this.user.getClasses().subscribe(
+      res => {
+        this.classes = res[0].classes;
+        res[0].classes.forEach((element, index) => {
+          this.classIDs.push(element._id); // store class IDs for reference in loadTranscripts().
+        });
+      },
+      err => {
+        console.log(err);
+        return false;
+      }
+    );
   }
 
-  // Delete the specefic class
-  deleteClass(className) {
-    console.log(className)
-    console.log('deleting')
+  // set up the class that the user will be deleting
+  setClassData(className) {
+    this.classToDelete = className;
+    this.user.data = {
+      userName: this.userName,
+      role: this.userType,
+      classID: className._id
+    };
+    console.log(this.user.data);
+  }
+
+  // Delete the selected class after confirming modal
+  deleteClass() {
+    this.classes = this.classes.filter(
+      elem => elem.courseID !== this.classToDelete.courseID
+    );
+    this.user.removeClass();
   }
 
   // Load set of transcripts based on the id attribute.
   loadTranscripts($event) {
-    this.transcriptSub = this.user.getTranscripts(this.classIDs[$event.currentTarget.id]).subscribe();
+    this.transcriptSub = this.user
+      .getTranscripts(this.classIDs[$event.currentTarget.id])
+      .subscribe();
     this.transSubFlag = true;
   }
 
@@ -64,6 +85,4 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.transcriptSub.unsubscribe();
     }
   }
-
-
 }

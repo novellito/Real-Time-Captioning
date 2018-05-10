@@ -34,6 +34,10 @@ $nav-highlight: rgba(96, 82, 82, 0.67);
     }
 }
 
+.help {
+    padding: 0.75rem 1.5rem;
+}
+
 // allows hamburger menu to collapse properly
 @media(min-width:769px) {
     .navbar-toggler {

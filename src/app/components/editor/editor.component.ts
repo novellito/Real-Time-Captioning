@@ -1,23 +1,25 @@
+import { Unravel } from 'unravel-me';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import {Component, OnInit, OnDestroy, ViewChild, Input} from '@angular/core';
-import {QuillEditorComponent} from 'ngx-quill/src/quill-editor.component';
+import { Component, OnInit, OnDestroy, ViewChild, Input } from '@angular/core';
+import { QuillEditorComponent } from 'ngx-quill/src/quill-editor.component';
 import { SocketService } from './../../services/socket.service';
-import {UserTypeService} from 'app/services/user-type.service';
+import { UserTypeService } from 'app/services/user-type.service';
+import * as abbreviation from '../../../abbreviations/abbreviations.json';
 
 import * as Quill from 'quill';
 
-const  quill: any = Quill;
+const quill: any = Quill;
 const Parchment = quill.import('parchment');
 const Block = Parchment.query('block');
 
-Block.tagName   = 'DIV';
+Block.tagName = 'DIV';
 quill.register(Block /* or NewBlock */, true);
 const Font = quill.import('formats/font');
 Font.whitelist = ['mirza', 'aref'];
 quill.register(Font, true);
 
-@Component({selector: 'app-editor', templateUrl: './editor.component.html', styleUrls: ['./editor.component.scss']})
+@Component({ selector: 'app-editor', templateUrl: './editor.component.html', styleUrls: ['./editor.component.scss'] })
 export class EditorComponent implements OnInit, OnDestroy {
 
   connection: Subscription;
@@ -27,13 +29,15 @@ export class EditorComponent implements OnInit, OnDestroy {
   @Input() editStatus: boolean;
   userType = JSON.parse(localStorage.getItem('user')).role;
 
-  constructor(private user: UserTypeService, private socketService: SocketService, private route: ActivatedRoute) {}
+  constructor(private user: UserTypeService, private socketService: SocketService, private route: ActivatedRoute) { }
 
   /**
    * A life cycle hook for determining what the user can
    * see or access.
    */
   ngOnInit() {
+    Unravel.create_dictionary(abbreviation);
+
     if (this.socketService.transcriptLoad) {
 
       if (this.editStatus) { // display edited transcript
@@ -43,30 +47,30 @@ export class EditorComponent implements OnInit, OnDestroy {
         });
       } else { // display original transcript
         this.user.loadTranscript(this.socketService.id).subscribe(res => {
-        this.user.transcriptTitle = res.transcriptName;
-        this.editor.updateContents(res.captions);
-      });
+          this.user.transcriptTitle = res.transcriptName;
+          this.editor.updateContents(res.captions);
+        });
 
       }
     }
     if (this.userType === 'student') {
       this.toolbarOptions = false;
-        if(!this.route.snapshot.params['id']) {
-          this.connection = this.socketService.getMessages().subscribe( (message: any) => {
-            if (this.editor.getLength() === 1) {
-              this.editor.updateContents(message.content);
-            } else {
-              this.editor.updateContents(message.currDel);
-            }
+      if (!this.route.snapshot.params['id']) {
+        this.connection = this.socketService.getMessages().subscribe((message: any) => {
+          if (this.editor.getLength() === 1) {
+            this.editor.updateContents(message.content);
+          } else {
+            this.editor.updateContents(message.currDel);
           }
+        }
         );
       }
 
     } else {
       this.toolbarOptions = [
-        [ 'bold', 'italic', 'underline', 'strike'],
+        ['bold', 'italic', 'underline', 'strike'],
         ['blockquote', 'code-block'],
-        [{'size': ['small', false, 'large', 'huge']}]
+        [{ 'size': ['small', false, 'large', 'huge'] }]
       ];
     }
 
@@ -80,17 +84,31 @@ export class EditorComponent implements OnInit, OnDestroy {
     this.editor = $event;
   }
 
-   /**
-   * Send the delta object to the students in the session
-   * editor in context.
-   */
+  /**
+  * Send the delta object to the students in the session
+  * editor in context.
+  */
   sendDelta($event: any) {
-      if (this.userType === 'student' || $event.source === 'api') { // do nothing (prevent caption from bouncing back and forth)
-        return;
-      } else if ($event.source === 'user') { // only save if input comes from a user
-        this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe();
+    if (this.userType === 'student' || $event.source === 'api') { // do nothing (prevent caption from bouncing back and forth)
+      return;
+    } else if ($event.source === 'user') { // only save if input comes from a user
+
+      let text = $event.text;
+      let result = Unravel.expand_abbreviation(text);
+
+      if (text !== result) {
+        result = result + ' \n';
+        this.editor.updateContents([
+          { delete: text.length },
+          { insert: result },
+        ]);
+        setTimeout(() => this.editor.setSelection(result.length), 50);
       }
- }
+
+      this.socketService.sendCaptions($event.delta, this.editor.getContents()).subscribe();
+
+    }
+  }
 
   // TODO: allow captioners & students to message one another
   // sendDM(message: any) {}

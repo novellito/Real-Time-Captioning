@@ -13,21 +13,24 @@ a > * {
 .all-transcripts {
   list-style: none;
   padding-left: 10px;
-  padding-top: 20px;
+  padding-top: 0px;
   li i:hover, a:hover {
     color: #4d5ec1;
   }
 }
 
 .card {
+  margin-top: 2%;
   z-index: 2;
-  margin-bottom: 5px;
 }
 
 .transcript-card {
-  padding-top: 4px;
-  top: -20px;
+  top: -25px;
   z-index: 1;
+}
+
+.card.card-collapse.transcript-card > :first-child {
+  padding-top: 20px;
 }
 
 @media (max-width: 768px) {

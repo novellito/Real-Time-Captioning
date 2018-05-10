@@ -15,6 +15,7 @@ export class UserTypeService {
   transcriptTitle: string;
   transcripts = [];
 
+  data: {userName: string, role: string, classID: string}; // The data used for deleting a specefic users class
   transcriptID: string; // Hash value of transcript to be deleted
   listElem: any; // a reference to the list element to be removed
   constructor(private http: Http) { }
@@ -64,12 +65,29 @@ export class UserTypeService {
 
   // Deletes the transcript element visually and from the database
   deleteTranscript() {
+    console.log(this.listElem)
     this.listElem.remove();
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.delete(`http://localhost:8080/api/transcripts/id/${this.transcriptID}`, {headers: headers})
     .map(res => res.json()).subscribe();
   }
+
+  removeClass() {
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    if (this.data.role === 'student') {
+      return this.http.put(`http://localhost:8080/api/students/username/${this.data.userName}`, {id: this.data.classID}, {headers: headers})
+      .map(res => res.json()).subscribe();
+    } else {
+       return this.http.put(`http://localhost:8080/api/captionists/username/${this.data.userName}`, {id: this.data.classID},
+        {headers: headers})
+        .map(res => res.json()).subscribe();
+    }
+  }
+
 
   // helper method to store references to the transcriptID and list element (used for deleting transcript)
   storeID(id, $event) {
