@@ -9,7 +9,7 @@ let LoginController = {};
 LoginController.authenticate = (req,res) => {
 
     let client = ldap.createClient({
-        url: 'ldap://sdir.csun.edu'
+        url: 'ldaps://meta-dap-prod.metalab.csun.edu:636'
     });
 
     console.log("trying to bind");
@@ -37,7 +37,7 @@ LoginController.authenticate = (req,res) => {
   
     } else {
 
-    client.bind(`uid=${req.body.username},ou=People,ou=Auth,o=csun`, `${req.body.password}`, function (err, response) {
+    client.bind(`uid=${req.body.username},dc=METALABProxy,cn=Pioneering,ou=Proxies,ou=Auth,o=csun`, `${req.body.password}`, function (err, response) {
         
         console.log("binding successful");
 

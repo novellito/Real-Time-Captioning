@@ -35,6 +35,7 @@
     "hammerjs": "^2.0.8",
     "html-to-rtf": "^1.3.0",
     "jquery": "^3.2.1",
+    "ldapjs": "^1.0.2",
     "ngx-quill": "^1.5.1",
     "popper.js": "^1.12.6",
     "quill": "^1.3.4",
